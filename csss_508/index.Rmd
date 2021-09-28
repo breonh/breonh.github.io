@@ -1,6 +1,6 @@
 ---
 title: "CS&SS 508 - Introduction to R for Social Scientists"
-author: "Breon Haskett \n University of Washington"
+author: "Breon Haskett - University of Washington"
 ---
 
 
