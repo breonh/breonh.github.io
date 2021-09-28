@@ -8,7 +8,7 @@ author: "Breon Haskett - University of Washington"
 ## Important links
 
 * [Canvas Page (enrolled students only)](https://canvas.uw.edu/courses/1272898)
-* [Syllabus](https://clanfear.github.io/CSSS508/docs/syllabus.html)
+* [Syllabus](https://breonh.github.io/csss_508/docs/syllabus.html)
 * [Homework Instructions](https://clanfear.github.io/CSSS508/docs/homework.html) and grading rubric.
 * [Peer Review Instructions](https://clanfear.github.io/CSSS508/docs/peer_review.html) and suggestions for reading code.
 * [Class Slack Channel](https://uwcsss508.slack.com/)
@@ -34,14 +34,19 @@ author: "Breon Haskett - University of Washington"
 ## Weekly lecture notes and links:
 
 ### 1. RStudio and R Markdown
+ **Lecture for Week 1:**
+   
    * [Slides for Lecture 1: Course logistics, R/RStudio, and R Markdown](https://clanfear.github.io/CSSS508/Lectures/Week1/CSSS508_Week1_RStudio_and_RMarkdown.html)
        + [R Script for Lecture 1 slides](https://raw.githubusercontent.com/clanfear/CSSS508/master/Lectures/Week1/CSSS508_Week1_RStudio_and_RMarkdown.R)
        + [PDF of Lecture 1 slides](https://clanfear.github.io/CSSS508/Lectures/Week1/CSSS508_Week1_RStudio_and_RMarkdown.pdf)
        + [Rmd for Lecture 1 slides](https://raw.githubusercontent.com/clanfear/CSSS508/master/Lectures/Week1/CSSS508_Week1_RStudio_and_RMarkdown.Rmd)
 
-   * **Homework 1:**
-       + **[Homework 1 Instructions](https://clanfear.github.io/CSSS508/Homework/HW1/homework_1.html)**
+   **Homework 1:**
+       
+   * **[Homework 1 Instructions](https://clanfear.github.io/CSSS508/Homework/HW1/homework_1.html)**
+   * **Homework 1 KEY / Example**
 
+   **Related Reading: **
 
    * [Introduction to R Markdown](https://rmarkdown.rstudio.com/lesson-1.html)
    * [RMarkdown documentation](http://rmarkdown.rstudio.com/)
@@ -57,3 +62,34 @@ author: "Breon Haskett - University of Washington"
    * [Shapes and line types](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/) in base R
    * [Color names (PDF)](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) in base R
    
+
+
+### 2. Visualizing Data
+
+   **Lecture for Week 2:**
+
+   * [Slides for Lecture 2: Plotting with `ggplot2`](https://clanfear.github.io/CSSS508/Lectures/Week2/CSSS508_Week2_ggplot2.html)
+       + [R Script for Lecture 2 slides](https://github.com/clanfear/CSSS508/raw/master/Lectures/Week2/CSSS508_Week2_ggplot2.R)
+       + [PDF of Lecture 2 slides](https://clanfear.github.io/CSSS508/Lectures/Week2/CSSS508_Week2_ggplot2.pdf)
+       + [Rmd for Lecture 2 slides](https://github.com/clanfear/CSSS508/raw/master/Lectures/Week2/CSSS508_Week2_ggplot2.Rmd)
+       
+   **Homework 2:**
+
+   * **[Homework 2 Instructions](https://clanfear.github.io/CSSS508/Homework/HW2/homework_2.html)**
+   * **Homework 2 KEY / Example**
+
+   **Further Reading:**
+
+   * Reading: [Visualization chapter in R for Data Science](http://r4ds.had.co.nz/data-visualisation.html)
+   * [`ggplot2` Website](https://ggplot2.tidyverse.org/)
+   * [`ggplot2` Cheat Sheet](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf)
+   * [The ggplot Flipbook](https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html) by [Gina Reynolds](https://github.com/EvaMaeRey)
+   * [Cookbook for R graph reference](http://www.cookbook-r.com/Graphs/)
+   * [R graph catalog at UBC](http://shiny.stat.ubc.ca/r-graph-catalog/)
+   * `ggplot2` add-ons
+       + [`ggthemes` package](https://github.com/jrnold/ggthemes)
+       + [`cowplot` package](https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html) for publication ready graphs, multiple plots in single image, etc.
+       + [`gganimate` package](https://github.com/dgrtwo/gganimate) for easy animations (saving GIFs requires [ImageMagick](https://www.imagemagick.org/script/index.php) or [GraphicsMagick](http://www.graphicsmagick.org/))
+   * [Hadley Wickham on the grammar of graphics](http://vita.had.co.nz/papers/layered-grammar.html)
+   * [Tufte in R](http://motioninsocial.com/tufte/) (if that's your sort of thing)
+   * Recommended text: [Data Visualization: A Practical Introduction](https://kieranhealy.org/publications/dataviz/) by Kieran Healy
