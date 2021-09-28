@@ -13,7 +13,7 @@ author: "Breon Haskett \n University of Washington"
 * [Peer Review Instructions](https://clanfear.github.io/CSSS508/docs/peer_review.html) and suggestions for reading code.
 * [Class Slack Channel](https://uwcsss508.slack.com/)
 * [R and RStudio Installation Instructions](https://clanfear.github.io/CSSS508/docs/installation.html)
-* [Enabling Compilation of Packages](https://breonh.github.io/docs/compiling.html)
+* [Enabling Compilation of Packages](https://breonh.github.io/compiling.html)
 * [How to Read an R Help Page](https://socviz.co/appendix.html#a-little-more-about-r)
 
 ## Helpful resources
