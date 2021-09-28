@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Syllabus for CS&amp;SS 508</title>
+
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">breonh.github.io</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    CSSS 508
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="index.html">Course Website</a>
+    </li>
+    <li>
+      <a href="syllabus.html">syllabus</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Syllabus for CS&amp;SS 508</h1>
+
+</div>
+
+
+<div id="csss-508" class="section level1">
+<h1>CSSS 508</h1>
+<div id="introduction-to-r-for-social-scientists" class="section level2">
+<h2>Introduction to R for Social Scientists</h2>
+<div id="university-of-washington" class="section level3">
+<h3>University of Washington</h3>
+<p>Instructor: <a href="mailto:breonh@uw.edu">Breon Haskett</a></p>
+</div>
+</div>
+<div id="class-locations" class="section level2">
+<h2>Class Locations</h2>
+<p>SAVERY 117</p>
+<p><strong>Lecture</strong></p>
+<p>Wednesdays 3:30-5:20</p>
+<p><strong>Lab (Optional but highly recommended)</strong></p>
+<p>Mondays 3:30-5:20</p>
+<p><strong>Breon’s Office Hours</strong></p>
+<p>Tuesdays 09:00-11:00</p>
+</div>
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p>This course is intended to give students a foundational understanding of programming in the statistical language R. This knowledge is intended to be broadly useful wherever you encounter data in your education and career. General topics we will focus on include:</p>
+<ul>
+<li>Exploring data with graphics and summaries</li>
+<li>Cleaning and preparing data for analyses</li>
+<li>Linking data sets together</li>
+<li>Organizing projects and creating reproducible research</li>
+</ul>
+<p>By the end of this course you should feel <em>confident</em> approaching any data you encounter in the future. We will cover almost no statistics, however it is the intention that this course will leave you prepared to progress in CSSS or STAT courses with the ability to focus on <em>statistics</em> instead of <em>coding</em>. Additionally, I hope the basic concepts you learn will be applicable to other programming languages and research in general, such as logic and algorithmic thinking.</p>
+<div id="prerequisites" class="section level3">
+<h3>Prerequisites</h3>
+<p>No specific courses are required and I anticipate this will be the first course in which most students encounter programming. Programming is difficult and can be learned effectively only through time, effort, and exposure. Trial and error is a key aspect of learning to code and you will <em>always</em> find yourself searching for answers or asking for help. Therefore the only prequisites for this course are the capability to work hard at something difficult and a willingness to ask for help and provide help when asked.</p>
+</div>
+<div id="course-website" class="section level3">
+<h3><a href="https://breonh.github.io/csss_508/">Course Website</a></h3>
+<p><a href="https://breonh.github.io/csss_508/">breonh.github.io/csss_508/</a></p>
+<p>The course website is accessible without a UWnetID and features lecture slides, R code, and assignments. It will be updated continually throughout the quarter, and available in full after the term has ended as a reference.</p>
+</div>
+<div id="labs" class="section level3">
+<h3>Labs</h3>
+<p>Lab time is scheduled on Mondays from 3:30 to 5:20. Attendance is optional for labs and this time should be considered a form of extended office hours and collaborative work time. You are highly encouraged to attend and ask questions about homework, lectures, or programming in R in general. Beginning in week 5, we will walk through homeworks in lab. This gives students an opportunity to be guided through more challenging tasks.</p>
+</div>
+<div id="extra-help" class="section level3">
+<h3>Extra Help</h3>
+<p>This course features both a Slack channel and a mailing list for obtaining extra help. As you develop your skills, you will find that learning <em>how</em> to ask questions well makes finding answers much easier. Please note that this course has a large number of students but no teaching assistant, so students are encouraged and expected to assist one another with technical problems, both in and out of class. Diagnosing problems in others’ code is a very effective way to improve your understanding of programming.</p>
+<div id="mailing-list" class="section level4">
+<h4><a href="mailto:csss508a_au21@uw.edu">Mailing List</a></h4>
+<p>This course features a mailing list for asking questions. I encourage you to use this list as your primary means of answering <em>long technical questions</em>. To use the mailing list, address your email to <code>csss508a_au20@uw.edu</code> and it will be sent to the instructor and all students in the class. Unless you specifically request otherwise, emailed questions directed to me (<a href="mailto:breonh@uw.edu">breonh@uw.edu</a>) that may be useful to others in the class will be answered with a response to the class mailing list.</p>
+</div>
+<div id="slack-channel" class="section level4">
+<h4><a href="https://uwcsss508.slack.com/">Slack Channel</a></h4>
+<p>We will also use a Slack channel for collaborative communication. You may ask and answer questions in the Slack channel instead of the mailing list. Slack is best-suited for <em>short technical questions</em> or <em>extended conversations</em>. Your <code>@uw.edu</code> email must be used to register for the channel.</p>
+</div>
+</div>
+</div>
+<div id="course-requirements" class="section level2">
+<h2>Course Requirements</h2>
+<p>This course is graded as credit / no credit. To pass you need to receive at least 60% of the available points. There will be approximately 7 graded homeworks, one nearly every week. There are 4 points possible for each week that features a homework.</p>
+<div id="homework-75-3-points" class="section level3">
+<h3><a href="https://clanfear.github.io/CSSS508/docs/homework.html">Homework</a>: 75% (3 points)</h3>
+<p>These must be turned in as knitted markdown documents which we will learn to create and for which templates are provided. They will be graded on a 0 to 3 point scale based on a simple effort-focused rubric found on the course website. These are designed first and foremost to develop skills rather than “prove” you have learned concepts. I encourage you to communicate and work together, so long as you write and explain your code yourself and do not copy work wholesale. You can learn a lot from replicating others’ code but you will learn nothing if you copy it without knowing how it works.</p>
+</div>
+<div id="peer-review-25-1-point" class="section level3">
+<h3><a href="https://breonh.github.io/CSSS508/docs/peer_review.html">Peer Review</a>: 25% (1 point)</h3>
+<p>Each week an assignment is due, students will be randomly assigned to grade another student’s assignment following the 0 to 3 rubric. They will be expected to provide constructive feedback and commentary if something new was learned; reading others’ code is an important skill and you will write better code knowing others will see it. These reviews will be due midnight prior to the following class meeting. Each peer review is worth 1 point and will be evaluated by the instructor on a binary “good” / “not good” scale.</p>
+</div>
+</div>
+<div id="course-texts" class="section level2">
+<h2>Course Texts</h2>
+<p>There are no texts you are required to purchase for this course. The main recommended texts are available online:</p>
+<ul>
+<li><p><em><a href="http://r4ds.had.co.nz/index.html">R for Data Science</a></em> by Garrett Grolemund and Hadley Wickham, a great general introduction to R programming for data management and analysis.</p></li>
+<li><p><em><a href="http://adv-r.had.co.nz/">Advanced R</a></em> by Hadley Wickham, a deeper look into programming in R.</p></li>
+<li><p><em><a href="http://www.burns-stat.com/documents/books/the-r-inferno/">The R Inferno</a></em> by Patrick Burns, an amusing look at unintuitive, frustrating, and confusing elements of R programming and how to overcome them with best practices. To quote, “If you are using R and you think you’re in hell, this is a map for you.”</p></li>
+</ul>
+<p>Additional recommended readings will be posted on the website over the term. The following books or resources are recommended and may prove useful. If purchasing, remember to shop around and avoid previous editions as R is a constantly maturing language:</p>
+<ul>
+<li><p><em><a href="http://shop.oreilly.com/product/0636920028574.do">Hands on Programming with R</a></em> by Garrett Grolemund, an introduction to R focused on learning to program.</p></li>
+<li><p><em><a href="https://www.nostarch.com/artofr.htm">The Art of R Programming</a></em> by Norman Matloff, a highly readable general text on programming in R.</p></li>
+<li><p><em><a href="https://www.crcpress.com/R-Graphics-Second-Edition/Murrell/p/book/9781439831762">R Graphics</a></em> by Paul Murrell, the definitive text on graphics in R. Vital if you want to get deeper into <code>base</code> or <code>grid</code> (the system underlying <code>ggplot2</code>) graphics.</p></li>
+<li><p><a href="https://www.rstudio.com/resources/cheatsheets/">RStudio Cheat Sheets</a>: Handy reference sheets covering a variety of common R tasks and packages.</p></li>
+<li><p><a href="https://www.r-bloggers.com/">R-Bloggers</a>: A blog of news and tutorials about R with multiple updates per day and thousands of archived posts.</p></li>
+<li><p><a href="https://stackoverflow.com/">StackOverflow</a>, the internet’s largest programming help community. Nearly any question you have about programming in R has probably already been asked and answered here, and if not, this is the place to ask.</p></li>
+</ul>
+</div>
+<div id="software" class="section level2">
+<h2>Software</h2>
+<p>This is a course in R programming, so you will be expected to use R. You are welcome to use lab computers, however R and RStudio are free software, so you are strongly urged to use your own computer so that you will be more comfortable and have easy access. In terms of R packages, this course will emphasize the <a href="https://tidyverse.org"><code>tidyverse</code></a> family of packages for manipulating and displaying data. You can acquire R from the <a href="https://cran.rstudio.com/">Comprehensive R Archive Network (CRAN)</a> and RStudio from the <a href="https://www.rstudio.com/products/rstudio/download/">RStudio home page</a> (you want the free RStudio desktop version). The instructor can provide support with installing R or RStudio in office hours or over email.</p>
+</div>
+<div id="course-outline" class="section level2">
+<h2>Course Outline</h2>
+<ol style="list-style-type: decimal">
+<li>RStudio and Markdown</li>
+<li>Visualizing Data</li>
+<li>Manipulating and Summarizing Data</li>
+<li>Understanding R Data Structures</li>
+<li>Importing, Exporting, Cleaning Data</li>
+<li>Using Loops</li>
+<li>Writing Functions</li>
+<li>Working with Text Data</li>
+<li>Working with Geographical Data</li>
+<li>Reproducibility and Model Results</li>
+</ol>
+</div>
+<div id="religious-accomodation" class="section level2">
+<h2>Religious Accomodation</h2>
+<p>Washington state law requires that UW develop a policy for accommodation of student absences or significant hardship due to reasons of faith or conscience, or for organized religious activities. The UW’s policy, including more information about how to request an accommodation, is available at <a href="https://registrar.washington.edu/staffandfaculty/religious-accommodations-policy/">Religious Accommodations Policy</a>. Accommodations must be requested within the first two weeks of this course using the <a href="https://registrar.washington.edu/students/religious-accommodations-request/">Religious Accommodations Request form</a>.</p>
+</div>
+<div id="disability-resources" class="section level2">
+<h2>Disability Resources</h2>
+<p>Your experience in this class is important to me. If you have already established accommodations with Disability Resources for Students (DRS), please communicate your approved accommodations to me at your earliest convenience so we can discuss your needs in this course. If you have not yet established services through DRS, but have a temporary health condition or permanent disability that requires accommodations (conditions include but not limited to; mental health, attention-related, learning, vision, hearing, physical or health impacts), you are welcome to contact DRS at 206-543-8924 or <a href="uwdrs@uw.edu">uwdrs@uw.edu</a> or <a href="disability.uw.edu">disability.uw.edu</a>. DRS offers resources and coordinates reasonable accommodations for students with disabilities and/or temporary health conditions. Reasonable accommodations are established through an interactive process between you, your instructor(s) and DRS. It is the policy and practice of the University of Washington to create inclusive and accessible learning environments consistent with federal and state law.</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

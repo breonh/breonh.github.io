@@ -1,8 +1,5 @@
 ---
-output:
-  html_document: 
-    theme: darkly
-    highlight: tango
+title: "Syllabus for CS&SS 508"
 ---
 
 # CSSS 508
