@@ -11,5 +11,5 @@ navbar:
         href: syllabus.html
 output:
   html_document:
-    theme: simplex
-    highlight: zenburn
+    theme: cosmo
+    highlight: breezedark

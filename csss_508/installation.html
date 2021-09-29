@@ -11,7 +11,7 @@
 
 
 
-<title>Enabling Package Compilation in R</title>
+<title>R Installation Instructions</title>
 
 <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -256,43 +256,114 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Enabling Package Compilation in R</h1>
+<h1 class="title toc-ignore">R Installation Instructions</h1>
 
 </div>
 
 
-<p>The newest versions of R packages are often available only as source code. When you install or update the package, it may indicate it needs compilation. To enable your computer to compile the code in these packages, you need to do a small amount of additional setup. Before you start, make sure R is closed. I recommend rebooting after installing, as well, but it is not a requirement.</p>
-<div id="mac" class="section level3">
-<h3>Mac</h3>
-<p>On a Mac, you only need to install Xcode Command Line Tools. This is simple:</p>
-<ol style="list-style-type: decimal">
-<li>Open a terminal window
-<ul>
-<li>Click Spotlight search in the top right of your screen, then search for “Terminal”</li>
-</ul></li>
-<li>Copy and paste the following into the terminal, then press enter.</li>
-</ol>
-<pre><code>xcode-select --install</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li><p>You will probably need to provide your password to enable installing the software.</p></li>
-<li><p>Follow any onscreen instructions and wait for it to finish.</p></li>
-<li><p>You can now compile R packages!</p></li>
-</ol>
-</div>
+<p>This document walks you through installing R and RStudio on your personal computer.</p>
+<p>In the instructions below, anywhere it says (version), there will be a series of numbers such as <code>4.1.1</code>. The specific version does not matter, but we want to always use the most recent one.</p>
+<div id="installing-r" class="section level2">
+<h2>Installing R</h2>
 <div id="windows" class="section level3">
 <h3>Windows</h3>
-<p>On a PC, you need to obtain a toolchain for compiling. The easiest way to do this is with RTools:</p>
 <ol style="list-style-type: decimal">
-<li><p><a href="https://cran.r-project.org/bin/windows/Rtools/">Browse to this page</a>.</p></li>
-<li><p>Download the newest 64-bit Rtools installer.</p></li>
-<li><p>Run the file to install, following all onscreen instructions. If you are unsure about anything, leave the default settings.</p></li>
-<li><p><a href="https://cran.r-project.org/bin/windows/Rtools/">Go back to this page</a>. Follow the remaining instructions. But, first, run <code>Sys.which("make")</code> and see if it finds a <code>make.exe</code> file. If so, you’re good to go. If not, do the path stuff.</p></li>
-<li><p>You can now compile R packages!</p></li>
+<li>Go to the <a href="https://cran.r-project.org/bin/windows/base/">Windows Installers page</a>.
+<ul>
+<li>Click <code>Download R (version)</code> to download: Whatever version is listed will be the most current.</li>
+</ul></li>
+<li>Run the installer.
+<ul>
+<li>If the installer asks, grant it administrative privileges to install.</li>
+<li>Follow the on-screen instructions.</li>
+<li>You do not need to change any default values unless you have a good reason.</li>
+</ul></li>
+<li>Once it completes, R is installed!
+<ul>
+<li>There may now be R icons on your desktop or start menu, but we typically do not use R directly.</li>
+</ul></li>
 </ol>
 </div>
-<div id="troubleshooting" class="section level3">
-<h3>Troubleshooting</h3>
-<p>Compiling code is complicated and sometimes errors specific to your machine will arise even if you followed everything above correctly. Reach out if you have issues!</p>
+<div id="macos" class="section level3">
+<h3>MacOS</h3>
+<ol style="list-style-type: decimal">
+<li>Go to the <a href="https://cran.r-project.org/bin/macosx/">MacOS Installers page</a>.
+<ul>
+<li>Scroll to “Latest release”</li>
+<li>Click <code>R-(version).pkg</code> to download: Whatever version is listed will be the most current.</li>
+</ul></li>
+<li>Run the installer.
+<ul>
+<li>Follow the on-screen instructions.</li>
+<li>You do not need to change any default values unless you have a good reason.</li>
+</ul></li>
+<li>Once it completes, R is installed!
+<ul>
+<li>There may now be R icons on your desktop or start menu, but we typically do not use R directly.</li>
+</ul></li>
+<li>Browse to the <a href="https://www.xquartz.org/">XQuartz download page</a>
+<ul>
+<li>Click <code>XQuartz-(version).dmg</code> to download.</li>
+</ul></li>
+<li>Run XQuartz installer.
+<ul>
+<li>XQuartz is needed to create windows to display many types of R graphics: this used to be included in MacOS until version 10.8 but now must be downloaded separately.</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="installing-rstudio" class="section level2">
+<h2>Installing RStudio</h2>
+<div id="windows-1" class="section level3">
+<h3>Windows</h3>
+<ol style="list-style-type: decimal">
+<li>Go to the <a href="https://www.rstudio.com/products/rstudio/download/#download">Installers page</a>.
+<ul>
+<li>Click <code>Download RStudio for Windows</code> or, under All Installers, the link next to <code>Windows 10</code> to download: Whatever version is listed will be the most current.</li>
+</ul></li>
+<li>Run the installer.
+<ul>
+<li>If the installer asks, grant it administrative privileges to install.</li>
+<li>Follow the on-screen instructions.</li>
+<li>You do not need to change any default values unless you have a good reason.</li>
+</ul></li>
+<li>Once it completes, RStudio is installed!
+<ul>
+<li>We will use the RStudio icon to load RStudio and use R.</li>
+</ul></li>
+<li>Open RStudio and verify it loads.
+<ul>
+<li>In the bottom-left panel of RStudio, you should see something vaguely like the image at the end of this document.</li>
+<li>If there are any problems, email me at <a href="mailto:breonh@uw.edu">breonh@uw.edu</a></li>
+</ul></li>
+</ol>
+</div>
+<div id="macos-1" class="section level3">
+<h3>MacOS</h3>
+<ol style="list-style-type: decimal">
+<li>Go to the <a href="https://www.rstudio.com/products/rstudio/download/#download">Installers page</a>.
+<ul>
+<li>Click <code>Download RStudio for MacOS</code> or, under All Installers, the link next to <code>macOS 10.13+</code> to download: Whatever version is listed will be the most current.</li>
+</ul></li>
+<li>Run the installer.
+<ul>
+<li>Follow the on-screen instructions.</li>
+<li>You do not need to change any default values unless you have a good reason.</li>
+</ul></li>
+<li>Once it completes, RStudio is installed!
+<ul>
+<li>We will use the RStudio icon to load RStudio and use R.</li>
+</ul></li>
+<li>Open RStudio and verify it loads.
+<ul>
+<li>In the bottom-left panel of RStudio, you should see something vaguely like the image below.</li>
+<li>If there are any problems, email me at <a href="mailto:breonh@uw.edu">breonh@uw.edu</a></li>
+</ul></li>
+</ol>
+<p>When you open RStudio, you should see something similar to this in the bottom-left:</p>
+<p><img src="https://raw.githubusercontent.com/clanfear/CSSS508/master/docs/img/r_first_load.PNG" /></p>
+<p>If so, your installation was successful! If not, post on Slack or the mailing list.</p>
+</div>
 </div>
 
 

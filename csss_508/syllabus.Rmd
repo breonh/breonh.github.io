@@ -2,26 +2,26 @@
 title: "Syllabus for CS&SS 508"
 ---
 
-## Introduction to R for Social Scientists
+### Introduction to R for Social Scientists
 ### University of Washington
 
 Instructor: [Breon Haskett](mailto:breonh@uw.edu)
 
 ## Class Locations 
 
-SAVERY 117
 
-**Lecture**
+**Lecture - SAVERY 117**
 
  Wednesdays 3:30-5:20
 
-**Lab (Optional but highly recommended)**
+**Lab (Optional but highly recommended) - SAVERY 117**
 
  Mondays    3:30-5:20
 
-**Breon's Office Hours**
+**Breon's Office Hours - [ZOOM Link](https://washington.zoom.us/j/94740190466) **
 
  Tuesdays   09:00-11:00
+ 
 
 ## Overview
 
