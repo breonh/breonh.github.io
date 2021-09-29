@@ -125,6 +125,236 @@ author: "Breon Haskett - University of Washington"
 
 
 
+### 4. Understanding R Data Structures
+
+ **Lecture for Week 4:**
+
+   * Slides for Lecture 4: R Data Structures
+       + Companion R Script for Lecture 4 slides
+       + PDF of Lecture 4 slides
+       + Rmd for Lecture 4 slides
+
+**Homework 4 (Two Options, complete one):**
+       
+   * **[Homework 4 Template](https://breonh.github.io/csss_508/homework/homework_4.Rmd) (Download this, fill it in, and submit on Canvas)**
+   * **Homework 4 KEY**
+   
+   * **[Homework 4 Template (More Advanced)](https://breonh.github.io/csss_508/homework/homework_4_alternate.Rmd) (Download this, fill it in, and submit on Canvas)**
+   * **Homework 4 (More Advanced) KEY**
+
+   **Related Reading: **
+
+ * [Setting up swirl for practice](http://swirlstats.com/students.html)
+ * [Data Structures chapter in Advanced R](http://adv-r.had.co.nz/Data-structures.html)
+
+
+
+### 5. Importing, Exporting, and Cleaning Data
+
+ **Lecture for Week 5:**
+
+   * Slides for Lecture 5: Data Import, Export, and Cleaning
+       + Companion R Script for Lecture 5 slides
+       + PDF of Lecture 5 slides
+       + Rmd for Lecture 5 slides
+
+**Homework 5:**
+       
+   * **[Homework 5, Part 1 Template](https://breonh.github.io/csss_508/homework/homework_5.Rmd) (Download this, fill it in, and submit on Canvas)**
+   * **Homework 5 KEY pt. 1**
+
+   **Data From Class: **
+   
+   Billboard Data 
+   
+   One day of SPD Incident Data
+
+   **Related Reading: **
+
+  * Data import and export:
+       + [`readr` documentation](https://cran.r-project.org/web/packages/readr/readr.pdf)
+       + [Column types in readr](https://cran.r-project.org/web/packages/readr/vignettes/column-types.html)
+       + [Using `dput()` when asking for help](http://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example)
+       + [`readxl`](https://readxl.tidyverse.org/) and [`writexl`](https://docs.ropensci.org/writexl/) packages for Excel
+   * General data access and cleaning:
+       + [New York Times article on "data janitor" work](http://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html)
+       + [Quartz guide to bad data: a must read!](http://qz.com/572338/the-quartz-guide-to-bad-data/)
+       + [Lots of resources on survey data sources and analysis in R](http://www.asdfree.com/)
+       + [rOpenSci](https://ropensci.org/packages/) (many packages for accessing particular data sources in R)
+       + [`qualtrics` API package](https://github.com/jbryer/qualtrics) and [`Rmonkey` for Survey Monkey](https://github.com/cloudyr/Rmonkey)
+   * Tidying:
+       + [`tidyr` vignette](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html)
+       + [Tidy genomics](http://varianceexplained.org/r/tidy-genomics/) (a walkthough of tidy data preparation and analysis)
+   * Dates and times:
+       + [`lubridate` vignette](https://cran.r-project.org/web/packages/lubridate/vignettes/lubridate.html)
+   * Factors:
+       + [Lots on factors from Jenny Bryan](http://stat545-ubc.github.io/block014_factors.html)
+
+
+### 6. Using Loops 
+
+ **Lecture for Week 6:**
+
+   * Slides for Lecture 6: Loops
+       + Companion R Script for Lecture 6 slides
+       + PDF of Lecture 6 slides
+       + Rmd for Lecture 6 slides
+
+ **Homework 5, part 2:**
+       
+   * **[Homework 5, part 2 Template](https://breonh.github.io/csss_508/homework/homework_5.Rmd)**
+   * **Homework 5 KEY**
+
+
+### 7. Writing Functions
+
+ **Lecture for Week 7:**
+
+   * Slides for Lecture 7: Loops
+       + Companion R Script for Lecture 7 slides
+       + PDF of Lecture 7 slides
+       + Rmd for Lecture 7 slides
+
+ **Homework 6, part 1:**
+       
+   * **[Homework 6, part 1 Template](https://breonh.github.io/csss_508/homework/homework_6.Rmd)**
+   * **Homework 6, part 1 KEY**
+
+ **Related Reading: **
+
+   * [The R Inferno by Patrick Burns [PDF]](http://www.burns-stat.com/pages/Tutor/R_inferno.pdf): "Circles" 2, 3, and 4 are relevant after this week's material, and Circle 8 covers a lot of miscellaneous R weird things that may trip you up.
+   * [Reference material on writing functions](http://r4ds.had.co.nz/functions.html) with lots of examples
+   * [Code style guide](http://adv-r.had.co.nz/Style.html) for writing functions, etc.
+   * [R, the master troll of statistical languages](http://www.talyarkoni.org/blog/2012/06/08/r-the-master-troll-of-statistical-languages/) (to read if you feel a bit frustrated!)
+   * [Tutorial on `purrr` ](https://jennybc.github.io/purrr-tutorial/) for vectorization by Jenny Bryan.
+
+
+
+### 8. Working with Text Data
+
+ **Lecture for Week 8:**
+
+   * Slides for Lecture 8: Working with Strings and Character Data
+       + Companion R Script for Lecture 8 slides
+       + PDF of Lecture 8 slides
+       + Rmd for Lecture 8 slides
+
+ **Homework 6, part 2:**
+       
+   * **[Homework 6 Template](https://breonh.github.io/csss_508/homework/homework_6.Rmd)**
+   * **Homework 6 KEY**
+
+   **Data From Class: **
+   
+   Seattle Restaurants
+   
+   KC Inspections
+
+
+ **Related Reading: **
+
+   * [RStudio Cheat Sheet for Strings](https://github.com/rstudio/cheatsheets/raw/master/strings.pdf)
+   * [`stringr` vignette](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html)
+   * [Site for regular expression testing](http://regexr.com/)  with a good cheatsheet and hover explanations
+   * [Blog post explaining `paste()`](https://trinkerrstuff.wordpress.com/2013/09/15/paste-paste0-and-sprintf-2) for combining strings
+
+
+### 9. Working with Geographical Data
+
+ **Lecture for Week 9:**
+
+   * Slides for Lecture 9: Mapping with ggplot2 and sf
+       + Companion R Script for Lecture 9 slides
+       + PDF of Lecture 9 slides
+       + Rmd for Lecture 9 slides
+
+ **Optional Homework 7:**
+       
+   * **[Optional Homework 7 Template](https://breonh.github.io/csss_508/homework/homework_7.Rmd)**
+   * **Homework 7 KEY**
+
+
+
+ **Related Reading: **
+
+   * Suggested text: [Applied Spatial Data Analysis with R](http://www.springer.com/us/book/9781461476177)  by Bivand et al.
+   * [RSpatial.org](http://www.rspatial.org/index.html): Massive resource for spatial analysis in R
+   * [`ggmap` package examples](https://github.com/dkahle/ggmap)
+   * [More in depth `ggmap` examples](http://vita.had.co.nz/papers/ggmap.pdf)
+   * [`ggrepel` package vignette](https://cran.r-project.org/web/packages/ggrepel/vignettes/ggrepel.html)
+   * [`sf` Vignette: Overview](https://cran.r-project.org/web/packages/sf/vignettes/sf1.html)
+   * [`sf` Home Page](https://r-spatial.github.io/sf/)
+   * [Tyler Morgan Wall's 3D Mapping and Visualization Masterclass](https://github.com/tylermorganwall/MusaMasterclass)
+
+
+
+### 10. Reproducibility and Model Results
+
+ **Lecture for Week 10:**
+
+   * Slides for Lecture 10: Reproducibility and Model Results
+       + Companion R Script for Lecture 10 slides
+       + PDF of Lecture 10 slides
+       + Rmd for Lecture 10 slides
+
+
+ **Related Reading: **
+
+   * [Good Enough Practices in Scientific Computing](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005510)
+   * [Initial Steps Toward Reproducible Research](https://kbroman.org/steps2rr/) by Karl Broman
+   * [The Plain Person's Guide to Plain Text Social Science](http://plain-text.co) by Kieran Healy
+   * R Packages:
+      + [`huskydown`](https://github.com/benmarwick/huskydown)
+      + [`rrtools`](https://github.com/benmarwick/rrtools)
+      * [`broom` vignette](https://cran.r-project.org/web/packages/broom/vignettes/broom.html)
+      * [`ggeffects` vignette](https://cran.r-project.org/web/packages/ggeffects/vignettes/marginaleffects.html)
+      * [`sjPlot` home page](http://www.strengejacke.de/sjPlot/)
+   * [Overleaf online LaTeX editor](http://www.overleaf.com/)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
