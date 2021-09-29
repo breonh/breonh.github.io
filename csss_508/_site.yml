@@ -7,7 +7,7 @@ navbar:
       menu:
       - text: "Course Website"
         href: index.html
-      - text: "syllabus"
+      - text: "Syllabus"
         href: syllabus.html
 output:
   html_document:
