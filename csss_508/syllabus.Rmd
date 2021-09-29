@@ -95,7 +95,7 @@ This course is graded as credit / no credit. To pass you need to receive
 at least 60% of the available points. There will be approximately 7 graded homeworks,
 one nearly every week. There are 4 points possible for each week that features a homework.
 
-### [Homework](https://clanfear.github.io/CSSS508/docs/homework.html): 75% (3 points)
+### [Homework](https://breonh.github.io/csss_508/homework.html): 75% (3 points)
 
 These must be turned in as knitted markdown documents which we will learn to create and for which
 templates are provided. They will be graded on a 0 to 3 point scale based
