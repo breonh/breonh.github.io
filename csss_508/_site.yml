@@ -2,7 +2,6 @@ name: "my-website"
 output_dir: "."
 navbar:
   title: "breonh.github.io"
-  href: ../index.html
   left:
     - text: "CSSS 508"
       menu:
