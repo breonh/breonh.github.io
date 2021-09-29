@@ -35,9 +35,11 @@ author: "Breon Haskett - University of Washington"
 
 ### 1. RStudio and R Markdown
  **Lecture for Week 1:**
+ 
+   * [Install R and R Markdown!](https://breonh.github.io/csss_508/installation.html)
    
-   * [Slides for Lecture 1: Course logistics, R/RStudio, and R Markdown](https://clanfear.github.io/CSSS508/Lectures/Week1/CSSS508_Week1_RStudio_and_RMarkdown.html)
-       + [R Script for Lecture 1 slides](https://raw.githubusercontent.com/clanfear/CSSS508/master/Lectures/Week1/CSSS508_Week1_RStudio_and_RMarkdown.R)
+   * [Slides for Lecture 1: Course logistics, R/RStudio, and R Markdown](https://breonh.github.io/csss_508/lecture/week1/csss_508_week1_RStudio_and_RMarkdown.html)
+       + [Companion R Script for Lecture 1 slides](https://raw.githubusercontent.com/clanfear/CSSS508/master/Lectures/Week1/CSSS508_Week1_RStudio_and_RMarkdown.R)
        + [PDF of Lecture 1 slides](https://clanfear.github.io/CSSS508/Lectures/Week1/CSSS508_Week1_RStudio_and_RMarkdown.pdf)
        + [Rmd for Lecture 1 slides](https://raw.githubusercontent.com/clanfear/CSSS508/master/Lectures/Week1/CSSS508_Week1_RStudio_and_RMarkdown.Rmd)
 
