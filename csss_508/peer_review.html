@@ -11,7 +11,7 @@
 
 
 
-<title>Enabling Package Compilation in R</title>
+<title>Peer Review</title>
 
 <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -256,43 +256,82 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Enabling Package Compilation in R</h1>
+<h1 class="title toc-ignore">Peer Review</h1>
 
 </div>
 
 
-<p>The newest versions of R packages are often available only as source code. When you install or update the package, it may indicate it needs compilation. To enable your computer to compile the code in these packages, you need to do a small amount of additional setup. Before you start, make sure R is closed. I recommend rebooting after installing, as well, but it is not a requirement.</p>
-<div id="mac" class="section level3">
-<h3>Mac</h3>
-<p>On a Mac, you only need to install Xcode Command Line Tools. This is simple:</p>
-<ol style="list-style-type: decimal">
-<li>Open a terminal window
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p>You are required to grade and provide feedback on both the <code>.html</code> output and <code>.Rmd</code> syntax files for peer homeworks. After each homework, students will be randomly assigned a homework from a peer and given until the <em>following class meeting</em> to provide peer review. The ability to read and evaluate the work of others is important and useful. A good programmer realizes that most coding problems have been <a href="http://www.stackoverflow.com">solved by others in the past</a>; the trick is figuring out how to read existing code and apply it to new problems. You will begin to develop this skill by reading others’ code, evaluating their approach to problems, providing suggestions, and pointing out when you learned something new.</p>
+</div>
+<div id="evaluation-of-peer-review" class="section level2">
+<h2>Evaluation of Peer Review</h2>
+<p>For each homework assignment, you will receive either 0 or 1 point for your peer review. 25% of your overall course grade comes from evaluation of peer review. Additionally, <em>failure to complete peer reviews may result in points removed from homeworks.</em></p>
+<p><strong>Good</strong> peer reviews:</p>
 <ul>
-<li>Click Spotlight search in the top right of your screen, then search for “Terminal”</li>
-</ul></li>
-<li>Copy and paste the following into the terminal, then press enter.</li>
-</ol>
-<pre><code>xcode-select --install</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li><p>You will probably need to provide your password to enable installing the software.</p></li>
-<li><p>Follow any onscreen instructions and wait for it to finish.</p></li>
-<li><p>You can now compile R packages!</p></li>
-</ol>
+<li><strong>Give constructive, polite, and insightful comments</strong></li>
+<li>Are specific and concise</li>
+<li>Use the grading rubric and guidelines below</li>
+<li>Point out where you learned from their code (if you did)</li>
+</ul>
+<p><strong>Poor</strong> peer reviews:</p>
+<ul>
+<li><strong>Are impolite or unprofessional</strong></li>
+<li>Generic or non-specific; could be applied to anyone’s homework</li>
+<li>Fail to offer praise, show what you learned, or provide useful suggestions</li>
+</ul>
 </div>
-<div id="windows" class="section level3">
-<h3>Windows</h3>
-<p>On a PC, you need to obtain a toolchain for compiling. The easiest way to do this is with RTools:</p>
+<div id="grading-rubric" class="section level2">
+<h2>Grading Rubric</h2>
+<p>Homeworks will be evaluated by peers on a 0 to 3 scale. The overall scores are shown below with example situations in bullets below each.</p>
+<p>0: Didn’t turn anything in</p>
+<p>1: Turned in but low effort, ignoring many directions</p>
+<ul>
+<li>No attempt made on any one problem.</li>
+<li>Attempts made on all problems but nothing worked</li>
+<li><code>.html</code> file did not knit / was not provided</li>
+<li><code>.Rmd</code> file not provided</li>
+</ul>
+<p>2: Decent effort, followed directions with some minor issues</p>
+<ul>
+<li>Some code fails to work, but a reasonable attempt was made.</li>
+<li><code>.html</code> file knitted but is poorly formatted</li>
+<li><code>.Rmd</code> syntax is disorganized or hard to follow</li>
+</ul>
+<p>3: Nailed it</p>
+<ul>
+<li>All problems answered with no errors or omissions</li>
+<li>Code and output are clearly organized</li>
+<li>Clever or elegant possibly solutions used</li>
+</ul>
+</div>
+<div id="some-review-suggestions" class="section level2">
+<h2>Some Review Suggestions</h2>
+<p>These guidelines for reviewing scientific computing code <a href="https://zonca.github.io/2014/08/code-review-for-scientific-computing.html">from Andrea Zonca</a> are concise and should be used to direct your feedback.</p>
+<blockquote>
+<p>Coding style should not be the main focus of the review, the most important feedback for the author are high-level comments on software organization. The reviewer should focus on what makes the software more usable and more maintenable.</p>
+<p>A few examples:</p>
+<ul>
+<li>can some parts of the code be simplified?</li>
+<li>is there any functionality that could be replaced by an existing library?</li>
+<li>is it clear what each part of the software is doing?</li>
+<li>is there a more straightforward way of splitting the code into files?</li>
+<li>is documentation enough?</li>
+<li>are there some function arguments or function names that could be easily misinterpreted by a user?</li>
+</ul>
+<p>The purpose is to improve the code, but also to help the code author to improve her coding skills.</p>
+</blockquote>
+</div>
+<div id="when-to-contact-the-instructor" class="section level2">
+<h2>When to Contact the Instructor</h2>
+<p>A number of situations may warrant contacting the instructor:</p>
 <ol style="list-style-type: decimal">
-<li><p><a href="https://cran.r-project.org/bin/windows/Rtools/">Browse to this page</a>.</p></li>
-<li><p>Download the newest 64-bit Rtools installer.</p></li>
-<li><p>Run the file to install, following all onscreen instructions. If you are unsure about anything, leave the default settings.</p></li>
-<li><p><a href="https://cran.r-project.org/bin/windows/Rtools/">Go back to this page</a>. Follow the remaining instructions. But, first, run <code>Sys.which("make")</code> and see if it finds a <code>make.exe</code> file. If so, you’re good to go. If not, do the path stuff.</p></li>
-<li><p>You can now compile R packages!</p></li>
+<li>If you believe you have received an unfair peer review, you can <strong>resubmit</strong> your homework for evaluation by the instructor. The assignment will be regraded, which may result in a higher, same, or lower grade.</li>
+<li>If you wish for more feedback on a particular part of the homework, you can ask the instructor for additional explanation <em>without resubmitting</em> during lab or over email.</li>
+<li>If you receive no feedback, the instructor will provide <em>gentle</em> peer review on request.</li>
 </ol>
-</div>
-<div id="troubleshooting" class="section level3">
-<h3>Troubleshooting</h3>
-<p>Compiling code is complicated and sometimes errors specific to your machine will arise even if you followed everything above correctly. Reach out if you have issues!</p>
+<p>Acknowledgements: These peer review guidelines are adapted from <a href="http://stat545.com/peer-review02_peer-evaluation-guidelines.html">Jenny Bryan’s UBC STAT545 course</a>.</p>
 </div>
 
 

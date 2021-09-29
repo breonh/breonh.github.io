@@ -9,11 +9,11 @@ author: "Breon Haskett - University of Washington"
 
 * [Canvas Page (enrolled students only)](https://canvas.uw.edu/courses/1272898)
 * [Syllabus](https://breonh.github.io/csss_508/syllabus.html)
-* [Homework Instructions](https://clanfear.github.io/CSSS508/docs/homework.html) and grading rubric.
-* [Peer Review Instructions](https://clanfear.github.io/CSSS508/docs/peer_review.html) and suggestions for reading code.
+* [Homework Instructions](https://breonh.github.io/csss_508/homework.html) and grading rubric.
+* [Peer Review Instructions](https://breonh.github.io/csss_508/peer_review.html) and suggestions for reading code.
 * [Class Slack Channel](https://uwcsss508.slack.com/)
 * [R and RStudio Installation Instructions](https://clanfear.github.io/CSSS508/docs/installation.html)
-* [Enabling Compilation of Packages](https://breonh.github.io/csss_508/compiling.html)
+* [Enabling Compilation of Packages](https://breonh.github.io/csss_508/compilation.html)
 * [How to Read an R Help Page](https://socviz.co/appendix.html#a-little-more-about-r)
 
 ## Helpful resources
