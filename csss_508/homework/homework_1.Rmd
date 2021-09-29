@@ -2,7 +2,7 @@
 title: "Homework 1"
 output: 
   html_document:
-    theme: flatly
+    theme: cosmo
     highlight: breezedark
     css: styles.css
 ---

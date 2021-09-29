@@ -1,0 +1,12 @@
+---
+
+---
+
+
+![Breon Haskett](https://soc.washington.edu/sites/soc/files/styles/portrait/public/photos/breon_landscape_crop.jpg?itok=gqCU8uXX)
+
+I am a fifth year PhD student in the University of Washington Department of Sociology. My research primarily focuses on the intersections of labor organizations, public policy and social inequality. I regularly teach Sociology of Sports and Introduction to R for Social Scientists. To contact me please email here: breonh@uw.edu  
+
+# Coursework Found Here:
+
+[Introduction to R for Social Scientists](https://breonh.github.io/csss_508/)

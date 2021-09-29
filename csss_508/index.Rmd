@@ -39,7 +39,7 @@ author: "Breon Haskett - University of Washington"
    * [Install R and R Markdown!](https://breonh.github.io/csss_508/installation.html)
    
    * [Slides for Lecture 1: Course logistics, R/RStudio, and R Markdown](https://breonh.github.io/csss_508/lecture/week1/csss_508_week1_Rstudio_and_Rmarkdown.html)
-       + [Companion R Script for Lecture 1 slides]()
+       + [Companion R Script for Lecture 1 slides](https://raw.githubusercontent.com/breonh/breonh.github.io/main/csss_508/lecture/week1/within_week1_slides_rcode.R)
        + [PDF of Lecture 1 slides](https://breonh.github.io/csss_508/lecture/week1/csss_508_week1_Rstudio_and_Rmarkdown.pdf)
        + [Rmd for Lecture 1 slides](https://raw.githubusercontent.com/breonh/breonh.github.io/main/csss_508/lecture/week1/csss_508_week1_Rstudio_and_Rmarkdown.Rmd)
 
@@ -130,4 +130,4 @@ author: "Breon Haskett - University of Washington"
 
 
 
-This project is maintained by [Breon Haskett](github.com/breonh) and includes materials from [clanfear](github.com/clanfear) with permission.
+This project is maintained by [Breon Haskett](https://github.com/breonh) and includes materials from [Chuck Lanfear](https://github.com/clanfear) with permission.

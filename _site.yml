@@ -2,14 +2,14 @@ name: "my-website"
 output_dir: "."
 navbar:
   title: "breonh.github.io"
-  href: ../index.html
+  href: index.html
   left:
     - text: "CSSS 508"
       menu:
       - text: "Course Website"
-        href: index.html
+        href: csss_508/index.html
       - text: "Syllabus"
-        href: syllabus.html
+        href: csss_508/syllabus.html
 output:
   html_document:
     theme: cosmo
