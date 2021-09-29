@@ -83,4 +83,4 @@ the instructor for additional explanation *without resubmitting* during lab or o
 3. If you receive no feedback, the instructor will provide *gentle* peer review on request.
 
 
-Acknowledgements: These peer review guidelines are adapted from [Jenny Bryan's UBC STAT545 course](http://stat545.com/peer-review02_peer-evaluation-guidelines.html).
+Acknowledgements: These peer review guidelines are adapted from [Jenny Bryan's UBC STAT545 course](https://stat545.com/index.html).

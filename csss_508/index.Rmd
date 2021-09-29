@@ -43,7 +43,7 @@ author: "Breon Haskett - University of Washington"
 
    **Homework 1:**
        
-   * **[Homework 1 Instructions](https://clanfear.github.io/CSSS508/Homework/HW1/homework_1.html)**
+   * **[Homework 1 Instructions](https://breonh.github.io/csss_508/homework/homework_1.html)**
    * **Homework 1 KEY / Example**
 
    **Related Reading: **

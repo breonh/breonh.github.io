@@ -13,3 +13,4 @@ output:
   html_document:
     theme: cosmo
     highlight: breezedark
+    css: styles.css
