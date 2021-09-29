@@ -39,7 +39,7 @@ author: "Breon Haskett - University of Washington"
    * [Install R and R Markdown!](https://breonh.github.io/csss_508/installation.html)
    
    * [Slides for Lecture 1: Course logistics, R/RStudio, and R Markdown](https://breonh.github.io/csss_508/lecture/week1/csss_508_week1_Rstudio_and_Rmarkdown.html)
-       + [Companion R Script for Lecture 1 slides](https://raw.githubusercontent.com/clanfear/CSSS508/master/Lectures/Week1/CSSS508_Week1_RStudio_and_RMarkdown.R)
+       + [Companion R Script for Lecture 1 slides]()
        + [PDF of Lecture 1 slides](https://breonh.github.io/csss_508/lecture/week1/csss_508_week1_Rstudio_and_Rmarkdown.pdf)
        + [Rmd for Lecture 1 slides](https://raw.githubusercontent.com/breonh/breonh.github.io/main/csss_508/lecture/week1/csss_508_week1_Rstudio_and_Rmarkdown.Rmd)
 
@@ -70,10 +70,10 @@ author: "Breon Haskett - University of Washington"
 
    **Lecture for Week 2:**
 
-   * [Slides for Lecture 2: Plotting with `ggplot2`](https://clanfear.github.io/CSSS508/Lectures/Week2/CSSS508_Week2_ggplot2.html)
-       + [R Script for Lecture 2 slides](https://github.com/clanfear/CSSS508/raw/master/Lectures/Week2/CSSS508_Week2_ggplot2.R)
-       + [PDF of Lecture 2 slides](https://clanfear.github.io/CSSS508/Lectures/Week2/CSSS508_Week2_ggplot2.pdf)
-       + [Rmd for Lecture 2 slides](https://github.com/clanfear/CSSS508/raw/master/Lectures/Week2/CSSS508_Week2_ggplot2.Rmd)
+   * Slides for Lecture 2: Plotting with `ggplot2`
+       + Companion R Script for Lecture 2 slides
+       + PDF of Lecture 2 slides
+       + Rmd for Lecture 2 slides
        
    **Homework 2:**
 
@@ -97,4 +97,37 @@ author: "Breon Haskett - University of Washington"
    * Recommended text: [Data Visualization: A Practical Introduction](https://kieranhealy.org/publications/dataviz/) by Kieran Healy
 
 
-This project is maintained by [breon haskett](github.com/breonh) and includes materials from [clanfear](github.com/clanfear) with permission.
+
+### 3. Manipulating and Summarizing Data
+
+ **Lecture for Week 3:**
+
+   * Slides for Lecture 3: Manipulating and summarizing data with `dplyr`
+       + Companion R Script for Lecture 3 slides
+       + PDF of Lecture 3 slides
+       + Rmd for Lecture 3 slides
+
+**Homework 3:**
+       
+   * **[Homework 3 Instructions](https://breonh.github.io/csss_508/homework/homework_3.html)**
+   * **Homework 3 KEY / Example**
+
+   **Related Reading: **
+
+   * [Data Transformation chapter in R for Data Science](http://r4ds.had.co.nz/transform.html)
+   * [A cautionary tale about Excel](http://www.bloomberg.com/news/articles/2013-04-18/faq-reinhart-rogoff-and-the-excel-error-that-changed-history)
+   * `dplyr` stuff:
+       + [`dplyr` cheatsheets](http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) with diagrams to help you remember functions
+       + [Introduction to `dplyr`](https://cran.rstudio.com/web/packages/dplyr/vignettes/dplyr.html)
+       + [Window functions in `dplyr`](https://cran.r-project.org/web/packages/dplyr/vignettes/window-functions.html)
+       + [Joining data in `dplyr`](https://cran.rstudio.com/web/packages/dplyr/vignettes/two-table.html)
+       + More advanced joins: [`sqldf` for easy SQL in R](https://cran.r-project.org/web/packages/sqldf/index.html)
+
+
+
+
+
+
+
+
+This project is maintained by [Breon Haskett](github.com/breonh) and includes materials from [clanfear](github.com/clanfear) with permission.

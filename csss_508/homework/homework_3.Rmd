@@ -1,0 +1,16 @@
+---
+title: "Homework 3"
+output: 
+  html_document:
+    theme: flatly
+    highlight: breezedark
+    css: styles.css
+---
+
+# Manipulating and Summarizing Data
+
+Pick something to look at in the `nycflights13` data and write up a .Rmd file showing your investigation. Upload both the .Rmd file and the .html file to Canvas. You must use at least once: `mutate()`, `summarize()`, `group_by()`, and any join. *Include at least one nicely formatted plot* (`ggplot2`) *and one table* (`pander`). In plots and tables, use "nice" variable names (try out spaces!) and rounded values (<= 3 digits).
+
+This time, *include all your code in your output document* (`echo=TRUE`), using **comments** and **line breaks** separating commands so that it is clear to a peer what you are doing (or trying to do!). You must write up your observations briefly in words as well.  
+
+Note: If you want to see the `nycflights13` dataframes in the environment, you will need to load *each one*: `airlines`, `airports`, `flights`, `planes`, and `weather` (e.g. `data(flights)`).
