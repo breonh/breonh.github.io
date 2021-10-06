@@ -82,7 +82,7 @@ author: "Breon Haskett - University of Washington"
        
    **Homework 2:**
 
-   * **[Homework 2 Instructions](https://clanfear.github.io/CSSS508/Homework/HW2/homework_2.html)**
+   * **[Homework 2 Instructions](https://breonh.github.io/csss_508/homework/homework_2.html)**
    * **Homework 2 KEY / Example**
 
    **Further Reading:**
