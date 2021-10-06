@@ -250,7 +250,7 @@ Sometimes you may get a **warning message** when loading packages---usually beca
 
 ```
 Warning message:
-package `gapminder' was built under R version 3.5.3 
+package `dplyr' was built under R version 4.0.5 
 ```
 Chunk options `message=FALSE` or `include=FALSE` will hide this. *Update R* to deal with it completely!
 
@@ -323,7 +323,7 @@ There are many other [logical operators](http://www.statmethods.net/management/o
 * `!=`: not equal to
 --
 
-* `>`, `>=`, `<`, `<=`: less than, less than or equal to, etc.
+* `>`, `>=`, `<`, `<=`: greater than, greater than or equal to, etc.
 --
 
 * `%in%`: used with checking equal to one of several values
@@ -1173,7 +1173,8 @@ ggplot(data = China, aes(x = year, y = gdpPercap)) +
     geom_line() +
     scale_y_log10(breaks = c(1000, 2000, 3000, 4000, 5000), #<<
                   labels = scales::dollar) + #<<
-    xlim(1940, 2010) + ggtitle("Chinese GDP per capita")
+    xlim(1940, 2010) + 
+  ggtitle("Chinese GDP per capita")
 ```
 
 ---

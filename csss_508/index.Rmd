@@ -107,7 +107,7 @@ author: "Breon Haskett - University of Washington"
 
  **Lecture for Week 3:**
 
-   * Slides for Lecture 3: Manipulating and summarizing data with `dplyr`
+   * [Slides for Lecture 3: Manipulating and summarizing data with `dplyr`]((https://breonh.github.io/csss_508/lecture/week2/csss_508_Week3_dplyr.html))
        + Companion R Script for Lecture 3 slides
        + PDF of Lecture 3 slides
        + Rmd for Lecture 3 slides

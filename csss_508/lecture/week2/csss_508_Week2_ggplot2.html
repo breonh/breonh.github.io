@@ -14,7 +14,7 @@ class: center, top, title-slide
 # CSSS508, Week 2
 ## Plotting with <code>ggplot2</code>
 ### Breon Haskett
-### October 6, 2021<br>Updated: Oct 5, 2021
+### October 6, 2021<br>Updated: Oct 6, 2021
 
 ---
 
@@ -82,9 +82,8 @@ getwd()
 ```
 
 ```
-## [1] "C:/Users/Breon/Documents/GitHub/breonh.github.io/csss_508/lecture/week2"
+## [1] "C:/Users/breha/OneDrive/Documents/breonh.github.io/csss_508/lecture/week2"
 ```
-
 
 
 --
@@ -182,6 +181,10 @@ Load the package and data:
 library(gapminder)
 ```
 
+```
+## Warning: package 'gapminder' was built under R version 4.0.5
+```
+
 ---
 
 # Check Out Gapminder
@@ -260,6 +263,10 @@ library(dplyr)
 ```
 
 ```
+## Warning: package 'dplyr' was built under R version 4.0.5
+```
+
+```
 ## 
 ## Attaching package: 'dplyr'
 ```
@@ -292,7 +299,7 @@ Sometimes you may get a **warning message** when loading packages---usually beca
 
 ```
 Warning message:
-package `gapminder' was built under R version 3.5.3 
+package `dplyr' was built under R version 4.0.5 
 ```
 Chunk options `message=FALSE` or `include=FALSE` will hide this. *Update R* to deal with it completely!
 
@@ -403,7 +410,7 @@ There are many other [logical operators](http://www.statmethods.net/management/o
 * `!=`: not equal to
 --
 
-* `&gt;`, `&gt;=`, `&lt;`, `&lt;=`: less than, less than or equal to, etc.
+* `&gt;`, `&gt;=`, `&lt;`, `&lt;=`: greater than, greater than or equal to, etc.
 --
 
 * `%in%`: used with checking equal to one of several values
@@ -1166,7 +1173,8 @@ ggplot(data = China, aes(x = year, y = gdpPercap)) +
     geom_line() +
 *   scale_y_log10(breaks = c(1000, 2000, 3000, 4000, 5000),
 *                 labels = scales::dollar) +
-    xlim(1940, 2010) + ggtitle("Chinese GDP per capita")
+    xlim(1940, 2010) + 
+  ggtitle("Chinese GDP per capita")
 ```
 
 ![](csss_508_Week2_ggplot2_files/figure-html/unnamed-chunk-59-1.svg)&lt;!-- --&gt;
