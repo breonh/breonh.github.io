@@ -76,7 +76,7 @@ author: "Breon Haskett - University of Washington"
    **Lecture for Week 2:**
 
    * [Slides for Lecture 2: Plotting with `ggplot2`](https://breonh.github.io/csss_508/lecture/week2/csss_508_Week2_ggplot2.html)
-       + Companion R Script for Lecture 2 slides
+       + [Companion R Script for Lecture 2 slides](https://breonh.github.io/csss_508/lecture/week2/csss_508_Week2_ggplot2.html)
        + PDF of Lecture 2 slides
        + Rmd for Lecture 2 slides
        
@@ -107,7 +107,7 @@ author: "Breon Haskett - University of Washington"
 
  **Lecture for Week 3:**
 
-   * [Slides for Lecture 3: Manipulating and summarizing data with `dplyr`]((https://breonh.github.io/csss_508/lecture/week2/csss_508_Week3_dplyr.html))
+   * [Slides for Lecture 3: Manipulating and summarizing data with `dplyr`](https://breonh.github.io/csss_508/lecture/week3/csss_508_week3_dplyr.html)
        + Companion R Script for Lecture 3 slides
        + PDF of Lecture 3 slides
        + Rmd for Lecture 3 slides
@@ -134,7 +134,7 @@ author: "Breon Haskett - University of Washington"
 
  **Lecture for Week 4:**
 
-   * Slides for Lecture 4: R Data Structures
+   * [Slides for Lecture 4: R Data Structures](https://breonh.github.io/csss_508/lecture/week4/csss_508_week4_data_structures.html)
        + Companion R Script for Lecture 4 slides
        + PDF of Lecture 4 slides
        + Rmd for Lecture 4 slides
@@ -158,7 +158,7 @@ author: "Breon Haskett - University of Washington"
 
  **Lecture for Week 5:**
 
-   * Slides for Lecture 5: Data Import, Export, and Cleaning
+   * [Slides for Lecture 5: Data Import, Export, and Cleaning](https://breonh.github.io/csss_508/lecture/week5/csss_508_week5_import_export.html)
        + Companion R Script for Lecture 5 slides
        + PDF of Lecture 5 slides
        + Rmd for Lecture 5 slides
