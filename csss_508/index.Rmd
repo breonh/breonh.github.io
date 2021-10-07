@@ -51,10 +51,12 @@ author: "Breon Haskett - University of Washington"
    **Homework 1:**
        
    * **[Homework 1 Instructions](https://breonh.github.io/csss_508/homework/homework_1.html)**
-   * **Homework 1 KEY / Example**
    
-   [Rmd Example](https://breonh.github.io/csss_508/homework/homework_1/hw_1_rmarkdown_example.Rmd)
-   [Html Example](https://breonh.github.io/csss_508/homework/homework_1/hw_1_rmarkdown_example.html)
+   **Homework 1 KEY / Example:**
+   
+   * [Rmd Example](https://breonh.github.io/csss_508/homework/homework_1/hw_1_rmarkdown_example.Rmd)
+   
+   * [Html Example](https://breonh.github.io/csss_508/homework/homework_1/hw_1_rmarkdown_example.html)
 
    **Related Reading: **
 
