@@ -1,0 +1,64 @@
+---
+title: "Homework 1"
+author: "STUDENT NAME"
+date: "DIFFERENT QUARTER"
+output: html_document
+---
+```{r, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Introduction to Swiss Dataset
+
+The dataset contains information from 47 French-speaking provinces of Switzerland in 1888. The variables include fertility, males in agriculture, high army examination scores, education, percent Catholic, and infant mortality.
+
+```{r, echo=FALSE, warning=FALSE}
+library(pander)
+pander(head(swiss, 5), style = "rmarkdown", split.tables = 120, caption = "5 Example Provences in Swiss Dataset")
+
+```
+
+### Explore Fertility Data
+
+```{r, echo=FALSE}
+m <- mean(swiss$Fertility)
+s <- sd(swiss$Fertility)
+
+```
+The mean fertility of the Swiss provinces were `r round(m, 2)` with a standard deviation of `r round(s, 2)`.
+
+```{r, echo=FALSE}
+hist(swiss$Fertility,
+     xlab = "Fertility (Ig)",
+     main = "Swiss Province Fertility (1888)",
+     border ="pink", 
+     col ="maroon")
+```
+
+### Further Data Analysis
+```{r, echo=FALSE}
+mIM <- mean(swiss$Infant.Mortality)
+mC <- mean(swiss$Catholic)
+mFC <- mean(swiss$Fertility[swiss$Catholic>40])
+mFNC <- mean(swiss$Fertility[swiss$Catholic<40])
+
+```
+From the first plot below, we can see that there may be a slight correlation between fertility and infant mortality with a greater percentage of children living to be one years old corresponding with provinces with higher fertility rates. The second plot indicates provinces that are less Catholic have a slightly lower average fertility.The mean percentage of Catholic population the Swiss provinces is `r round(mC, 2)`. The mean fertility for provinces that have less than `r round(mC, 2)`% Catholic population is `r round(mFNC, 2)` and the mean fertility for provinces that have more than `r round(mC, 2)`% Catholic population is `r round(mFC, 2)`.
+
+```{r, echo=FALSE}
+par(mfrow=c(1,2)) 
+plot(swiss$Fertility ~ swiss$Infant.Mortality, 
+     ylab = "Fertility (Ig)",
+     xlab = "Infant Mortality (%)",
+     main = "Fertility and Infant Mortality",
+     pch = 18,
+     col = "maroon")
+plot(swiss$Fertility ~ swiss$Catholic, 
+     ylab = "Fertility (Ig)",
+     xlab = "Catholic (%)",
+     main = "Fertility and Catholicism",
+     pch = 18,
+     col = "maroon")
+
+```
+
