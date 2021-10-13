@@ -14,7 +14,7 @@ class: center, top, title-slide
 # CSSS508, Week 3
 ## Manipulating and Summarizing Data
 ### Breon Haskett
-### October 13, 2021<br>Updated: Oct 5, 2021
+### October 13, 2021<br>Updated: Oct 12, 2021
 
 ---
 
@@ -38,27 +38,37 @@ class: inverse
 ---
 # But First, Pipes (%&gt;%)
 
+--
+
 `dplyr` uses the [`magrittr`](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html) forward pipe operator, usually called simply a **pipe**. We write pipes like `%&gt;%` (`Ctrl+Shift+M`).
 
 --
 
-Pipes take the object on the *left* and apply the function on the *right*: `x %&gt;% f(y) = f(x, y)`. Read out loud: "and then..."
+Pipes take the object on the *left* and apply the function on the *right*: 
 
---
+`object %&gt;% function(argument = y)` is the same as 
+
+`function(object, argument = y)`. We read the ` %&gt;%` as "and then". 
+
+---
+# But First, Pipes (%&gt;%)
+
 
 
 ```r
 library(dplyr)
 library(gapminder)
-gapminder %&gt;% filter(country == "Canada") %&gt;% head(2)
+gapminder %&gt;% filter(country == "Canada") %&gt;% head(4)
 ```
 
 ```
-## # A tibble: 2 x 6
+## # A tibble: 4 x 6
 ##   country continent  year lifeExp      pop gdpPercap
 ##   &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
 ## 1 Canada  Americas   1952    68.8 14785584    11367.
 ## 2 Canada  Americas   1957    70.0 17010154    12490.
+## 3 Canada  Americas   1962    71.3 18985849    13462.
+## 4 Canada  Americas   1967    72.1 20819767    16077.
 ```
 
 --
@@ -220,20 +230,20 @@ We can also filter *at random* to work with a smaller dataset using `sample_n()`
 
 
 ```r
-*set.seed(413) # makes random numbers repeatable
+*set.seed(789) # makes random numbers repeatable
 yugoslavia %&gt;% sample_n(size = 6, replace = FALSE)
 ```
 
 ```
 ## # A tibble: 6 x 6
-##   country                continent  year lifeExp     pop gdpPercap
-##   &lt;fct&gt;                  &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;
-## 1 Bosnia and Herzegovina Europe     1987    71.1 4338977     4314.
-## 2 Bosnia and Herzegovina Europe     1967    64.8 3585000     2172.
-## 3 Montenegro             Europe     2002    74.0  720230     6557.
-## 4 Montenegro             Europe     1987    74.9  569473    11733.
-## 5 Slovenia               Europe     1952    65.6 1489518     4215.
-## 6 Serbia                 Europe     1982    70.2 9032824    15181.
+##   country                continent  year lifeExp      pop gdpPercap
+##   &lt;fct&gt;                  &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+## 1 Serbia                 Europe     1992    71.7  9826397     9325.
+## 2 Serbia                 Europe     2007    74.0 10150265     9787.
+## 3 Bosnia and Herzegovina Europe     2007    74.9  4552198     7446.
+## 4 Slovenia               Europe     1967    69.2  1646912     9405.
+## 5 Serbia                 Europe     1977    70.3  8686367    12981.
+## 6 Montenegro             Europe     1957    61.4   442829     3682.
 ```
 
 .footnote[Use `set.seed()` to make all random numbers in a file come up *exactly the same* each time it is run. Read *Details* in `?set.seed` if you like your brain to hurt.]
@@ -535,7 +545,7 @@ yugoslavia %&gt;% mutate(short_country =
 ```
 ]
 
-Read this as "For each row, if `country` equals 'Bosnia and Herzegovina, make `short_country` equal to 'B and H', otherwise make it equal to that row's value of `country`."
+Read this as "For each row, if `country` equals 'Bosnia and Herzegovina', make `short_country` equal to 'B and H', otherwise make it equal to that row's value of `country`."
 
 This is a simple way to change some values but not others!
 
@@ -551,8 +561,8 @@ Note: `country` is a factor--use `as.character()` to convert to character.
 ```r
 yugoslavia %&gt;% 
   mutate(country = recode(country, 
-*                       `Bosnia and Herzegovina`="B and H",
-                        Montenegro="M")) %&gt;% 
+*                         `Bosnia and Herzegovina`="B and H",
+                           Montenegro="M")) %&gt;% 
   distinct(country)
 ```
 
@@ -733,7 +743,8 @@ yugoslavia %&gt;%
   )
 ```
 
-RStudio also helps you by tracking parentheses: Put your cursor after a `)` and see!
+RStudio also helps you by tracking parentheses: Put your cursor after a `)` and see! Or set [rainbow parentheses](https://blog.rstudio.com/2020/11/04/rstudio-1-4-preview-rainbow-parentheses/)
+
 
 ---
 # Avoiding Repetition
@@ -846,7 +857,7 @@ class: inverse
   + Often large surveys are broken into different data sets for each level (e.g. household, individual, neighborhood)
 
 ---
-## Joining in Concept
+## Concept: Joins
 
 We need to think about the following when we want to merge data frames `A` and `B`:
 
