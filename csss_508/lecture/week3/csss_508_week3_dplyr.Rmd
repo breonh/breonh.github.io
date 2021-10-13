@@ -131,8 +131,9 @@ We can use `%in%` like `==` but for matching *any element* in the vector on its 
 ```{r}
 former_yugoslavia <- c("Bosnia and Herzegovina", "Croatia", 
                        "Montenegro", "Serbia", "Slovenia")
+
 yugoslavia <- gapminder %>% filter(country %in% former_yugoslavia)
-tail(yugoslavia, 2)
+slice(yugoslavia, 12:14)
 ```
 
 .footnote[[1] The `c()` function is how we make **vectors** in R, which are an important data type.]
@@ -216,7 +217,7 @@ DYS %>% select(ends_with("18"))
 ---
 ## `select(where())`
 
-An especially useful helper for select is `where()` which can be used for selecting columns based on functions that check column types.
+An especially useful helper for `select()` is `where()` which can be used for selecting columns based on functions that check column types.
 
 ```{r}
 gapminder %>% select(where(is.numeric)) %>% head(3)
@@ -416,10 +417,11 @@ class: inverse
 
 # Summarizing with `dplyr`
 
+
 ---
 ## General Aggregation: `summarize()`
 
-**`summarize()`** takes your column(s) of data and computes something using every row: 
+`summarize()`<sup>1</sup> takes your column(s) of data and computes something using every row: 
 
 * Count how many rows there are
 * Calculate the mean
@@ -428,8 +430,10 @@ class: inverse
 
 You can use any function in `summarize()` that aggregates *multiple values* into a *single value* (like `sd()`, `mean()`, or `max()`).
 
+.footnote[[1] Note: Can also be written `summarise()`]
+
 ---
-# `summarize()` Example
+## `summarize()` Example
 
 For the year 1982, let's get the number of observations, total population, mean life expectancy, and range of life expectancy for former Yugoslavian countries.
 
@@ -450,7 +454,7 @@ These new variables are calculated using *all of the rows* in `yugoslavia`
 ### `summarize(across())`
 
 
-Maybe you need to calculate the mean and standard deviation of a bunch of columns. With **`across()`**, put the variables to compute over first (using `c()` or `select()` syntax) and put the functions to use in a `list()` after.
+Maybe you need to calculate the mean and standard deviation of a bunch of columns. With `across()`, put the variables to compute (using `c()` or `select()` syntax) and put the functions to use in a `list()` after.
 
 .smallish[
 ```{r}
@@ -566,7 +570,7 @@ class: inverse
 
   + We can work with small sets of variables then combine them back together.
 
-* Combine data stored in separate data sets: e.g. UW registrar data with police stop records.
+* Combine data stored in separate data sets: e.g. Local lockdown measures and stationary bike sales.
 
   + Often large surveys are broken into different data sets for each level (e.g. household, individual, neighborhood)
 

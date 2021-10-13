@@ -14,7 +14,7 @@ class: center, top, title-slide
 # CSSS508, Week 3
 ## Manipulating and Summarizing Data
 ### Breon Haskett
-### October 13, 2021<br>Updated: Oct 12, 2021
+### October 13, 2021<br>Updated: Oct 13, 2021
 
 ---
 
@@ -48,7 +48,11 @@ Pipes take the object on the *left* and apply the function on the *right*:
 
 `object %&gt;% function(argument = y)` is the same as 
 
-`function(object, argument = y)`. We read the ` %&gt;%` as "and then". 
+`function(object, argument = y)`. 
+
+--
+
+Read aloud the ` %&gt;%` is "and then". 
 
 ---
 # But First, Pipes (%&gt;%)
@@ -99,7 +103,7 @@ Stuff to the left of the pipe is passed to the *first argument* of the function 
 If you ever find yourself piping a function where data are not the first argument, use `.` in the data argument instead.
 
 ```r
-yugoslavia %&gt;% lm(pop ~ year, data = .)
+gapminder %&gt;% lm(pop ~ year, data = .)
 ```
 
 ---
@@ -154,16 +158,18 @@ We can use `%in%` like `==` but for matching *any element* in the vector on its 
 ```r
 former_yugoslavia &lt;- c("Bosnia and Herzegovina", "Croatia", 
                        "Montenegro", "Serbia", "Slovenia")
+
 yugoslavia &lt;- gapminder %&gt;% filter(country %in% former_yugoslavia)
-tail(yugoslavia, 2)
+slice(yugoslavia, 12:14)
 ```
 
 ```
-## # A tibble: 2 x 6
-##   country  continent  year lifeExp     pop gdpPercap
-##   &lt;fct&gt;    &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;
-## 1 Slovenia Europe     2002    76.7 2011497    20660.
-## 2 Slovenia Europe     2007    77.9 2009245    25768.
+## # A tibble: 3 x 6
+##   country                continent  year lifeExp     pop gdpPercap
+##   &lt;fct&gt;                  &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;   &lt;int&gt;     &lt;dbl&gt;
+## 1 Bosnia and Herzegovina Europe     2007    74.9 4552198     7446.
+## 2 Croatia                Europe     1952    61.2 3882229     3119.
+## 3 Croatia                Europe     1957    64.8 3991242     4338.
 ```
 
 .footnote[[1] The `c()` function is how we make **vectors** in R, which are an important data type.]
@@ -337,7 +343,7 @@ DYS %&gt;% select(ends_with("18"))
 ---
 ## `select(where())`
 
-An especially useful helper for select is `where()` which can be used for selecting columns based on functions that check column types.
+An especially useful helper for `select()` is `where()` which can be used for selecting columns based on functions that check column types.
 
 
 ```r
@@ -441,6 +447,13 @@ yugoslavia %&gt;%
 
 ```r
 library(pander)
+```
+
+```
+## Warning: package 'pander' was built under R version 4.0.5
+```
+
+```r
 yugoslavia %&gt;% filter(country == "Serbia") %&gt;%
     select(year, lifeExp) %&gt;%
     rename(Year = year, `Life Expectancy` = lifeExp) %&gt;%
@@ -659,10 +672,11 @@ class: inverse
 
 # Summarizing with `dplyr`
 
+
 ---
 ## General Aggregation: `summarize()`
 
-**`summarize()`** takes your column(s) of data and computes something using every row: 
+`summarize()`&lt;sup&gt;1&lt;/sup&gt; takes your column(s) of data and computes something using every row: 
 
 * Count how many rows there are
 * Calculate the mean
@@ -671,8 +685,10 @@ class: inverse
 
 You can use any function in `summarize()` that aggregates *multiple values* into a *single value* (like `sd()`, `mean()`, or `max()`).
 
+.footnote[[1] Note: Can also be written `summarise()`]
+
 ---
-# `summarize()` Example
+## `summarize()` Example
 
 For the year 1982, let's get the number of observations, total population, mean life expectancy, and range of life expectancy for former Yugoslavian countries.
 
@@ -701,7 +717,7 @@ These new variables are calculated using *all of the rows* in `yugoslavia`
 ### `summarize(across())`
 
 
-Maybe you need to calculate the mean and standard deviation of a bunch of columns. With **`across()`**, put the variables to compute over first (using `c()` or `select()` syntax) and put the functions to use in a `list()` after.
+Maybe you need to calculate the mean and standard deviation of a bunch of columns. With `across()`, put the variables to compute (using `c()` or `select()` syntax) and put the functions to use in a `list()` after.
 
 .smallish[
 
@@ -852,7 +868,7 @@ class: inverse
 
   + We can work with small sets of variables then combine them back together.
 
-* Combine data stored in separate data sets: e.g. UW registrar data with police stop records.
+* Combine data stored in separate data sets: e.g. Local lockdown measures and stationary bike sales.
 
   + Often large surveys are broken into different data sets for each level (e.g. household, individual, neighborhood)
 
