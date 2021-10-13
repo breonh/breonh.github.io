@@ -39,18 +39,30 @@ class: inverse
 ---
 # But First, Pipes (%>%)
 
+--
+
 `dplyr` uses the [`magrittr`](https://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html) forward pipe operator, usually called simply a **pipe**. We write pipes like `%>%` (`Ctrl+Shift+M`).
 
 --
 
-Pipes take the object on the *left* and apply the function on the *right*: `x %>% f(y) = f(x, y)`. Read out loud: "and then..."
+Pipes take the object on the *left* and apply the function on the *right*: 
+
+`object %>% function(argument = y)` is the same as 
+
+`function(object, argument = y)`. 
 
 --
+
+Read aloud the ` %>%` is "and then". 
+
+---
+# But First, Pipes (%>%)
+
 
 ```{r, message=FALSE, warning=FALSE}
 library(dplyr)
 library(gapminder)
-gapminder %>% filter(country == "Canada") %>% head(2)
+gapminder %>% filter(country == "Canada") %>% head(4)
 ```
 
 --
@@ -79,7 +91,7 @@ Stuff to the left of the pipe is passed to the *first argument* of the function 
 
 If you ever find yourself piping a function where data are not the first argument, use `.` in the data argument instead.
 ```{r, eval=FALSE}
-yugoslavia %>% lm(pop ~ year, data = .)
+gapminder %>% lm(pop ~ year, data = .)
 ```
 
 ---
@@ -150,7 +162,7 @@ gapminder %>% distinct(continent, year, .keep_all=TRUE)
 We can also filter *at random* to work with a smaller dataset using `sample_n()` or `sample_frac()`.
 
 ```{r}
-set.seed(413) # makes random numbers repeatable #<<
+set.seed(789) # makes random numbers repeatable #<<
 yugoslavia %>% sample_n(size = 6, replace = FALSE)
 ```
 
@@ -329,7 +341,7 @@ yugoslavia %>% mutate(short_country =
 ```
 ]
 
-Read this as "For each row, if `country` equals 'Bosnia and Herzegovina, make `short_country` equal to 'B and H', otherwise make it equal to that row's value of `country`."
+Read this as "For each row, if `country` equals 'Bosnia and Herzegovina', make `short_country` equal to 'B and H', otherwise make it equal to that row's value of `country`."
 
 This is a simple way to change some values but not others!
 
@@ -344,8 +356,8 @@ Note: `country` is a factor--use `as.character()` to convert to character.
 ```{r}
 yugoslavia %>% 
   mutate(country = recode(country, 
-                        `Bosnia and Herzegovina`="B and H", #<<
-                        Montenegro="M")) %>% 
+                          `Bosnia and Herzegovina`="B and H", #<<
+                           Montenegro="M")) %>% 
   distinct(country)
 ```
 
@@ -471,7 +483,8 @@ yugoslavia %>%
   )
 ```
 
-RStudio also helps you by tracking parentheses: Put your cursor after a `)` and see!
+RStudio also helps you by tracking parentheses: Put your cursor after a `)` and see! Or set [rainbow parentheses](https://blog.rstudio.com/2020/11/04/rstudio-1-4-preview-rainbow-parentheses/)
+
 
 ---
 # Avoiding Repetition
@@ -558,7 +571,7 @@ class: inverse
   + Often large surveys are broken into different data sets for each level (e.g. household, individual, neighborhood)
 
 ---
-## Joining in Concept
+## Concept: Joins
 
 We need to think about the following when we want to merge data frames `A` and `B`:
 
