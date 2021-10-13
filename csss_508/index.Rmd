@@ -94,7 +94,8 @@ author: "Breon Haskett - University of Washington"
    **Homework 2:**
 
    * **[Homework 2 Instructions](https://breonh.github.io/csss_508/homework/homework_2.html)**
-   **Homework 2 KEY / Example**
+   
+   **Homework 2 KEY / Example:**
 
    * [Rmd Example](https://breonh.github.io/csss_508/homework/homework_2/homework_2_ggplot_example.Rmd)
    
