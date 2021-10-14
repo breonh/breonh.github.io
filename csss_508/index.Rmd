@@ -89,7 +89,7 @@ author: "Breon Haskett - University of Washington"
    
    [Youtube Link to Week 2 Lecture](https://youtu.be/MKOIEy7tWv4)
 
-       
+   
        
    **Homework 2:**
 
@@ -129,6 +129,13 @@ author: "Breon Haskett - University of Washington"
        + Companion R Script for Lecture 3 slides
        + [PDF of Lecture 3 slides](https://breonh.github.io/csss_508/lecture/week3/csss_508_week3_dplyr.pdf)
        + [Rmd for Lecture 3 slides](https://breonh.github.io/csss_508/lecture/week3/csss_508_week3_dplyr.Rmd)
+       
+       
+  **Lecture Recording: **
+   
+  [Youtube Link to Week 3 Lecture](https://youtu.be/dG9Jrn2M7oE)
+
+       
 
 **Homework 3:**
        
