@@ -160,9 +160,9 @@ author: "Breon Haskett - University of Washington"
  **Lecture for Week 4:**
 
    * [Slides for Lecture 4: R Data Structures](https://breonh.github.io/csss_508/lecture/week4/csss_508_week4_data_structures.html)
-       + Companion R Script for Lecture 4 slides
-       + PDF of Lecture 4 slides
-       + Rmd for Lecture 4 slides
+       + [Companion R Script for Lecture 4 slides](https://breonh.github.io/csss_508/lecture/week4/csss_508_week4_rscript_companion.R)
+       + [PDF of Lecture 4 slides](https://breonh.github.io/csss_508/lecture/week4/csss_508_week4_data_structures.pdf)
+       + [Rmd for Lecture 4 slides](https://breonh.github.io/csss_508/lecture/week4/csss_508_week4_data_structures.Rmd)
 
 **Homework 4 (Two Options, complete one):**
        
