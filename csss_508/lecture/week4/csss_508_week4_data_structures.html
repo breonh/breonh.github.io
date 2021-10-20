@@ -14,7 +14,7 @@ class: center, top, title-slide
 # CSSS508, Week 4
 ## R Data Structures
 ### Breon Haskett
-### October 20, 2021<br>Updated: Oct 6, 2021
+### October 20, 2021<br>Updated: Oct 20, 2021
 
 ---
 
@@ -435,7 +435,7 @@ second_letter_a
 ---
 # Logical Operators
 
-* `&amp;` is **AND** (both conditions must be `TRUE` to be `TRUE`):
+* `&amp;` is **AND** (both conditions must be `TRUE` to return `TRUE`):
 
 
 ```r
@@ -448,7 +448,7 @@ even_length &amp; second_letter_a
 
 --
 
-* `|` is **OR** (at least one condition must be `TRUE` to be `TRUE`):
+* `|` is **OR** (at least one condition must be `TRUE` to return `TRUE`):
 
 
 ```r
@@ -876,13 +876,13 @@ Matrices can be numeric, integer, factor, character, or logical, just like vecto
 
 
 ```r
-(bad_matrix &lt;- cbind(1:2, LETTERS[c(6,1)]))
+(bad_matrix &lt;- cbind(1:2, LETTERS[c(14,25)]))
 ```
 
 ```
 ##      [,1] [,2]
-## [1,] "1"  "F" 
-## [2,] "2"  "A"
+## [1,] "1"  "N" 
+## [2,] "2"  "Y"
 ```
 
 ```r
@@ -902,24 +902,24 @@ We can access dimension names or name them ourselves:
 
 
 ```r
-rownames(bad_matrix) &lt;- c("Wedge", "Biggs")
-colnames(bad_matrix) &lt;- c("Pilot grade", "Mustache grade")
+rownames(bad_matrix) &lt;- c("Candace", "Jonquel")
+colnames(bad_matrix) &lt;- c("Champion", "MVP")
 bad_matrix
 ```
 
 ```
-##       Pilot grade Mustache grade
-## Wedge "1"         "F"           
-## Biggs "2"         "A"
+##         Champion MVP
+## Candace "1"      "N"
+## Jonquel "2"      "Y"
 ```
 
 ```r
-bad_matrix["Biggs", , drop=FALSE]
+bad_matrix["Candace", , drop=FALSE]
 ```
 
 ```
-##       Pilot grade Mustache grade
-## Biggs "2"         "A"
+##         Champion MVP
+## Candace "1"      "N"
 ```
 
 ---
@@ -1138,7 +1138,7 @@ An R function can only return one object at a time—otherwise operations like a
 # `[x]` versus `[[x]]`
 
 .image-100[
-![](img/pepper.png)
+![](images/pepper.png)
 ]
 
 `[x]` chooses elements but keeps the list, while `[[x]]` extracts the element from the list.

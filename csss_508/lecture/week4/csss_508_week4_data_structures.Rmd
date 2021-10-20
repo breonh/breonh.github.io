@@ -281,7 +281,7 @@ second_letter_a
 ---
 # Logical Operators
 
-* `&` is **AND** (both conditions must be `TRUE` to be `TRUE`):
+* `&` is **AND** (both conditions must be `TRUE` to return `TRUE`):
 
 ```{r}
 even_length & second_letter_a
@@ -289,7 +289,7 @@ even_length & second_letter_a
 
 --
 
-* `|` is **OR** (at least one condition must be `TRUE` to be `TRUE`):
+* `|` is **OR** (at least one condition must be `TRUE` to return `TRUE`):
 
 ```{r}
 even_length | second_letter_a
@@ -515,7 +515,7 @@ a_matrix[, 1, drop=FALSE] # all rows, column 1, stays a matrix
 Matrices can be numeric, integer, factor, character, or logical, just like vectors. Also like vectors, *all elements must be the same data type*.
 
 ```{r}
-(bad_matrix <- cbind(1:2, LETTERS[c(6,1)]))
+(bad_matrix <- cbind(1:2, LETTERS[c(14,25)]))
 typeof(bad_matrix)
 ```
 
@@ -527,10 +527,10 @@ In this case, everything was converted to character so as not to lose informatio
 We can access dimension names or name them ourselves:
 
 ```{r}
-rownames(bad_matrix) <- c("Wedge", "Biggs")
-colnames(bad_matrix) <- c("Pilot grade", "Mustache grade")
+rownames(bad_matrix) <- c("Candace", "Jonquel")
+colnames(bad_matrix) <- c("Champion", "MVP")
 bad_matrix
-bad_matrix["Biggs", , drop=FALSE]
+bad_matrix["Candace", , drop=FALSE]
 ```
 
 ---
@@ -636,7 +636,7 @@ An R function can only return one object at a time—otherwise operations like a
 # `[x]` versus `[[x]]`
 
 .image-100[
-![](img/pepper.png)
+![](images/pepper.png)
 ]
 
 `[x]` chooses elements but keeps the list, while `[[x]]` extracts the element from the list.
