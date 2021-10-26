@@ -178,6 +178,13 @@ author: "Breon Haskett - University of Washington"
    
    * **[Homework 4 Template (More Advanced)](https://breonh.github.io/csss_508/homework/homework_4_alternate.Rmd) (Download this, fill it in, and submit on Canvas)**
    * **Homework 4 (More Advanced) KEY**
+   
+   
+  **Lab Recording: **
+   
+  [Youtube Link to Week 4 Lab](https://youtu.be/zF9fr7X37RE)
+
+       
 
    **Related Reading: **
 
