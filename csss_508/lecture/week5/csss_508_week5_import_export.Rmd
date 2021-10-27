@@ -58,10 +58,16 @@ You can find out what it is using the function `getwd()`.
 
 On my computer when I knitted these slides, it happened to be:
 
-```{r}
+
+
+```{r, eval = FALSE}
 getwd()
 ```
+.pull-left[
 
+`r getwd()`
+
+]
 ---
 # Changing Your Working Directory
 
@@ -81,7 +87,7 @@ Working Directory Suggestions:
 
 --
 
-* If you need to set a working, put `setwd()` at the start of your file so that someone using another computer knows they need to modify it
+* If you need to set a working directory, put `setwd()` at the start of your file so that someone using another computer knows they need to modify it
 
 ---
 # Projects in RStudio
@@ -110,7 +116,7 @@ A better way to deal with working directories: RStudio's **project** feature in 
    
 --
 
-If you're interested in advanced project management, ask me after class or check out [this presentation on reproducible research with rrtools]
+If you're interested in advanced project management, email me after class for more resources. 
 
 ---
 # Relative Paths
@@ -135,6 +141,17 @@ Relative paths are nice, because all locations of loaded and saved files can be 
 --
 
 Relative paths also allow others to download your files or entire project and use them on their computer without modifying all the paths!
+
+---
+
+# Relative Paths
+
+```
+![](img/screenshot_relative_path.png)
+```
+
+![](img/screenshot_relative_path.png)
+
 
 ---
 class: inverse
@@ -196,7 +213,7 @@ Let's import some data about song ranks on the Billboard Hot 100 in 2000:
 
 .small[
 ```{r}
-billboard_2000_raw <- read_csv(file = "https://breonh.github.io/csss_508/lectures/week5/data/billboard.csv")
+billboard_2000_raw <- read_csv(file = "https://breonh.github.io/csss_508/lecture/week5/data/billboard.csv")
 ```
 ]
 
@@ -227,7 +244,7 @@ Since it encountered no values, `readr` assumed the `wk66`-`wk76` columns were *
 bb_types <- paste(c("icccD", rep("i", 76)), collapse="") #<<
 
 billboard_2000_raw <- 
-  read_csv(file = "https://breonh.github.io/csss_508/lectures/week5/data/billboard.csv",
+  read_csv(file = "https://breonh.github.io/csss_508/lecture/week5/data/billboard.csv",
            col_types = bb_types) #<<
 ```
 
