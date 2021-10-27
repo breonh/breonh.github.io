@@ -205,7 +205,7 @@ author: "Breon Haskett - University of Washington"
   
    * [Homework 5 Data, **DONT OPEN IN BROWSER**](https://raw.githubusercontent.com/breonh/breonh.github.io/main/csss_508/homework/homework_5/king_county_elections_2016.txt)
   
-   * **[Homework 5, Part 1 Template](https://breonh.github.io/csss_508/homework/homework_5.Rmd) (Download this, fill it in, and submit on Canvas)**
+   * **[Homework 5, Part 1 Template](https://breonh.github.io/csss_508/homework/homework_5/homework_5.Rmd) (Download this, fill it in, and submit on Canvas)**
    * **Homework 5 KEY pt. 1**
 
    **Data From Class: **
