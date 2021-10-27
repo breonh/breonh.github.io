@@ -175,16 +175,12 @@ If you are working with a popular data source, try Googling to see if it has a d
 Besides a package, the easiest way to work with external data is for it to be stored in a *delimited* text file, e.g. comma-separated values (**.csv**) or tab-separated values (**.tsv**). Here is **.csv** data:
 
 ```
-"Subject","Depression","Sex","Week","HamD","Imipramine"
-101,"Non-endogenous","Male",0,26,NA
-101,"Non-endogenous","Male",1,22,NA
-101,"Non-endogenous","Male",2,18,4.04305
-101,"Non-endogenous","Male",3,7,3.93183
-101,"Non-endogenous","Male",4,4,4.33073
-101,"Non-endogenous","Male",5,3,4.36945
-103,"Non-endogenous","Female",0,33,NA
-103,"Non-endogenous","Female",1,24,NA
-103,"Non-endogenous","Female",2,15,2.77259
+Date,Visitor/Neutral,PTS,Home/Neutral,PTS,Notes
+10-08-2021,"Pheonix Mercury",87,"Las Vegas Aces",84,Box Score
+10-10-2021,"Chicago Sky",91,"Pheonix Mercury",77,Box Score
+10-13-2021,"Chicago Sky",86,"Pheonix Mercury",91,Box Score
+10-15-2021,"Pheonix Mercury",50,"Chicago Sky",86,Box Score
+10-17-2021,"Pheonix Mercury",74,"Chicago Sky",80,Box Score
 ```
 
 ---
@@ -195,7 +191,6 @@ R has a variety of built-in functions for importing data stored in text files, l
 `readr` function features:
 
 * Faster!<sup>1</sup>
-* Better defaults (e.g. doesn't automatically convert character data to factors)
 * A *little* smarter about dates and times
 * Handy function `problems()` you can run if there are errors
 * Loading bars for large files
@@ -204,7 +199,7 @@ R has a variety of built-in functions for importing data stored in text files, l
 library(readr)
 ```
 
-.footnote[[1] `vroom` is even faster!]
+.footnote[[1] [`vroom`](https://www.tidyverse.org/blog/2019/05/vroom-1-0-0/#speed) is even faster!]
 
 ---
 # `readr` Importing Example
@@ -462,7 +457,7 @@ Ready to throw into `ggplot()`!
 # Billboard is Just Ugly-Messy
 
 .small[
-```{r, echo=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(pander)
 pander(head(billboard_2000_raw[,1:10], 12), split.tables=120, style="rmarkdown")
 ```
