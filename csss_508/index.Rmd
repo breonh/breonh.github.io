@@ -215,6 +215,13 @@ author: "Breon Haskett - University of Washington"
    
    [One day of SPD Incident Data](https://raw.githubusercontent.com/breonh/breonh.github.io/main/csss_508/lecture/week5/data/Seattle_Police_Department_911_Incident_Response.csv)
 
+ **Lecture Recording: **
+   
+  [Youtube Link to Week 5 Lecture](https://youtu.be/1ffcMMlQ99w)
+
+       
+
+
    **Related Reading: **
 
   * Data import and export:
