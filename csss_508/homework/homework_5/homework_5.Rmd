@@ -24,7 +24,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Getting the data in
 
-> Download the data from <https://raw.githubusercontent.com/clanfear/CSSS508/master/Homework/HW5/king_county_elections_2016.txt>. It is a plain text file of data, about 60 MB in size. Values are separated with commas (you can see this by opening it with a *good* text editor, e.g. Atom or Sublime *but not Notepad*). **Save it in the same folder as this template** and read the file into R. You will want to use the `cache=TRUE` chunk option for this (and potentially other chunks). `cache=TRUE` will allow R to read the file only once to save time.
+> Download the data from <https://raw.githubusercontent.com/breonh/breonh.github.io/main/csss_508/homework/homework_5/king_county_elections_2016.txt>. It is a plain text file of data, about 60 MB in size. Values are separated with commas (you can see this by opening it with a *good* text editor, e.g. Atom or Sublime *but not Notepad*). **Save it in the same folder as this template** and read the file into R. You will want to use the `cache=TRUE` chunk option for this (and potentially other chunks). `cache=TRUE` will allow R to read the file only once to save time.
 
 
 ```{r import_data, cache=TRUE}
