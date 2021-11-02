@@ -165,11 +165,7 @@ author: "Breon Haskett - University of Washington"
        + [Rmd for Lecture 4 slides](https://breonh.github.io/csss_508/lecture/week4/csss_508_week4_data_structures.Rmd)
        
        
-  **Lecture Recording: **
-   
-  [Youtube Link to Week 4 Lecture](https://youtu.be/UGCq9TnE3bg)
 
-       
 
 **Homework 4 (Two Options, complete one):**
        
@@ -178,6 +174,13 @@ author: "Breon Haskett - University of Washington"
    
    * **[Homework 4 Template (More Advanced)](https://breonh.github.io/csss_508/homework/homework_4_alternate.Rmd) (Download this, fill it in, and submit on Canvas)**
    * **Homework 4 (More Advanced) [RMD,](https://breonh.github.io/csss_508/homework/homework_4/homework_4_regression_key.Rmd) [HTML](https://breonh.github.io/csss_508/homework/homework_4/homework_4_regression_key.html)**
+   
+  **Lecture Recording: **
+   
+  [Youtube Link to Week 4 Lecture](https://youtu.be/UGCq9TnE3bg)
+
+       
+   
    
   **Lab Recording: **
    
@@ -219,7 +222,9 @@ author: "Breon Haskett - University of Washington"
    
   [Youtube Link to Week 5 Lecture](https://youtu.be/1ffcMMlQ99w)
 
-       
+ **Lab Recording: **
+ 
+  [Youtube Link to Week 5 Lab](https://youtu.be/MlTnrEjXoYo)
 
 
    **Related Reading: **
