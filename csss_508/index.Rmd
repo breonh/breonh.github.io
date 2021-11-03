@@ -253,10 +253,10 @@ author: "Breon Haskett - University of Washington"
 
  **Lecture for Week 6:**
 
-   * Slides for Lecture 6: Loops
-       + Companion R Script for Lecture 6 slides
-       + PDF of Lecture 6 slides
-       + Rmd for Lecture 6 slides
+   * [Slides for Lecture 6: Loops](https://breonh.github.io/csss_508/lecture/week6/csss_508_week6_loops.html)
+       + [Companion R Script for Lecture 6 slides](https://breonh.github.io/csss_508/lecture/week6/csss_508_week6_rscript_companion.R)
+       + [PDF of Lecture 6 slides](https://breonh.github.io/csss_508/lecture/week6/csss_508_week6_loops.pdf)
+       + [Rmd for Lecture 6 slides](https://breonh.github.io/csss_508/lecture/week6/csss_508_week6_loops.Rmd)
 
  **Homework 5, part 2:**
        

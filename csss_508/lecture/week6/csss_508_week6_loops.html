@@ -14,7 +14,7 @@ class: center, top, title-slide
 # CSSS508, Week 6
 ## Loops
 ### Breon Haskett
-### November 3, 2021<br>Updated: Oct 30, 2021
+### November 3, 2021<br>Updated: Nov 3, 2021
 
 ---
 
@@ -114,7 +114,7 @@ class: inverse
 ---
 # The `for()` Loop
 
-`for()` loops are the most general kind of *loop*, found in pretty much every programming language.
+`for()` loops are the most general kind of *loop*, found in pretty much every programming language.&lt;sup&gt;1&lt;/sup&gt;
 
 "**For** each of these values—in order—do *this*"
 
@@ -132,13 +132,13 @@ Conceptually:
 
 We are *looping* through values and repeating some actions.
 
-
+.footnote[[1] As early on as [assembler](https://youtu.be/HXNhEYqFo0o), over 70 years ago!]
 ---
 # `for()` Loop: Diagram
 
 *Given a set of values...*
 
-![](https://clanfear.github.io/CSSS508/Lectures/Week6/img/loop.svg)
+![](https://breonh.github.io/CSSS508/Lectures/Week6/images/loop.svg)
 
 ---
 # `for()` Loop: Example
@@ -323,6 +323,436 @@ Steps:
 .footnote[[1] We could skip this, but it is useful if you want to make code flexible.]
 
 ---
+# Now We Can Use the Output
+
+![](csss_508_week6_loops_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+
+```
+## List of 93
+##  $ line                      :List of 6
+##   ..$ colour       : chr "black"
+##   ..$ size         : num 0.636
+##   ..$ linetype     : num 1
+##   ..$ lineend      : chr "butt"
+##   ..$ arrow        : logi FALSE
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_line" "element"
+##  $ rect                      :List of 5
+##   ..$ fill         : chr "white"
+##   ..$ colour       : chr "black"
+##   ..$ size         : num 0.636
+##   ..$ linetype     : num 1
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_rect" "element"
+##  $ text                      :List of 11
+##   ..$ family       : chr ""
+##   ..$ face         : chr "plain"
+##   ..$ colour       : chr "black"
+##   ..$ size         : num 14
+##   ..$ hjust        : num 0.5
+##   ..$ vjust        : num 0.5
+##   ..$ angle        : num 0
+##   ..$ lineheight   : num 0.9
+##   ..$ margin       : 'margin' num [1:4] 0points 0points 0points 0points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : logi FALSE
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ title                     : NULL
+##  $ aspect.ratio              : NULL
+##  $ axis.title                : NULL
+##  $ axis.title.x              :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : NULL
+##   ..$ vjust        : num 1
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 3.5points 0points 0points 0points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.title.x.top          :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : NULL
+##   ..$ vjust        : num 0
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0points 0points 3.5points 0points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.title.x.bottom       : NULL
+##  $ axis.title.y              :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : NULL
+##   ..$ vjust        : num 1
+##   ..$ angle        : num 90
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0points 3.5points 0points 0points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.title.y.left         : NULL
+##  $ axis.title.y.right        :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : NULL
+##   ..$ vjust        : num 0
+##   ..$ angle        : num -90
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0points 0points 0points 3.5points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.text                 :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : chr "grey30"
+##   ..$ size         : 'rel' num 0.8
+##   ..$ hjust        : NULL
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : NULL
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.text.x               :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : NULL
+##   ..$ vjust        : num 1
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 2.8points 0points 0points 0points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.text.x.top           :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : NULL
+##   ..$ vjust        : num 0
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0points 0points 2.8points 0points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.text.x.bottom        : NULL
+##  $ axis.text.y               :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : num 1
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0points 2.8points 0points 0points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.text.y.left          : NULL
+##  $ axis.text.y.right         :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : num 0
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0points 0points 0points 2.8points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.ticks                :List of 6
+##   ..$ colour       : chr "grey20"
+##   ..$ size         : NULL
+##   ..$ linetype     : NULL
+##   ..$ lineend      : NULL
+##   ..$ arrow        : logi FALSE
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_line" "element"
+##  $ axis.ticks.x              : NULL
+##  $ axis.ticks.x.top          : NULL
+##  $ axis.ticks.x.bottom       : NULL
+##  $ axis.ticks.y              : NULL
+##  $ axis.ticks.y.left         : NULL
+##  $ axis.ticks.y.right        : NULL
+##  $ axis.ticks.length         : 'simpleUnit' num 3.5points
+##   ..- attr(*, "unit")= int 8
+##  $ axis.ticks.length.x       : NULL
+##  $ axis.ticks.length.x.top   : NULL
+##  $ axis.ticks.length.x.bottom: NULL
+##  $ axis.ticks.length.y       : NULL
+##  $ axis.ticks.length.y.left  : NULL
+##  $ axis.ticks.length.y.right : NULL
+##  $ axis.line                 : list()
+##   ..- attr(*, "class")= chr [1:2] "element_blank" "element"
+##  $ axis.line.x               : NULL
+##  $ axis.line.x.top           : NULL
+##  $ axis.line.x.bottom        : NULL
+##  $ axis.line.y               : NULL
+##  $ axis.line.y.left          : NULL
+##  $ axis.line.y.right         : NULL
+##  $ legend.background         :List of 5
+##   ..$ fill         : NULL
+##   ..$ colour       : logi NA
+##   ..$ size         : NULL
+##   ..$ linetype     : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_rect" "element"
+##  $ legend.margin             : 'margin' num [1:4] 7points 7points 7points 7points
+##   ..- attr(*, "unit")= int 8
+##  $ legend.spacing            : 'simpleUnit' num 14points
+##   ..- attr(*, "unit")= int 8
+##  $ legend.spacing.x          : NULL
+##  $ legend.spacing.y          : NULL
+##  $ legend.key                :List of 5
+##   ..$ fill         : chr "white"
+##   ..$ colour       : logi NA
+##   ..$ size         : NULL
+##   ..$ linetype     : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_rect" "element"
+##  $ legend.key.size           : 'simpleUnit' num 1.2lines
+##   ..- attr(*, "unit")= int 3
+##  $ legend.key.height         : NULL
+##  $ legend.key.width          : NULL
+##  $ legend.text               :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : 'rel' num 0.8
+##   ..$ hjust        : NULL
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : NULL
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ legend.text.align         : NULL
+##  $ legend.title              :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : num 0
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : NULL
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ legend.title.align        : NULL
+##  $ legend.position           : chr "right"
+##  $ legend.direction          : NULL
+##  $ legend.justification      : chr "center"
+##  $ legend.box                : NULL
+##  $ legend.box.just           : NULL
+##  $ legend.box.margin         : 'margin' num [1:4] 0cm 0cm 0cm 0cm
+##   ..- attr(*, "unit")= int 1
+##  $ legend.box.background     : list()
+##   ..- attr(*, "class")= chr [1:2] "element_blank" "element"
+##  $ legend.box.spacing        : 'simpleUnit' num 14points
+##   ..- attr(*, "unit")= int 8
+##  $ panel.background          :List of 5
+##   ..$ fill         : chr "white"
+##   ..$ colour       : logi NA
+##   ..$ size         : NULL
+##   ..$ linetype     : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_rect" "element"
+##  $ panel.border              :List of 5
+##   ..$ fill         : logi NA
+##   ..$ colour       : chr "grey20"
+##   ..$ size         : NULL
+##   ..$ linetype     : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_rect" "element"
+##  $ panel.spacing             : 'simpleUnit' num 7points
+##   ..- attr(*, "unit")= int 8
+##  $ panel.spacing.x           : NULL
+##  $ panel.spacing.y           : NULL
+##  $ panel.grid                :List of 6
+##   ..$ colour       : chr "grey92"
+##   ..$ size         : NULL
+##   ..$ linetype     : NULL
+##   ..$ lineend      : NULL
+##   ..$ arrow        : logi FALSE
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_line" "element"
+##  $ panel.grid.major          : NULL
+##  $ panel.grid.minor          :List of 6
+##   ..$ colour       : NULL
+##   ..$ size         : 'rel' num 0.5
+##   ..$ linetype     : NULL
+##   ..$ lineend      : NULL
+##   ..$ arrow        : logi FALSE
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_line" "element"
+##  $ panel.grid.major.x        : NULL
+##  $ panel.grid.major.y        : NULL
+##  $ panel.grid.minor.x        : NULL
+##  $ panel.grid.minor.y        : NULL
+##  $ panel.ontop               : logi FALSE
+##  $ plot.background           :List of 5
+##   ..$ fill         : NULL
+##   ..$ colour       : chr "white"
+##   ..$ size         : NULL
+##   ..$ linetype     : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_rect" "element"
+##  $ plot.title                :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : 'rel' num 1.2
+##   ..$ hjust        : num 0
+##   ..$ vjust        : num 1
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0points 0points 7points 0points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ plot.title.position       : chr "panel"
+##  $ plot.subtitle             :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : num 0
+##   ..$ vjust        : num 1
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0points 0points 7points 0points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ plot.caption              :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : 'rel' num 0.8
+##   ..$ hjust        : num 1
+##   ..$ vjust        : num 1
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 7points 0points 0points 0points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ plot.caption.position     : chr "panel"
+##  $ plot.tag                  :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : 'rel' num 1.2
+##   ..$ hjust        : num 0.5
+##   ..$ vjust        : num 0.5
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : NULL
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ plot.tag.position         : chr "topleft"
+##  $ plot.margin               : 'margin' num [1:4] 7points 7points 7points 7points
+##   ..- attr(*, "unit")= int 8
+##  $ strip.background          :List of 5
+##   ..$ fill         : chr "grey85"
+##   ..$ colour       : chr "grey20"
+##   ..$ size         : NULL
+##   ..$ linetype     : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_rect" "element"
+##  $ strip.background.x        : NULL
+##  $ strip.background.y        : NULL
+##  $ strip.placement           : chr "inside"
+##  $ strip.text                :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : chr "grey10"
+##   ..$ size         : 'rel' num 0.8
+##   ..$ hjust        : NULL
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 5.6points 5.6points 5.6points 5.6points
+##   .. ..- attr(*, "unit")= int 8
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ strip.text.x              : NULL
+##  $ strip.text.y              :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : NULL
+##   ..$ vjust        : NULL
+##   ..$ angle        : num -90
+##   ..$ lineheight   : NULL
+##   ..$ margin       : NULL
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ strip.switch.pad.grid     : 'simpleUnit' num 3.5points
+##   ..- attr(*, "unit")= int 8
+##  $ strip.switch.pad.wrap     : 'simpleUnit' num 3.5points
+##   ..- attr(*, "unit")= int 8
+##  $ strip.text.y.left         :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : NULL
+##   ..$ vjust        : NULL
+##   ..$ angle        : num 90
+##   ..$ lineheight   : NULL
+##   ..$ margin       : NULL
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  - attr(*, "class")= chr [1:2] "theme" "gg"
+##  - attr(*, "complete")= logi TRUE
+##  - attr(*, "validate")= logi TRUE
+```
+
+
+
+---
 # `setNames()`
 
 The function `setNames()` can be handy for pre-allocating a named vector:
@@ -379,7 +809,7 @@ Let's simulate some fake data for this using the `rnorm()` function to generate 
 
 
 ```r
-set.seed(98105) # Making sure values always the same
+set.seed(755) # Making sure values always the same
 n &lt;- 300
 x &lt;- rnorm(n, mean = 5, sd = 4)
 sim_data &lt;- 
@@ -402,7 +832,7 @@ ggplot(data = sim_data, aes(x = x, y = y)) +
   ggtitle("Simulated Data")
 ```
 
-![](csss_508_week6_loops_files/figure-html/unnamed-chunk-11-1.svg)&lt;!-- --&gt;
+![](csss_508_week6_loops_files/figure-html/unnamed-chunk-12-1.svg)&lt;!-- --&gt;
 
 ---
 # Candidate Regression Models
@@ -529,17 +959,17 @@ head(predicted_data, 10)
 ```
 
 ```
-##        x      y intercept only linear quadratic  cubic
-## 1  -5.80  6.140         -0.372  0.160     4.985  4.983
-## 2   9.26 -0.790         -0.372 -0.579    -0.312 -0.312
-## 3   1.40  1.177         -0.372 -0.194    -0.568 -0.567
-## 4   5.23 -1.833         -0.372 -0.381    -1.266 -1.266
-## 5  12.24  1.608         -0.372 -0.726     1.516  1.517
-## 6   8.30 -2.778         -0.372 -0.532    -0.694 -0.694
-## 7   9.66  1.185         -0.372 -0.599    -0.118 -0.118
-## 8  10.25 -0.351         -0.372 -0.628     0.192  0.192
-## 9   9.44  1.592         -0.372 -0.588    -0.228 -0.228
-## 10  1.46 -1.329         -0.372 -0.197    -0.591 -0.590
+##         x      y intercept only linear quadratic  cubic
+## 1   3.646 -0.174         -0.428 -0.399    -1.199 -1.189
+## 2   9.227 -1.702         -0.428 -0.527    -0.285 -0.310
+## 3  -4.233  2.500         -0.428 -0.219     2.907  2.877
+## 4  -2.608  2.654         -0.428 -0.257     1.544  1.551
+## 5   3.012 -3.715         -0.428 -0.385    -1.102 -1.086
+## 6   5.609 -0.754         -0.428 -0.444    -1.239 -1.247
+## 7   3.648 -0.907         -0.428 -0.399    -1.199 -1.189
+## 8   0.278 -0.756         -0.428 -0.323    -0.217 -0.187
+## 9   7.290  2.231         -0.428 -0.483    -0.961 -0.982
+## 10  2.952 -0.864         -0.428 -0.384    -1.091 -1.074
 ```
 
 ---
@@ -552,7 +982,7 @@ We can use `tidyr::pivot_longer()` to tidy the predictions, then set the levels 
 ```r
 library(tidyr)
 tidy_predicted_data &lt;- predicted_data %&gt;%
-    pivot_longer(3:6, 
+    pivot_longer(3:length(predicted_data), 
                  names_to  = "Model", 
 *                values_to = "Prediction") %&gt;%
 *   mutate(Model = factor(Model, levels = names(models)))
@@ -563,12 +993,12 @@ head(tidy_predicted_data) # Displaying some rows
 ## # A tibble: 6 x 4
 ##       x      y Model          Prediction
 ##   &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;               &lt;dbl&gt;
-## 1 -5.80  6.14  intercept only     -0.372
-## 2 -5.80  6.14  linear              0.160
-## 3 -5.80  6.14  quadratic           4.98 
-## 4 -5.80  6.14  cubic               4.98 
-## 5  9.26 -0.790 intercept only     -0.372
-## 6  9.26 -0.790 linear             -0.579
+## 1  3.65 -0.174 intercept only     -0.428
+## 2  3.65 -0.174 linear             -0.399
+## 3  3.65 -0.174 quadratic          -1.20 
+## 4  3.65 -0.174 cubic              -1.19 
+## 5  9.23 -1.70  intercept only     -0.428
+## 6  9.23 -1.70  linear             -0.527
 ```
 ]
 
@@ -601,7 +1031,7 @@ ggplot() +
 ---
 # Plotted Predictions
 
-![](csss_508_week6_loops_files/figure-html/unnamed-chunk-19-1.svg)&lt;!-- --&gt;
+![](csss_508_week6_loops_files/figure-html/unnamed-chunk-20-1.svg)&lt;!-- --&gt;
 
 Which looks best to you?
 
@@ -635,13 +1065,13 @@ A model that fits well will have *low mean squared error*. Models that are eithe
 ---
 
 .image-full[
-![](img/cv1.svg)
+![](images/cv1.svg)
 ]
 
 ---
 
 .image-full[
-![](img/cv2.svg)
+![](images/cv2.svg)
 ]
 
 ---
@@ -665,13 +1095,13 @@ head(CV_predictions)
 ```
 
 ```
-##       x     y fold intercept only linear quadratic cubic
-## 1 -5.80  6.14    7             NA     NA        NA    NA
-## 2  9.26 -0.79    4             NA     NA        NA    NA
-## 3  1.40  1.18    6             NA     NA        NA    NA
-## 4  5.23 -1.83    4             NA     NA        NA    NA
-## 5 12.24  1.61    5             NA     NA        NA    NA
-## 6  8.30 -2.78    3             NA     NA        NA    NA
+##       x      y fold intercept only linear quadratic cubic
+## 1  3.65 -0.174    6             NA     NA        NA    NA
+## 2  9.23 -1.702    5             NA     NA        NA    NA
+## 3 -4.23  2.500    3             NA     NA        NA    NA
+## 4 -2.61  2.654    8             NA     NA        NA    NA
+## 5  3.01 -3.715    4             NA     NA        NA    NA
+## 6  5.61 -0.754    6             NA     NA        NA    NA
 ```
 ]
 
@@ -717,7 +1147,7 @@ CV_MSE
 
 ```
 ## intercept only         linear      quadratic          cubic 
-##           2.56           2.60           1.06           1.06
+##           2.73           2.81           1.06           1.07
 ```
 
 Based on these results, which model would you choose?
@@ -828,14 +1258,24 @@ names(data_list) &lt;- data_names
 
 (5) Then, let's run a loop that reads in each data file and writes it to the appropriate element of `data_list`.
 
-# ```{r, message = FALSE, warnings = FALSE}
-# library(readr) # readr to load the csv files
-# for (i in seq_along(file_list)){
-#   data_list[[ data_names[i] ]] &lt;- 
-#     read_csv(paste0("./example_data/", file_list[i]))
-# }
-# head(data_list[[1]], 3)
-# ```
+
+```r
+ library(readr) # readr to load the csv files
+ for (i in seq_along(file_list)){
+   data_list[[ data_names[i] ]] &lt;-
+     read_csv(paste0("./example_data/", file_list[i]))
+ }
+ head(data_list[[1]], 3)
+```
+
+```
+## # A tibble: 3 x 3
+##      id      x     z
+##   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1    44  0.516 0.381
+## 2    49  2.17  0.346
+## 3    50 -0.122 0.711
+```
 
 ---
 # Loop Load Example 4
@@ -846,7 +1286,7 @@ names(data_list[[1]])
 ```
 
 ```
-## NULL
+## [1] "id" "x"  "z"
 ```
 
 ```r
@@ -854,7 +1294,7 @@ names(data_list[[2]])
 ```
 
 ```
-## NULL
+## [1] "id" "x"  "z"
 ```
 
 In this case every data frame has the same columns, so we can combine them all into one data frame.
@@ -866,8 +1306,11 @@ glimpse(complete_data)
 ```
 
 ```
-## Rows: 0
-## Columns: 0
+## Rows: 10,000
+## Columns: 3
+## $ id &lt;dbl&gt; 44, 49, 50, 60, 62, 76, 81, 91, 113, 114, 116, 156, 157, ~
+## $ x  &lt;dbl&gt; 0.5156, 2.1673, -0.1216, 1.0551, 0.6660, -0.0213, 1.9835,~
+## $ z  &lt;dbl&gt; 0.3808, 0.3460, 0.7115, 0.4344, 0.6379, 0.6739, 0.9808, 0~
 ```
 
 ---
@@ -900,7 +1343,7 @@ num_flips # follows negative binomial distribution
 ```
 
 ```
-## [1] 10
+## [1] 5
 ```
 
 ---
@@ -931,7 +1374,7 @@ for(position in 1:length(my_vector)) {
 
 ```
 ##    user  system elapsed 
-##    5.71    1.91    7.97
+##    5.72    0.24    5.99
 ```
 
 ---
@@ -948,7 +1391,7 @@ new_vector &lt;- my_vector + 1
 
 ```
 ##    user  system elapsed 
-##    0.33    0.29    0.64
+##    0.28    0.22    0.52
 ```
 
 ```r
@@ -957,10 +1400,10 @@ for_time / vec_time
 
 ```
 ##    user  system elapsed 
-##   17.30    6.59   12.45
+##   20.43    1.09   11.52
 ```
 
-The vectorized method was 17 times as fast! Vector/matrix arithmetic is implemented using fast, optimized functions that a `for()` loop can't compete with.
+The vectorized method was 20 times as fast! Vector/matrix arithmetic is implemented using fast, optimized functions that a `for()` loop can't compete with.
 
 ---
 # Vectorization Examples

@@ -5,4 +5,4 @@ pagedown::chrome_print("https://breonh.github.io/csss_508/lecture/week5/csss_508
 
 
 
-knitr::purl("csss_508_week5_import_export.Rmd", output = "csss_508_week5_rscript_companion.R")
+knitr::purl("week6/csss_508_week6_loops.Rmd", output = "csss_508_week6_rscript_companion.R")

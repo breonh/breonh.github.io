@@ -107,7 +107,7 @@ class: inverse
 ---
 # The `for()` Loop
 
-`for()` loops are the most general kind of *loop*, found in pretty much every programming language.
+`for()` loops are the most general kind of *loop*, found in pretty much every programming language.<sup>1</sup>
 
 "**For** each of these values—in order—do *this*"
 
@@ -125,13 +125,13 @@ Conceptually:
 
 We are *looping* through values and repeating some actions.
 
-
+.footnote[[1] As early on as [assembler](https://youtu.be/HXNhEYqFo0o), over 70 years ago!]
 ---
 # `for()` Loop: Diagram
 
 *Given a set of values...*
 
-![](https://clanfear.github.io/CSSS508/Lectures/Week6/img/loop.svg)
+![](https://breonh.github.io/CSSS508/Lectures/Week6/images/loop.svg)
 
 ---
 # `for()` Loop: Example
@@ -255,6 +255,22 @@ Steps:
 .footnote[[1] We could skip this, but it is useful if you want to make code flexible.]
 
 ---
+# Now We Can Use the Output
+
+```{r, echo = FALSE, fig.width=8, fig.height=5}
+data.frame("iters" = 1:iters, "output" = output) %>%   
+  ggplot(aes(x = iters, y = output)) +
+  scale_x_continuous(breaks = 1:10) +
+  geom_point() +
+  xlab("Iterations") +
+  ylab("Calculations") +
+  ggtitle("Example of The Value of Assignment for Loops")
+  theme_bw(14)
+```
+
+
+
+---
 # `setNames()`
 
 The function `setNames()` can be handy for pre-allocating a named vector:
@@ -297,7 +313,7 @@ After we do this, we'll try something more advanced with loops: **Cross-validati
 Let's simulate some fake data for this using the `rnorm()` function to generate random values from a normal distribution.
 
 ```{r, cache=FALSE}
-set.seed(98105) # Making sure values always the same
+set.seed(755) # Making sure values always the same
 n <- 300
 x <- rnorm(n, mean = 5, sd = 4)
 sim_data <- 
@@ -433,7 +449,7 @@ We can use `tidyr::pivot_longer()` to tidy the predictions, then set the levels 
 ```{r, warning=FALSE, message=FALSE}
 library(tidyr)
 tidy_predicted_data <- predicted_data %>%
-    pivot_longer(3:6, 
+    pivot_longer(3:length(predicted_data), 
                  names_to  = "Model", 
                  values_to = "Prediction") %>% #<<
     mutate(Model = factor(Model, levels = names(models))) #<<
@@ -511,13 +527,13 @@ A model that fits well will have *low mean squared error*. Models that are eithe
 ---
 
 .image-full[
-![](img/cv1.svg)
+![](images/cv1.svg)
 ]
 
 ---
 
 .image-full[
-![](img/cv2.svg)
+![](images/cv2.svg)
 ]
 
 ---
@@ -650,7 +666,6 @@ an entire directory of Excel files—to combine them into one data set.
 
 ```{r}
 data_list  <- vector("list", length(file_list))
-
 ```
 
 (3) For nice object names, we can use `stringr` to remove the `.csv`.
@@ -669,14 +684,14 @@ names(data_list) <- data_names
 
 (5) Then, let's run a loop that reads in each data file and writes it to the appropriate element of `data_list`.
 
-# ```{r, message = FALSE, warnings = FALSE}
-# library(readr) # readr to load the csv files
-# for (i in seq_along(file_list)){
-#   data_list[[ data_names[i] ]] <- 
-#     read_csv(paste0("./example_data/", file_list[i]))
-# }
-# head(data_list[[1]], 3)
-# ```
+```{r, message = FALSE, warnings = FALSE}
+ library(readr) # readr to load the csv files
+ for (i in seq_along(file_list)){
+   data_list[[ data_names[i] ]] <-
+     read_csv(paste0("./example_data/", file_list[i]))
+ }
+ head(data_list[[1]], 3)
+```
 
 ---
 # Loop Load Example 4
