@@ -131,7 +131,7 @@ We are *looping* through values and repeating some actions.
 
 *Given a set of values...*
 
-![](https://breonh.github.io/CSSS508/Lectures/Week6/images/loop.svg)
+![](https://breonh.github.io/csss_508/lecture/week6/images/loop.svg)
 
 ---
 # `for()` Loop: Example
