@@ -258,14 +258,16 @@ Steps:
 # Now We Can Use the Output
 
 ```{r, echo = FALSE, fig.width=8, fig.height=5}
+
 data.frame("iters" = 1:iters, "output" = output) %>%   
   ggplot(aes(x = iters, y = output)) +
   scale_x_continuous(breaks = 1:10) +
-  geom_point() +
+  geom_point(size = 2, color = "tomato2") +
   xlab("Iterations") +
   ylab("Calculations") +
-  ggtitle("Example of The Value of Assignment for Loops")
+  ggtitle("Example of The Value of Assignment for Loops") +
   theme_bw(14)
+  
 ```
 
 
