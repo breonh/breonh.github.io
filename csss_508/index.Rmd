@@ -270,6 +270,9 @@ author: "Breon Haskett - University of Washington"
    
   [Youtube Link to Week 6 Lecture](https://youtu.be/_HfZhgP4xu8)
 
+ **Lab Recording **
+ 
+  [Youtube Link to Week 6 Lab](https://youtu.be/SsXH03_uU_U)
 
 ### 7. Writing Functions
 
