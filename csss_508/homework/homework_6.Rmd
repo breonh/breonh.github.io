@@ -1,7 +1,7 @@
 ---
 title: "HW 6: Pronto!"
 author: "YOUR NAME"
-date: "November 7th, 2018"
+date: "THE DATE"
 output:
   html_document:
     toc: true
@@ -10,9 +10,9 @@ output:
 
 # Instructions
 
-> Pronto! is Seattle's bike sharing program, which launched in fall 2014. You may have seen the green bike docks around campus. It was also [in the news frequently](http://www.king5.com/news/local/seattle/city-launches-investigation-into-sdot-director-over-pronto-ties/97249954) and [eventually shut down](http://www.seattletimes.com/seattle-news/transportation/seattle-pronto-bike-share-shutting-down-friday/).
+> Pronto! is Seattle's bike sharing program, which launched in fall 2014. You may have seen the green bike docks around campus. It was also [in the news frequently](https://www.king5.com/amp/article/news/local/seattle/investigation-launched-into-sdot-director-over-pronto-ties/281-97249954) and [eventually shut down](https://www.seattletimes.com/seattle-news/transportation/seattle-pronto-bike-share-shutting-down-friday/).
 
-> You will be using data from the [2015 Pronto Cycle Share Data Challenge](https://www.prontocycleshare.com/datachallenge). These are available for download as a 75 MB ZIP file from <https://s3.amazonaws.com/pronto-data/open_data_year_one.zip>. Once unzipped, the folder containing all the files is around 900 MB. The `open_data_year_one` folder contains a `README.txt` file that you should reference for documentation. **Place the `open_data_year_one` folder in the same directory as this template.**
+> You will be using data from the 2015 Pronto Cycle Share Data Challenge. These are available for download as a 75 MB ZIP file from <https://s3.amazonaws.com/pronto-data/open_data_year_one.zip>. Once unzipped, the folder containing all the files is around 900 MB. The `open_data_year_one` folder contains a `README.txt` file that you should reference for documentation. **Place the `open_data_year_one` folder in the same directory as this template.**
 
 > Questions for you to answer are as quoted blocks of text. Put your code used to address these questions and any comments you have below each block. Remember the guiding DRY principle: **Don't Repeat Yourself!**
 
@@ -65,7 +65,7 @@ output:
 # YOUR WORK HERE
 ```
 
-> Now, use `dplyr`'s `mutate_at()` and/or `mutate()`, functions from the `lubridate` package, and the `factor` function to (1) fix any date/times, as well as to (2) convert the `usertype` and `gender` variables to factor variables from the trip data. *Don't make new objects*, but rather modify the entries in `data_list` directly.
+> Now, use `dplyr`'s `mutate()` (you may want to use the helper function `across()`), functions from the `lubridate` package, and the `factor` function to (1) fix any date/times, as well as to (2) convert the `usertype` and `gender` variables to factor variables from the trip data. *Don't make new objects*, but rather modify the entries in `data_list` directly.
 
 ```{r}
 # YOUR WORK HERE
@@ -132,3 +132,4 @@ daily_rain_rides <- function(region_code, direction){
 ```{r}
 # YOUR WORK HERE
 ```
+

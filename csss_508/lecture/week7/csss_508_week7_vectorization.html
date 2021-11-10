@@ -14,7 +14,7 @@ class: center, top, title-slide
 # CSSS508, Week 7
 ## Vectorization and Functions
 ### Breon Haskett
-### November 10, 2021<br>Updated: Nov 6, 2021
+### November 10, 2021<br>Updated: Nov 10, 2021
 
 ---
 
@@ -49,6 +49,11 @@ When in doubt, *sketch* the beginning state and the intended end state. Then con
 --
 
 If that seems complex, break it into more steps.
+
+---
+# A Quick Sketch 
+
+![](images/sample_sketch2.jpg)
 
 ---
 class: inverse
@@ -259,7 +264,7 @@ smarter_first_and_last
 ##         return(c("first" = first, "last" = last))        
 ##     }
 ## }
-## &lt;bytecode: 0x0000000015e043e0&gt;
+## &lt;bytecode: 0x00000000149b5b50&gt;
 ```
 
 You can also put your cursor over a function in your syntax and hit `F2`.
@@ -312,10 +317,10 @@ quantile_report(rnorm(10000))
 ```
 
 ```
-##   Bottom 1%   Bottom 5%  Bottom 10%  Bottom 25%      Median 
-## -2.33580781 -1.62128924 -1.26676805 -0.66064766  0.01146834 
-##     Top 25%     Top 10%      Top 5%      Top 1% 
-##  0.68682197  1.28919921  1.65020873  2.33769160
+##    Bottom 1%    Bottom 5%   Bottom 10%   Bottom 25%       Median 
+## -2.329538054 -1.645994932 -1.288954121 -0.658721560 -0.005901012 
+##      Top 25%      Top 10%       Top 5%       Top 1% 
+##  0.661052632  1.267883667  1.638962360  2.242584394
 ```
 ]
 
@@ -446,20 +451,13 @@ apply(swiss, MARGIN = 2, FUN = quantile_report)
 ```
 ]
 ---
-# Data Loading with Loop
+### Remember the loop for loading data files from last week?
 
-Remember the loop for loading data files from last week?
+
 
 
 ```r
 library(dplyr); library(readr)
-```
-
-```
-## Warning: package 'dplyr' was built under R version 4.0.5
-```
-
-```r
 file_list  &lt;- list.files("./example_data/")
 file_paths &lt;- paste0("./example_data/", file_list)
 data_names &lt;- stringr::str_remove(file_list, ".csv")

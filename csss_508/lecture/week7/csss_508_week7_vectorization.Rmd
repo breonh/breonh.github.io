@@ -18,6 +18,7 @@ output:
 options(htmltools.dir.version = FALSE)
 options(width=70)
 knitr::opts_chunk$set(comment = "##")
+set.seed(789)
 ```
 
 class: inverse
@@ -48,6 +49,11 @@ When in doubt, *sketch* the beginning state and the intended end state. Then con
 --
 
 If that seems complex, break it into more steps.
+
+---
+# A Quick Sketch 
+
+![](images/sample_sketch2.jpg)
 
 ---
 class: inverse
@@ -315,11 +321,11 @@ apply(swiss, MARGIN = 2, FUN = quantile_report)
 ```
 ]
 ---
-# Data Loading with Loop
+### Remember the loop for loading data files from last week?
 
-Remember the loop for loading data files from last week?
 
-```{r, message = FALSE, warnings = FALSE}
+
+```{r, message = FALSE, warning=FALSE}
 library(dplyr); library(readr)
 file_list  <- list.files("./example_data/")
 file_paths <- paste0("./example_data/", file_list)
