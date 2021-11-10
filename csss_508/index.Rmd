@@ -257,7 +257,7 @@ author: "Breon Haskett - University of Washington"
  **Lecture for Week 6:**
 
    * [Slides for Lecture 6: Loops](https://breonh.github.io/csss_508/lecture/week6/csss_508_week6_loops.html)
-       + [Companion R Script for Lecture 6 slides](https://raw.githubusercontent.com/breonh/breonh.github.io/main/csss_508/lecture/week7/csss_508_week7_rscript_companion.R)
+       + [Companion R Script for Lecture 6 slides](https://raw.githubusercontent.com/breonh/breonh.github.io/main/csss_508/lecture/week6/csss_508_week6_rscript_companion.R)
        + [PDF of Lecture 6 slides](https://breonh.github.io/csss_508/lecture/week6/csss_508_week6_loops.pdf)
        + [Rmd for Lecture 6 slides](https://breonh.github.io/csss_508/lecture/week6/csss_508_week6_loops.Rmd)
 
@@ -279,9 +279,8 @@ author: "Breon Haskett - University of Washington"
  **Lecture for Week 7:**
 
    * [Slides for Lecture 7: Loops](https://breonh.github.io/csss_508/lecture/week7/csss_508_week7_vectorization.html)
-       + [Companion R Script for Lecture 7 slides]
+       + [Companion R Script for Lecture 7 slides](https://raw.githubusercontent.com/breonh/breonh.github.io/main/csss_508/lecture/week7/csss_508_week7_rscript_companion.R)
        + [PDF of Lecture 7 slides](https://breonh.github.io/csss_508/lecture/week7/csss_508_week7_vectorization.pdf)
-
        + [Rmd for Lecture 7 slides](https://breonh.github.io/csss_508/lecture/week7/csss_508_week7_vectorization.Rmd)
 
  **Homework 6, part 1:**
