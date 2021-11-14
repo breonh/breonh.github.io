@@ -264,7 +264,11 @@ author: "Breon Haskett - University of Washington"
  **Homework 5, part 2:**
        
    * **[Homework 5, part 2 Template](https://breonh.github.io/csss_508/homework/homework_5.Rmd)**
-   * **Homework 5 KEY**
+   * **Homework 5 KEY:**
+   
+      + [RMD](https://breonh.github.io/csss_508/homework/homework_5/homework_5_pt2_key.Rmd)
+      
+      + [HTML](https://breonh.github.io/csss_508/homework/homework_5/homework_5_pt2_key.html)
 
  **Lecture Recording: **
    
