@@ -319,8 +319,8 @@ author: "Breon Haskett - University of Washington"
 
    * Slides for Lecture 8: Working with Strings and Character Data
        + Companion R Script for Lecture 8 slides
-       + PDF of Lecture 8 slides
-       + Rmd for Lecture 8 slides
+       + [PDF of Lecture 8 slides]()
+       + [Rmd for Lecture 8 slides](https://raw.githubusercontent.com/breonh/breonh.github.io/main/csss_508/lecture/week8/CSSS508_Week8_strings.Rmd)
 
  **Homework 6, part 2:**
        

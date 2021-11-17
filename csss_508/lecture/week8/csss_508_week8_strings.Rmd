@@ -35,7 +35,7 @@ load("restaurants.Rdata")
 ```{r download_restaurant_data, eval=FALSE}
 library(tidyverse)
 restaurants <- 
-  read_csv("https://clanfear.github.io/CSSS508/Lectures/Week8/restaurants.csv",
+  read_csv("https://raw.githubusercontent.com/breonh/breonh.github.io/main/csss_508/lecture/week8/restaurants.csv",
                         col_types = "ccccccccnnccicccciccciD") #<<
 ```
 ]
