@@ -331,6 +331,9 @@ author: "Breon Haskett - University of Washington"
    
    [Seattle Restaurants](https://github.com/breonh/breonh.github.io/blob/main/csss_508/lecture/week8/restaurants.csv)
 
+   **Lecture Recording: **
+
+   [Youtube Link to Week 8 Lecture](https://youtu.be/vdJhtKOs3kA)
 
  **Related Reading: **
 
