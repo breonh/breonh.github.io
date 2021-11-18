@@ -30,7 +30,7 @@ output:
 # YOUR WORK HERE
 ```
 
-> We want to read the remaining .csv files into data frames stored in a **list** called `data_list`. Preallocate this using `data_list <- vector("list", length(files_in_year_one))`.
+> We want to read the remaining .csv files into data frames stored in a **list** called `data_list`. Preallocate this using: `data_list <- vector("list", length(files_in_year_one))`.
 
 ```{r}
 # YOUR WORK HERE
