@@ -289,7 +289,7 @@ author: "Breon Haskett - University of Washington"
 
  **Homework 6, part 1:**
        
-   * **[Homework 6, part 1 Template](https://raw.githubusercontent.com/breonh/breonh.github.io/main/csss_508/homework/homework_6.Rmd)**
+   * **[Homework 6, part 1 Template](https://raw.githubusercontent.com/breonh/breonh.github.io/main/csss_508/homework/homework_6/homework_6.Rmd)**
    * **Homework 6, part 1 KEY**
    
    * **[Homework 6 Data File](https://s3.amazonaws.com/pronto-data/open_data_year_one.zip) ** 
@@ -324,7 +324,7 @@ author: "Breon Haskett - University of Washington"
 
  **Homework 6, part 2:**
        
-   * **[Homework 6 Template](https://raw.githubusercontent.com/breonh/breonh.github.io/main/csss_508/homework/homework_6.Rmd)**
+   * **[Homework 6 Template](https://raw.githubusercontent.com/breonh/breonh.github.io/main/csss_508/homework/homework_6/homework_6.Rmd)**
    * **Homework 6 KEY**
 
    **Data From Class: **
