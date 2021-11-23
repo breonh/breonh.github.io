@@ -336,6 +336,10 @@ author: "Breon Haskett - University of Washington"
    **Lecture Recording: **
 
    [Youtube Link to Week 8 Lecture](https://youtu.be/vdJhtKOs3kA)
+   
+   **Lab Recording: **
+   
+   [Youtube Link to Week 8 Lab](https://youtu.be/jcLLtvupfU8)
 
  **Related Reading: **
 
