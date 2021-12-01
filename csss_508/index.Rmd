@@ -353,10 +353,10 @@ author: "Breon Haskett - University of Washington"
 
  **Lecture for Week 9:**
 
-   * [Slides for Lecture 9: Mapping with ggplot2 and sf](https://breonh.github.io/csss_508/lecture/week8/CSSS508_Week9_mapping.html)
-       + Companion R Script for Lecture 9 slides
-       + [PDF of Lecture 9 slides](https://breonh.github.io/csss_508/lecture/week8/CSSS508_Week9_mapping.pdf)
-       + [Rmd for Lecture 9 slides](https://breonh.github.io/csss_508/lecture/week8/CSSS508_Week9_mapping.Rmd)
+   * [Slides for Lecture 9: Mapping with ggplot2 and sf](https://breonh.github.io/csss_508/lecture/week9/CSSS508_Week9_mapping.html)
+       + [Companion R Script for Lecture 9 slides](https://breonh.github.io/csss_508/lecture/week9/csss_508_week9_rscript_companion.R)
+       + [PDF of Lecture 9 slides](https://breonh.github.io/csss_508/lecture/week9/CSSS508_Week9_mapping.pdf)
+       + [Rmd for Lecture 9 slides](https://breonh.github.io/csss_508/lecture/week9/CSSS508_Week9_mapping.Rmd)
 
  **Optional Homework 7:**
        
