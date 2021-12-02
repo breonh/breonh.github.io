@@ -327,7 +327,10 @@ author: "Breon Haskett - University of Washington"
        
    * **[Homework 6 Template](https://raw.githubusercontent.com/breonh/breonh.github.io/main/csss_508/homework/homework_6/homework_6_p1_key.Rmd)**
   
-   * **Homework 6 KEY**
+ **Homework 6, part 2 KEY:**
+   
+   * [HTML](https://breonh.github.io/csss_508/homework/homework_6/homework_6_p2_key.html)
+   * [RMD](https://breonh.github.io/csss_508/homework/homework_6/homework_6_p2_key.Rmd)
 
    **Data From Class: **
    
@@ -358,12 +361,14 @@ author: "Breon Haskett - University of Washington"
        + [PDF of Lecture 9 slides](https://breonh.github.io/csss_508/lecture/week9/CSSS508_Week9_mapping.pdf)
        + [Rmd for Lecture 9 slides](https://breonh.github.io/csss_508/lecture/week9/CSSS508_Week9_mapping.Rmd)
 
- **Optional Homework 7:**
+   **Optional Homework 7:**
        
    * **[Optional Homework 7 Template](https://breonh.github.io/csss_508/homework/homework_7.Rmd)**
    * **Homework 7 KEY**
 
-
+  **Lecture Recording: **
+  
+  [Youtube Link to Week 8 Recording](https://youtu.be/ZVvbiHOCRPs)
 
  **Related Reading: **
 
