@@ -1,7 +1,7 @@
 ---
 title: "Lab/HW 7: Mapping with `ggmap`"
 author: "YOUR NAME"
-date: "November 27th, 2017"
+date: "December 7th, 2021"
 output:
   html_document:
     toc: true
@@ -10,12 +10,12 @@ output:
 
 # Instructions
 
-> Fill in this lab worksheet at your own pace. Knit it periodically to check that things are working the same way they are when you are working in RStudio interactively. Ask questions, consult with others, use Google, etc. At the end of the class session, email what you have to yourself so you don't lose progress. You do not need to turn in your work, but feedback will probided if you as Homework 7 on Canvas (both `.Rmd` and `.html` files). These will be evaluated by Chuck rather than peer reviewed.
+> Fill in this lab worksheet at your own pace. Knit it periodically to check that things are working the same way they are when you are working in RStudio interactively. Ask questions, consult with others, use Google, etc. At the end of the class session, email what you have to yourself so you don't lose progress. You do not need to turn in your work, but feedback will probided if you as Homework 7 on Canvas (both `.Rmd` and `.html` files). These will be evaluated by Breon rather than peer reviewed.
 
 ```{r, eval=FALSE, echo=FALSE}
 # Run this to install ggmap from GitHub
-if(!requireNamespace("devtools")) install.packages("devtools")
-devtools::install_github("dkahle/ggmap", ref = "tidyup")
+# if(!requireNamespace("devtools")) install.packages("devtools")
+# devtools::install_github("dkahle/ggmap", ref = "tidyup")
 ```
 
 
@@ -32,7 +32,7 @@ library(ggmap)
 > Last week we saw data from health inspections of restaurants in Seattle since 2012 and used them to practice working with character/string data and regular expressions. Load in the data directly from the URL (this will work because a CSV is just a text file) and use `cache=TRUE` so that we don't have to repeat this each time we re-knit:
 
 ```{r load_restaurant_data, cache=TRUE}
-restaurants <- read_csv("https://clanfear.github.io/CSSS508/Lectures/Week8/restaurants.csv",  col_types = "ccccccccnnccicccciccciD")
+restaurants <- read_csv("https://raw.githubusercontent.com/breonh/breonh.github.io/main/csss_508/lecture/week8/restaurants.csv",  col_types = "ccccccccnnccicccciccciD")
 
 ```
 
