@@ -1,0 +1,3228 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>CSSS508, Week 10</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Breon Haskett" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, top, title-slide
+
+# CSSS508, Week 10
+## Model Results and Reproducibility
+### Breon Haskett
+### Dec 8, 2021<br>Updated: Dec 8, 2021
+
+---
+
+
+
+
+
+
+# Topics for Today
+
+### Working with Model Results
+
+* Tidy model output with `broom`
+* Visualizing models with `ggeffects`
+* Tables with `gt`, `modelsummary`, and `gtsummary`
+
+### Reproducible Research
+
+### Best Practices
+   * Organization
+   * Portability
+   * Version Control
+
+### Wrapping up the course
+
+---
+class: inverse
+# Working with Model Results
+
+---
+# `broom`
+
+`broom` is a package that "tidies up" the output from models such a `lm()` and `glm()`.
+
+It has a small number of key functions:
+
+* `tidy()` - Creates a dataframe summary of a model.
+* `augment()` - Adds columns—such as fitted values—to the data used in the model.
+* `glance()` - Provides one row of fit statistics for models.
+
+
+```r
+library(broom)
+```
+
+---
+# Model Output is a List
+
+`lm()` and `summary()` produce lists as output, which cannot go directly into 
+tidyverse functions, particularly those in `ggplot2`.
+
+.smaller[
+
+```r
+lm_1 &lt;- lm(yn ~ num1 + fac1, data = ex_dat)
+summary(lm_1)
+```
+
+```
+## 
+## Call:
+## lm(formula = yn ~ num1 + fac1, data = ex_dat)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -6.7259 -1.9977  0.1907  2.0592  6.4757 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  2.42633    0.41695   5.819 2.38e-08 ***
+## num1         0.60682    0.09756   6.220 2.95e-09 ***
+## fac1B       -0.23001    0.52513  -0.438   0.6619    
+## fac1C        1.07363    0.50732   2.116   0.0356 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.813 on 196 degrees of freedom
+## Multiple R-squared:  0.1888,	Adjusted R-squared:  0.1764 
+## F-statistic: 15.21 on 3 and 196 DF,  p-value: 6.186e-09
+....
+```
+]
+
+---
+# Model Output Varies!
+
+Each type of model also produces somewhat different output, so you can't just reuse
+the same code to handle output from every model.
+
+.smaller[
+
+```r
+glm_1 &lt;- glm(yb ~ num1 + fac1, data = ex_dat, family=binomial(link="logit"))
+summary(glm_1)
+```
+
+```
+## 
+## Call:
+## glm(formula = yb ~ num1 + fac1, family = binomial(link = "logit"), 
+##     data = ex_dat)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.9332  -1.0465   0.5085   0.9916   1.9516  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -0.73392    0.33167  -2.213  0.02691 *  
+## num1         0.44490    0.09142   4.866 1.14e-06 ***
+## fac1B        0.25631    0.40366   0.635  0.52544    
+## fac1C        1.26246    0.41614   3.034  0.00242 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+....
+```
+]
+
+---
+# `broom::tidy()`
+
+`tidy()` produces similar output, but as a dataframe.
+
+
+```r
+lm_1 %&gt;% tidy()
+```
+
+```
+## # A tibble: 4 x 5
+##   term        estimate std.error statistic       p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;
+## 1 (Intercept)    2.43     0.417      5.82  0.0000000238 
+## 2 num1           0.607    0.0976     6.22  0.00000000295
+## 3 fac1B         -0.230    0.525     -0.438 0.662        
+## 4 fac1C          1.07     0.507      2.12  0.0356
+```
+
+Each type of model (e.g. `glm`, `lmer`) has a different *method* with its own additional arguments. See `?tidy.lm` for an example.
+
+---
+# `broom::tidy()`
+
+This output is also completely identical between different models.
+
+This can be very 
+useful and important if running models with different test statistics... or just running
+a lot of models!
+
+
+```r
+glm_1 %&gt;% tidy()
+```
+
+```
+## # A tibble: 4 x 5
+##   term        estimate std.error statistic    p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+## 1 (Intercept)   -0.734    0.332     -2.21  0.0269    
+## 2 num1           0.445    0.0914     4.87  0.00000114
+## 3 fac1B          0.256    0.404      0.635 0.525     
+## 4 fac1C          1.26     0.416      3.03  0.00242
+```
+
+---
+# `broom::glance()`
+
+`glance()` produces dataframes of fit statistics for models.
+
+If you run many models,
+you can compare each model row-by-row in each column... or even plot their different
+fit statistics to allow holistic comparison.
+
+.small[
+
+```r
+glance(lm_1)
+```
+
+```
+## # A tibble: 1 x 12
+##   r.squared adj.r.squared sigma statistic   p.value    df logLik   AIC
+##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1     0.189         0.176  2.81      15.2   6.19e-9     3  -489.  987.
+## # ... with 4 more variables: BIC &lt;dbl&gt;, deviance &lt;dbl&gt;,
+## #   df.residual &lt;int&gt;, nobs &lt;int&gt;
+```
+]
+
+---
+# `broom::augment()`
+
+`augment()` takes values generated by a model and adds them back to the original data.
+This includes fitted values, residuals, and leverage statistics.
+
+.small[
+
+```r
+augment(lm_1) %&gt;% head()
+```
+
+```
+## # A tibble: 6 x 9
+##      yn   num1 fac1  .fitted .resid   .hat .sigma  .cooksd .std.resid
+##   &lt;dbl&gt;  &lt;dbl&gt; &lt;fct&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;
+## 1 -1.73  2.76  B        3.87  -5.60 0.0187   2.79 0.0193       -2.01 
+## 2  5.95  1.49  C        4.40   1.55 0.0128   2.82 0.000997      0.553
+## 3  5.81  1.96  C        4.69   1.12 0.0140   2.82 0.000567      0.400
+## 4 10.2   0.360 C        3.72   6.48 0.0124   2.78 0.0168        2.32 
+## 5 -3.56  0.362 B        2.42  -5.98 0.0151   2.79 0.0176       -2.14 
+## 6  3.64 -0.360 A        2.21   1.43 0.0232   2.82 0.00157       0.514
+```
+]
+
+See `?augment.lm` for examples of what `augment()` can do.
+
+---
+# The Power of `broom`
+
+The real advantage of `broom` becomes apparent when running many models at once. Here we run separate models for each level of `fac1`:
+
+.smallish[
+
+```r
+ex_dat %&gt;% 
+* nest_by(fac1) %&gt;%
+  mutate(model = list(lm(yn ~  num1 + fac2, data = data))) %&gt;%  
+  summarize(tidy(model), .groups = "drop")
+```
+
+```
+## # A tibble: 9 x 6
+##   fac1  term        estimate std.error statistic  p.value
+##   &lt;fct&gt; &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 A     (Intercept)    1.52      0.667     2.28  2.74e- 2
+## 2 A     num1           0.626     0.182     3.43  1.26e- 3
+## 3 A     fac2No         1.64      0.827     1.98  5.35e- 2
+## 4 B     (Intercept)    1.20      0.527     2.28  2.57e- 2
+## 5 B     num1           0.771     0.222     3.48  8.97e- 4
+## 6 B     fac2No         1.73      0.703     2.46  1.64e- 2
+## 7 C     (Intercept)    3.40      0.399     8.51  8.70e-13
+## 8 C     num1           0.532     0.129     4.12  9.13e- 5
+## 9 C     fac2No         0.327     0.573     0.571 5.69e- 1
+```
+]
+
+.footnote[`nest_by()` nests data into a list column by levels of `fac1`.]
+
+---
+class: inverse
+# Plotting Model Results
+
+---
+# `geom_smooth()`
+
+I have used `geom_smooth()` in many past examples.
+
+`geom_smooth()` generates "smoothed conditional means" including loess curves and generalized additive models (GAMs).
+
+--
+
+Note, however, that most regression models are conditional mean models, such as ordinary least squares and generalized linear models. 
+
+--
+
+We can use `geom_smooth()` to add a layer depicting common bivariate models.
+
+We'll look at this with the `gapminder` data from Week 2.
+
+
+```r
+library(gapminder)
+```
+
+---
+# Default `geom_smooth()`
+
+
+```r
+ggplot(data = gapminder, 
+       aes(x = year, y = lifeExp, color = continent)) +
+  geom_point(position = position_jitter(1,0), size = 0.5) +
+  geom_smooth()
+```
+
+![](csss_508_Week10_model_results_files/figure-html/unnamed-chunk-10-1.svg)&lt;!-- --&gt;
+
+By default, `geom_smooth()` chooses either a loess smoother (N &lt; 1000) or a GAM depending on the number of observations.
+
+
+---
+# Linear `glm`
+
+
+```r
+ggplot(data = gapminder, 
+       aes(x = year, y = lifeExp, color = continent)) +
+  geom_point(position = position_jitter(1,0), size = 0.5) +
+* geom_smooth(method = "glm", formula = y ~ x)
+```
+
+![](csss_508_Week10_model_results_files/figure-html/unnamed-chunk-11-1.svg)&lt;!-- --&gt;
+
+We could also fit a standard linear model using either `method = "glm"` or `method = "lm"` and a formula like `y ~ x`.
+---
+# Polynomial `glm`
+
+```r
+ggplot(data = gapminder, 
+       aes(x = year, y = lifeExp, color = continent)) +
+  geom_point(position = position_jitter(1,0), size = 0.5) +
+* geom_smooth(method = "glm", formula = y ~ poly(x, 2))
+```
+
+![](csss_508_Week10_model_results_files/figure-html/unnamed-chunk-12-1.svg)&lt;!-- --&gt;
+
+`poly(x, 2)` produces a quadratic model which contains a linear term (`x`) and a quadratic term (`x^2`).
+
+---
+
+# More Complex Models
+
+What if we want something more complex than a bivariate model?
+
+What if we have a statistically complex model, like nonlinear probability model or multilevel model?
+
+We need to go beyond `geom_smooth()`!
+
+---
+# But first, vocab!
+
+We are often interested in what might happen if some variables take particular values, often ones not seen in the actual data.
+
+--
+
+When we set variables to certain values, we refer to them as **counterfactual values** or just **counterfactuals**.
+
+--
+
+For example, if we know nothing about a new observation, our prediction for that estimate is often based on assuming every variable is at its mean.
+
+--
+
+Sometimes, however, we might have very specific questions which require setting (possibly many) combinations of variables to particular values and making an estimate or prediction.
+
+--
+
+Providing specific estimates, conditional on values of covariates, is a nice way to summarize results, particularly for models with unintuitive parameters (e.g. logit models).
+
+---
+class: inverse
+# `ggeffects`
+
+---
+# `ggeffects`
+
+If we want to look at more complex models, we can use `ggeffects` to create and plot tidy 
+*marginal effects*.
+
+That is, tidy dataframes of *ranges* of predicted values that can be
+fed straight into `ggplot2` for plotting model results.
+
+We will focus on two `ggeffects` functions:
+
+* `ggpredict()` - Computes predicted values for the outcome variable at margins of specific variables.
+* `plot.ggeffects()` - A plot method for `ggeffects` objects (like `ggredict()` output)
+
+
+```r
+library(ggeffects)
+```
+
+---
+# Quick Simulated Data
+
+To best show off `ggeffects`, I need a data frame with numeric and categorical variables with strong relationships. It is easiest to just simulate it:
+
+
+```r
+ex_dat &lt;- data.frame(num1 = rnorm(200, 1, 2), 
+                     fac1 = sample(c(1, 2, 3), 200, TRUE),
+                     num2 = rnorm(200, 0, 3),
+                     fac2 = sample(c(1, 2))) %&gt;%
+  mutate(yn = num1 * 0.5 + fac1 * 1.1 + num2 * 0.7 +
+              fac2 - 1.5  + rnorm(200, 0, 2)) %&gt;% 
+  mutate(yb = as.numeric(yn &gt; mean(yn))) %&gt;%
+  mutate(fac1 = factor(fac1, labels = c("A", "B", "C")),
+         fac2 = factor(fac2, labels = c("Yes", "No")))
+```
+
+Now we can get `ggpredict`ing!
+
+
+---
+# `ggpredict()`
+
+When you run  `ggpredict()`, it produces a dataframe with a row for every unique 
+value of a supplied predictor ("independent") variable (`term`). 
+
+Each row contains an expected (estimated) value for the outcome ("dependent") variable, plus confidence intervals. 
+
+
+```r
+lm_1 &lt;- lm(yn ~ num1 + fac1, data = ex_dat)
+lm_1_est &lt;- ggpredict(lm_1, terms = "num1")
+```
+
+If desired, the argument `interval="prediction"` will give predicted intervals instead.
+
+---
+#`ggpredict()` output
+
+.smallish[
+
+```r
+lm_1_est
+```
+
+```
+## # Predicted values of yn
+## 
+## num1 | Predicted |         95% CI
+## ---------------------------------
+##   -6 |     -1.87 | [-3.40, -0.34]
+##   -4 |     -0.90 | [-2.09,  0.28]
+##   -2 |      0.07 | [-0.81,  0.94]
+##    0 |      1.04 | [ 0.38,  1.70]
+##    2 |      2.01 | [ 1.36,  2.65]
+##    4 |      2.98 | [ 2.14,  3.81]
+##    6 |      3.94 | [ 2.80,  5.08]
+## 
+## Adjusted for:
+## * fac1 = A
+```
+]
+
+---
+# `plot()` for `ggpredict()`
+
+`ggeffects` features a `plot()` *method*, `plot.ggeffects()`, which produces
+a ggplot when you give `plot()` output from `ggpredict()`.
+
+.small[
+
+```r
+plot(lm_1_est)
+```
+
+![](csss_508_Week10_model_results_files/figure-html/unnamed-chunk-17-1.svg)&lt;!-- --&gt;
+]
+
+---
+# Grouping with `ggpredict()`
+
+When using a vector of `terms`, `ggeffects` will plot the first along the x-axis and use
+others for *grouping*. Note we can pipe a model into `ggpredict()`!
+
+.small[
+
+```r
+glm(yb ~ num1 + fac1 + num2 + fac2, data = ex_dat, family=binomial(link = "logit")) %&gt;%
+  ggpredict(terms = c("num1", "fac1")) %&gt;% plot()
+```
+
+![](csss_508_Week10_model_results_files/figure-html/unnamed-chunk-18-1.svg)&lt;!-- --&gt;
+]
+
+---
+# Faceting with `ggpredict()`
+
+You can add `facet=TRUE` to the `plot()` call to facet over *grouping terms*.
+
+.small[
+
+```r
+glm(yb ~ num1 + fac1 + num2 + fac2, data = ex_dat, family = binomial(link = "logit")) %&gt;%
+  ggpredict(terms = c("num1", "fac1")) %&gt;% plot(facet=TRUE)
+```
+
+![](csss_508_Week10_model_results_files/figure-html/unnamed-chunk-19-1.svg)&lt;!-- --&gt;
+]
+
+---
+# Counterfactual Values
+
+You can add values in square brackets in the `terms=` argument to specify counterfactual values.
+
+.small[
+
+```r
+glm(yb ~ num1 + fac1 + num2 + fac2, data=ex_dat, family=binomial(link="logit")) %&gt;%
+  ggpredict(terms = c("num1 [-1,0,1]", "fac1 [A,B]")) %&gt;% plot(facet=TRUE)
+```
+
+![](csss_508_Week10_model_results_files/figure-html/unnamed-chunk-20-1.svg)&lt;!-- --&gt;
+]
+
+---
+# Representative Values
+
+You can also use `[meansd]` or `[minmax]` to set representative values.
+
+.small[
+
+```r
+glm(yb ~ num1 + fac1 + num2 + fac2, data = ex_dat, family = binomial(link = "logit")) %&gt;%
+  ggpredict(terms = c("num1 [meansd]", "num2 [minmax]")) %&gt;% plot(facet=TRUE)
+```
+
+![](csss_508_Week10_model_results_files/figure-html/unnamed-chunk-21-1.svg)&lt;!-- --&gt;
+]
+
+---
+# Dot plots with `ggpredict()`
+
+`ggpredict` will produce dot plots with error bars for categorical predictors.
+
+.small[
+
+```r
+lm(yn ~ fac1 + fac2, data = ex_dat) %&gt;% 
+  ggpredict(terms=c("fac1", "fac2")) %&gt;% plot()
+```
+
+![](csss_508_Week10_model_results_files/figure-html/unnamed-chunk-22-1.svg)&lt;!-- --&gt;
+]
+
+---
+# Notes on `ggeffects`
+
+There is a lot more to the `ggeffects` package that you can see in [the package vignette](https://strengejacke.github.io/ggeffects/articles/ggeffects.html)
+and the [github repository](https://github.com/strengejacke/ggeffects). This includes,
+but is not limited to:
+
+* Predicted values for polynomial and interaction terms
+
+* Getting predictions from models from dozens of other packages
+
+* Sending `ggeffects` objects to `ggplot2` to freely modify plots
+
+
+
+---
+class: inverse
+# Making Tables
+
+---
+# `pander` Regression Tables
+
+We've used `pander` to create nice tables for dataframes. But `pander` has *methods*
+to handle all sort of objects that you might want displayed nicely.
+
+This includes 
+model output, such as from `lm()`, `glm()`, and `summary()`.
+
+
+
+```r
+library(pander)
+```
+
+
+
+---
+# `pander()` and `lm()`
+
+You can send an `lm()` object straight to `pander`:
+
+
+```r
+pander(lm_1)
+```
+
+| &amp;nbsp;          | Estimate | Std. Error | t value | Pr(&gt;t)    |
+|:----------------|:--------:|:----------:|:-------:|:---------:|
+| **(Intercept)** |  37.23   |   1.599    |  23.28  | 2.565e-20 |
+| **wt**          |  -3.878  |   0.6327   | -6.129  | 1.12e-06  |
+| **hp**          | -0.03177 |  0.00903   | -3.519  | 0.001451  |
+
+Table: Fitting linear model: mpg ~ wt + hp
+
+---
+# `pander()` and `summary()`
+
+You can do this with `summary()` as well, for added information:
+
+
+```r
+pander(summary(lm_1))
+```
+
+| &amp;nbsp;          | Estimate | Std. Error | t value | Pr(&gt;t)  |
+|:----------------|:--------:|:----------:|:-------:|:---------:|
+| **(Intercept)** |  37.23   |   1.599    |  23.28  | 2.565e-20 |
+| **wt**          |  -3.878  |   0.6327   | -6.129  | 1.12e-06  |
+| **hp**          | -0.03177 |  0.00903   | -3.519  | 0.001451  |
+
+
+
+| Observations | Residual Std. Error | `\(R^2\)`  | Adjusted `\(R^2\)` |
+|:------------:|:-------------------:|:------:|:--------------:|
+|      32      |        2.593        | 0.8268 |     0.8148     |
+
+Table: Fitting linear model: mpg ~ wt + hp
+
+---
+# Advanced Tables
+
+`pander` tables are great for basic `rmarkdown` documents, but they're not 
+generally publication ready.
+
+We're going to talk about a few different approaches for making nicer tables:
+
+* `gt` from RStudio for general table construction
+
+* `modelsummary` for creating model tables
+
+* `gtsummary` for creating data summaries
+
+---
+# `gt`
+
+If you need to more customizability or different output types, [RStudio's `gt` package](https://gt.rstudio.com/) is a recent and powerful system for creating tables from dataframes. We'll use `dplyr`'s built-in `starwars` data for some examples.
+
+.smallish[
+
+```r
+library(gt)
+tes_chars &lt;- starwars %&gt;% 
+  unnest(films) %&gt;% 
+  unnest(starships, keep_empty=TRUE) %&gt;% 
+  filter(films == "The Empire Strikes Back") %&gt;% 
+  select(name, species, starships, mass, height) %&gt;%
+  distinct(name, .keep_all = TRUE) %&gt;%
+  mutate(starships = ifelse(name == "Obi-Wan Kenobi" | is.na(starships), 
+                            "No Ship", starships))
+glimpse(tes_chars)
+```
+
+```
+## Rows: 16
+## Columns: 5
+## $ name      &lt;chr&gt; "Luke Skywalker", "C-3PO", "R2-D2", "Darth Vader",~
+## $ species   &lt;chr&gt; "Human", "Droid", "Droid", "Human", "Human", "Huma~
+## $ starships &lt;chr&gt; "X-wing", "No Ship", "No Ship", "TIE Advanced x1",~
+## $ mass      &lt;dbl&gt; 77.0, 75.0, 32.0, 136.0, 49.0, 77.0, 112.0, 80.0, ~
+## $ height    &lt;int&gt; 172, 167, 96, 202, 150, 182, 228, 180, 170, 66, 17~
+```
+]
+
+---
+
+
+.pull-left[
+
+## Initialize
+
+.small[
+
+```r
+tes_chars %&gt;%
+  gt() 
+```
+]
+
+`gt()` just renders the dataframe as a table using markdown.
+
+]
+.smallest[
+.pull-right[
+.image-full[
+![](csss_508_Week10_model_results_files/figure-html/unnamed-chunk-28-1.png)&lt;!-- --&gt;
+]
+]
+]
+---
+count: false
+
+.pull-left[
+
+## Grouping
+
+.small[
+
+```r
+tes_chars %&gt;% 
+  group_by(starships) %&gt;%
+  gt()
+```
+]
+
+If we `group_by()` first, the levels of the grouping variable become grouping rows in the table.
+
+]
+.smallest[
+.pull-right[
+.image-tall[
+![](csss_508_Week10_model_results_files/figure-html/unnamed-chunk-30-1.png)&lt;!-- --&gt;
+]
+]
+]
+
+---
+count: false
+
+.pull-left[
+
+## Rownames
+
+.small[
+
+```r
+tes_chars %&gt;% 
+  group_by(starships) %&gt;%
+  gt(rowname_col = "name")
+```
+]
+
+Designating a `rowname_col` removes that column's name and divides the values from the measures to the right.
+
+]
+.smallest[
+.pull-right[
+.image-tall[
+![](csss_508_Week10_model_results_files/figure-html/unnamed-chunk-32-1.png)&lt;!-- --&gt;
+
+]
+]
+]
+
+---
+count: false
+
+.pull-left[
+
+## Header
+
+.small[
+
+```r
+tes_chars %&gt;% 
+  group_by(starships) %&gt;%
+  gt(rowname_col = "name") %&gt;%
+  tab_header(
+    title = "Star Wars Characters", 
+    subtitle = "The Empire Strikes Back"
+  ) 
+```
+]
+
+`tab_header()` can add titles and subtitles.
+
+]
+.smallest[
+.pull-right[
+.image-tall[
+![](csss_508_Week10_model_results_files/figure-html/unnamed-chunk-34-1.png)&lt;!-- --&gt;
+
+]
+]
+]
+
+---
+count: false
+
+.pull-left[
+
+## Spanner
+
+.small[
+
+```r
+tes_chars %&gt;% 
+  group_by(starships) %&gt;%
+  gt(rowname_col = "name") %&gt;%
+  tab_header(
+    title = "Star Wars Characters", 
+    subtitle = "The Empire Strikes Back"
+  ) %&gt;%
+  tab_spanner(
+    label = "Vitals",
+    columns = c(mass, height)
+  ) 
+```
+]
+
+A `tab_spanner()` lets us group columns together.
+
+]
+.smallest[
+.pull-right[
+.image-tall[
+![](csss_508_Week10_model_results_files/figure-html/unnamed-chunk-36-1.png)&lt;!-- --&gt;
+
+]
+]
+]
+
+---
+count: false
+
+.pull-left[
+
+## Column Labels
+
+.small[
+
+```r
+tes_chars %&gt;% 
+  group_by(starships) %&gt;%
+  gt(rowname_col = "name") %&gt;%
+  tab_header(
+    title = "Star Wars Characters", 
+    subtitle = "The Empire Strikes Back"
+  ) %&gt;%
+  tab_spanner(
+    label = "Vitals",
+    columns = c(mass, height)
+  ) %&gt;%
+  cols_label(
+    mass = "Mass (kg)",
+    height = "Height (cm)",
+    species = "Species"
+  )
+```
+]
+
+We can directly change column names with `cols_label()`
+
+]
+.smallest[
+.pull-right[
+.image-tall[
+![](csss_508_Week10_model_results_files/figure-html/unnamed-chunk-38-1.png)&lt;!-- --&gt;
+
+]
+]
+]
+
+---
+count: false
+
+.pull-left[
+
+## Number Format
+
+.small[
+
+```r
+tes_chars %&gt;% 
+  group_by(starships) %&gt;%
+  gt(rowname_col = "name") %&gt;%
+  tab_header(
+    title = "Star Wars Characters", 
+    subtitle = "The Empire Strikes Back"
+  ) %&gt;%
+  tab_spanner(
+    label = "Vitals",
+    columns = c(mass, height)
+  ) %&gt;%
+  cols_label(
+    mass = "Mass (kg)",
+    height = "Height (cm)",
+    species = "Species"
+  ) %&gt;%
+  fmt_number(
+    columns = c(mass),
+    decimals = 0) 
+```
+]
+
+We can adjust cell formats too.
+
+]
+.smallest[
+.pull-right[
+.image-tall[
+![](csss_508_Week10_model_results_files/figure-html/unnamed-chunk-40-1.png)&lt;!-- --&gt;
+
+]
+]
+]
+
+---
+count: false
+
+.pull-left[
+
+## Align Columns
+
+.small[
+
+```r
+tes_chars %&gt;% 
+  group_by(starships) %&gt;%
+  gt(rowname_col = "name") %&gt;%
+  tab_header(
+    title = "Star Wars Characters", 
+    subtitle = "The Empire Strikes Back"
+  ) %&gt;%
+  tab_spanner(
+    label = "Vitals",
+    columns = c(mass, height)
+  ) %&gt;%
+  cols_label(
+    mass = "Mass (kg)",
+    height = "Height (cm)",
+    species = "Species"
+  ) %&gt;%
+  fmt_number(
+    columns = c(mass),
+    decimals = 0
+  ) %&gt;%
+  cols_align(
+    align = "center",
+    columns = c(species, mass, height)
+  )
+```
+]
+]
+.smallest[
+.pull-right[
+.image-tall[
+![](csss_508_Week10_model_results_files/figure-html/unnamed-chunk-42-1.png)&lt;!-- --&gt;
+
+]
+]
+]
+
+---
+count: false
+
+.pull-left[
+
+## Reorder Groups
+
+.small[
+
+```r
+tes_chars %&gt;% 
+  group_by(starships) %&gt;%
+  gt(rowname_col = "name") %&gt;%
+  tab_header(
+    title = "Star Wars Characters", 
+    subtitle = "The Empire Strikes Back"
+  ) %&gt;%
+  tab_spanner(
+    label = "Vitals",
+    columns = c(mass, height)
+  ) %&gt;%
+  cols_label(
+    mass = "Mass (kg)",
+    height = "Height (cm)",
+    species = "Species"
+  ) %&gt;%
+  fmt_number(
+    columns = c(mass),
+    decimals = 0
+  ) %&gt;%
+  cols_align(
+    align = "center",
+    columns = c(species, mass, height)
+  ) %&gt;%
+  row_group_order(
+    groups = c("X-wing", 
+               "Millennium Falcon")
+  )
+```
+]
+]
+.smallest[
+.pull-right[
+.image-tall[
+![](csss_508_Week10_model_results_files/figure-html/unnamed-chunk-44-1.png)&lt;!-- --&gt;
+
+]
+]
+]
+
+---
+count: false
+
+.pull-left[
+
+### Big Improvement!
+
+.image-full[
+![](csss_508_Week10_model_results_files/figure-html/unnamed-chunk-45-1.png)&lt;!-- --&gt;
+]
+]
+.smallest[
+.pull-right[
+.image-tall[
+![](csss_508_Week10_model_results_files/figure-html/unnamed-chunk-46-1.png)&lt;!-- --&gt;
+
+]
+]
+]
+---
+# `\(\LaTeX\)` Tables
+
+`gt` is a fairly new package and is somewhat finicky when used in `.pdf` documents.
+
+For tables in `\(\LaTeX\)`—as is needed for `.pdf` files—I recommend also looking into the `kableExtra`, `huxtable`, or `stargazer` packages.
+
+--
+
+Like `gt`, `kableExtra` and `huxtable` allow the construction of complex tables in either HTML or `\(\LaTeX\)` using
+additive syntax similar to `ggplot2` and `dplyr`.
+
+`stargazer` produces nicely formatted `\(\LaTeX\)` tables but is idiosyncratic and doesn't support some models.
+
+--
+
+If you want to edit `\(\LaTeX\)` documents, you could use R using Sweave documents (.Rnw).
+Alternatively, you may want to work in a dedicated `\(\LaTeX\)` editor. I recommend [Overleaf](http://www.overleaf.com)
+for this purpose.
+
+--
+
+RMarkdown has support for a fair amount of basic `\(\LaTeX\)` syntax if you aren't trying to get too fancy!
+
+---
+# `modelsummary`
+
+The `modelsummary` package combines `broom`, `gt`, and `kableExtra` to produce tabular summaries of almost any model fit in R.
+
+An advantage of this package is that it can produce output in every common format: HTML, Markdown, `\(\LaTeX\)`, raw text, and even images (`.png` or `.jpg`).
+
+
+```r
+library(modelsummary)
+```
+
+Its key function is `msummary()` or `modelsummary()` which creates summary tables of models.
+
+You can then build on it using either `gt` or `kableExtra` functions, depending on the selected output format.
+
+---
+
+.pull-left[
+## `msummary`
+
+Like `pander()`, `msummary()` takes a model as an object to make a table.
+
+.small[
+
+```r
+mod_1 &lt;- lm(mpg ~ wt, data = mtcars)
+msummary(mod_1)
+```
+]
+
+Note default `modelsummary` look like `pander` tables because they use Markdown.
+]
+.pull-right[
+.small[
+&lt;table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 37.285 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (1.878) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; wt &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -5.344 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.559) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 32 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.753 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 Adj. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.745 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; AIC &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 166.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; BIC &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 170.4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Log.Lik. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -80.015 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; F &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 91.375 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+]
+
+
+---
+.pull-left[
+## `msummary`
+
+You can present multiple models in `msummary` using named lists:
+
+.small[
+
+```r
+mod_1 &lt;- lm(mpg ~ wt, data = mtcars)
+mod_2 &lt;- lm(mpg ~ hp + wt, data = mtcars)
+mod_3 &lt;- lm(mpg ~ hp + wt + factor(am), 
+            data = mtcars)
+model_list &lt;- list("Model 1" = mod_1, 
+                   "Model 2" = mod_2, 
+                   "Model 3" = mod_3)
+msummary(model_list)
+```
+]
+
+This allows you to produce the common (and often bad) journal format where one starts with a nonsensical "naive model" then works up to the "full model" justified by the front end of the paper.
+
+]
+.pull-right[
+.small[
+<div id="komlgkicxq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#komlgkicxq .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#komlgkicxq .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#komlgkicxq .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#komlgkicxq .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#komlgkicxq .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#komlgkicxq .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#komlgkicxq .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#komlgkicxq .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#komlgkicxq .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#komlgkicxq .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#komlgkicxq .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#komlgkicxq .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#komlgkicxq .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#komlgkicxq .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#komlgkicxq .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#komlgkicxq .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#komlgkicxq .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#komlgkicxq .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#komlgkicxq .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#komlgkicxq .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#komlgkicxq .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#komlgkicxq .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#komlgkicxq .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#komlgkicxq .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#komlgkicxq .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#komlgkicxq .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#komlgkicxq .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#komlgkicxq .gt_left {
+  text-align: left;
+}
+
+#komlgkicxq .gt_center {
+  text-align: center;
+}
+
+#komlgkicxq .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#komlgkicxq .gt_font_normal {
+  font-weight: normal;
+}
+
+#komlgkicxq .gt_font_bold {
+  font-weight: bold;
+}
+
+#komlgkicxq .gt_font_italic {
+  font-style: italic;
+}
+
+#komlgkicxq .gt_super {
+  font-size: 65%;
+}
+
+#komlgkicxq .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"> </th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Model 1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Model 2</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Model 3</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">(Intercept)</td>
+<td class="gt_row gt_center">37.285</td>
+<td class="gt_row gt_center">37.227</td>
+<td class="gt_row gt_center">34.003</td></tr>
+    <tr><td class="gt_row gt_left"></td>
+<td class="gt_row gt_center">(1.878)</td>
+<td class="gt_row gt_center">(1.599)</td>
+<td class="gt_row gt_center">(2.643)</td></tr>
+    <tr><td class="gt_row gt_left">wt</td>
+<td class="gt_row gt_center">-5.344</td>
+<td class="gt_row gt_center">-3.878</td>
+<td class="gt_row gt_center">-2.879</td></tr>
+    <tr><td class="gt_row gt_left"></td>
+<td class="gt_row gt_center">(0.559)</td>
+<td class="gt_row gt_center">(0.633)</td>
+<td class="gt_row gt_center">(0.905)</td></tr>
+    <tr><td class="gt_row gt_left">hp</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center">-0.032</td>
+<td class="gt_row gt_center">-0.037</td></tr>
+    <tr><td class="gt_row gt_left"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center">(0.009)</td>
+<td class="gt_row gt_center">(0.010)</td></tr>
+    <tr><td class="gt_row gt_left">factor(am)1</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center">2.084</td></tr>
+    <tr><td class="gt_row gt_left" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;"></td>
+<td class="gt_row gt_center" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;"></td>
+<td class="gt_row gt_center" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;"></td>
+<td class="gt_row gt_center" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;">(1.376)</td></tr>
+    <tr><td class="gt_row gt_left">Num.Obs.</td>
+<td class="gt_row gt_center">32</td>
+<td class="gt_row gt_center">32</td>
+<td class="gt_row gt_center">32</td></tr>
+    <tr><td class="gt_row gt_left">R2</td>
+<td class="gt_row gt_center">0.753</td>
+<td class="gt_row gt_center">0.827</td>
+<td class="gt_row gt_center">0.840</td></tr>
+    <tr><td class="gt_row gt_left">R2 Adj.</td>
+<td class="gt_row gt_center">0.745</td>
+<td class="gt_row gt_center">0.815</td>
+<td class="gt_row gt_center">0.823</td></tr>
+    <tr><td class="gt_row gt_left">AIC</td>
+<td class="gt_row gt_center">166.0</td>
+<td class="gt_row gt_center">156.7</td>
+<td class="gt_row gt_center">156.1</td></tr>
+    <tr><td class="gt_row gt_left">BIC</td>
+<td class="gt_row gt_center">170.4</td>
+<td class="gt_row gt_center">162.5</td>
+<td class="gt_row gt_center">163.5</td></tr>
+    <tr><td class="gt_row gt_left">Log.Lik.</td>
+<td class="gt_row gt_center">-80.015</td>
+<td class="gt_row gt_center">-74.326</td>
+<td class="gt_row gt_center">-73.067</td></tr>
+    <tr><td class="gt_row gt_left">F</td>
+<td class="gt_row gt_center">91.375</td>
+<td class="gt_row gt_center">69.211</td>
+<td class="gt_row gt_center">48.960</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+]
+]
+
+---
+# PDF Output
+
+`output = "latex"` produces `kableExtra` based output well-suited to PDFs.&lt;sup&gt;1&lt;/sup&gt;
+
+
+```r
+msummary(model_list, output = "latex")
+```
+
+
+.image-shorter[
+![](img/ex_table_latex.PNG)
+]
+
+For customization, I recommend referring to [`modelsummary`'s documentation](https://vincentarelbundock.github.io/modelsummary/articles/customization.html).
+
+---
+# Saving a `modelsummary`
+
+.image-short[
+
+```r
+msummary(model_list, output = "ex_table.png")
+```
+]
+
+---
+# `modelsummary` and `gt`
+
+
+.pull-left[
+
+You can select `gt` output to enable modifying summaries with `gt` functions.
+
+.small[
+
+```r
+msummary(model_list, output = "gt") %&gt;%
+  tab_header(
+    title = "Table 1. Linear Models", 
+    subtitle = "DV: Miles per Gallon"
+  )
+```
+]
+
+Note that `gt`'s `\(LaTeX\)` support for PDFs is immature--this format is better for HTML or image output.
+
+
+]
+.pull-right[
+.image-full[
+![](csss_508_Week10_model_results_files/figure-html/unnamed-chunk-55-1.png)&lt;!-- --&gt;
+]
+]
+
+---
+# `gtsummary`
+
+The `gtsummary` package is similar to `modelsummary` in that it takes advantage of `broom`, `gt`, and `kableExtra` to provide a flexible table-making framework.
+
+While `gtsummary` can also produce model tables like `modelsummary`, it also produces descriptive statistic tables for dataframes.&lt;sup&gt;1&lt;/sup&gt;
+
+
+```r
+library(gtsummary)
+```
+
+.footnote[[1] I prefer `modelsummary`'s syntax most model tables.]
+
+---
+
+.pull-left[
+## `tbl_summary()`
+
+By default, `gtsummary` tables provide:
+
+* Frequencies for categorical and binary variables
+* Quantiles of the form "50% (25%, 75%)" for continuous variables
+* Sample size
+
+
+```r
+mtcars %&gt;% 
+  select(1:9) %&gt;%
+  tbl_summary() 
+```
+]
+
+.pull-right[
+.smaller[
+<div id="xagcabfgfs" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#xagcabfgfs .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#xagcabfgfs .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xagcabfgfs .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#xagcabfgfs .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#xagcabfgfs .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xagcabfgfs .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xagcabfgfs .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#xagcabfgfs .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#xagcabfgfs .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#xagcabfgfs .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#xagcabfgfs .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#xagcabfgfs .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xagcabfgfs .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xagcabfgfs .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#xagcabfgfs .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#xagcabfgfs .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#xagcabfgfs .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#xagcabfgfs .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xagcabfgfs .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#xagcabfgfs .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xagcabfgfs .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#xagcabfgfs .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#xagcabfgfs .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xagcabfgfs .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xagcabfgfs .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#xagcabfgfs .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xagcabfgfs .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#xagcabfgfs .gt_left {
+  text-align: left;
+}
+
+#xagcabfgfs .gt_center {
+  text-align: center;
+}
+
+#xagcabfgfs .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#xagcabfgfs .gt_font_normal {
+  font-weight: normal;
+}
+
+#xagcabfgfs .gt_font_bold {
+  font-weight: bold;
+}
+
+#xagcabfgfs .gt_font_italic {
+  font-style: italic;
+}
+
+#xagcabfgfs .gt_super {
+  font-size: 65%;
+}
+
+#xagcabfgfs .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>N = 32</strong><sup class="gt_footnote_marks">1</sup></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">mpg</td>
+<td class="gt_row gt_center">19.2 (15.4, 22.8)</td></tr>
+    <tr><td class="gt_row gt_left">cyl</td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">4</td>
+<td class="gt_row gt_center">11 (34%)</td></tr>
+    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">6</td>
+<td class="gt_row gt_center">7 (22%)</td></tr>
+    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">8</td>
+<td class="gt_row gt_center">14 (44%)</td></tr>
+    <tr><td class="gt_row gt_left">disp</td>
+<td class="gt_row gt_center">196 (121, 326)</td></tr>
+    <tr><td class="gt_row gt_left">hp</td>
+<td class="gt_row gt_center">123 (96, 180)</td></tr>
+    <tr><td class="gt_row gt_left">drat</td>
+<td class="gt_row gt_center">3.70 (3.08, 3.92)</td></tr>
+    <tr><td class="gt_row gt_left">wt</td>
+<td class="gt_row gt_center">3.33 (2.58, 3.61)</td></tr>
+    <tr><td class="gt_row gt_left">qsec</td>
+<td class="gt_row gt_center">17.71 (16.89, 18.90)</td></tr>
+    <tr><td class="gt_row gt_left">vs</td>
+<td class="gt_row gt_center">14 (44%)</td></tr>
+    <tr><td class="gt_row gt_left">am</td>
+<td class="gt_row gt_center">13 (41%)</td></tr>
+  </tbody>
+  
+  <tfoot>
+    <tr class="gt_footnotes">
+      <td colspan="2">
+        <p class="gt_footnote">
+          <sup class="gt_footnote_marks">
+            <em>1</em>
+          </sup>
+           
+          Median (IQR); n (%)
+          <br />
+        </p>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+]
+]
+
+---
+
+.pull-left[
+## Grouping
+
+You can provide a `by = ` argument to do grouped descriptives.
+
+
+```r
+mtcars %&gt;% 
+  select(1:9) %&gt;%
+  tbl_summary(by = "am") 
+```
+]
+
+.pull-right[
+.smaller[
+<div id="taevbjeiwq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#taevbjeiwq .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#taevbjeiwq .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#taevbjeiwq .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#taevbjeiwq .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#taevbjeiwq .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#taevbjeiwq .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#taevbjeiwq .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#taevbjeiwq .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#taevbjeiwq .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#taevbjeiwq .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#taevbjeiwq .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#taevbjeiwq .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#taevbjeiwq .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#taevbjeiwq .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#taevbjeiwq .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#taevbjeiwq .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#taevbjeiwq .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#taevbjeiwq .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#taevbjeiwq .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#taevbjeiwq .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#taevbjeiwq .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#taevbjeiwq .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#taevbjeiwq .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#taevbjeiwq .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#taevbjeiwq .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#taevbjeiwq .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#taevbjeiwq .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#taevbjeiwq .gt_left {
+  text-align: left;
+}
+
+#taevbjeiwq .gt_center {
+  text-align: center;
+}
+
+#taevbjeiwq .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#taevbjeiwq .gt_font_normal {
+  font-weight: normal;
+}
+
+#taevbjeiwq .gt_font_bold {
+  font-weight: bold;
+}
+
+#taevbjeiwq .gt_font_italic {
+  font-style: italic;
+}
+
+#taevbjeiwq .gt_super {
+  font-size: 65%;
+}
+
+#taevbjeiwq .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 65%;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>0</strong>, N = 19<sup class="gt_footnote_marks">1</sup></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>1</strong>, N = 13<sup class="gt_footnote_marks">1</sup></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">mpg</td>
+<td class="gt_row gt_center">17.3 (14.9, 19.2)</td>
+<td class="gt_row gt_center">22.8 (21.0, 30.4)</td></tr>
+    <tr><td class="gt_row gt_left">cyl</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">4</td>
+<td class="gt_row gt_center">3 (16%)</td>
+<td class="gt_row gt_center">8 (62%)</td></tr>
+    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">6</td>
+<td class="gt_row gt_center">4 (21%)</td>
+<td class="gt_row gt_center">3 (23%)</td></tr>
+    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">8</td>
+<td class="gt_row gt_center">12 (63%)</td>
+<td class="gt_row gt_center">2 (15%)</td></tr>
+    <tr><td class="gt_row gt_left">disp</td>
+<td class="gt_row gt_center">276 (196, 360)</td>
+<td class="gt_row gt_center">120 (79, 160)</td></tr>
+    <tr><td class="gt_row gt_left">hp</td>
+<td class="gt_row gt_center">175 (116, 192)</td>
+<td class="gt_row gt_center">109 (66, 113)</td></tr>
+    <tr><td class="gt_row gt_left">drat</td>
+<td class="gt_row gt_center">3.15 (3.07, 3.70)</td>
+<td class="gt_row gt_center">4.08 (3.85, 4.22)</td></tr>
+    <tr><td class="gt_row gt_left">wt</td>
+<td class="gt_row gt_center">3.52 (3.44, 3.84)</td>
+<td class="gt_row gt_center">2.32 (1.94, 2.78)</td></tr>
+    <tr><td class="gt_row gt_left">qsec</td>
+<td class="gt_row gt_center">17.82 (17.18, 19.17)</td>
+<td class="gt_row gt_center">17.02 (16.46, 18.61)</td></tr>
+    <tr><td class="gt_row gt_left">vs</td>
+<td class="gt_row gt_center">7 (37%)</td>
+<td class="gt_row gt_center">7 (54%)</td></tr>
+  </tbody>
+  
+  <tfoot>
+    <tr class="gt_footnotes">
+      <td colspan="3">
+        <p class="gt_footnote">
+          <sup class="gt_footnote_marks">
+            <em>1</em>
+          </sup>
+           
+          Median (IQR); n (%)
+          <br />
+        </p>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+]
+]
+
+---
+
+.pull-left[
+## Adding `gt`
+
+If you select `gt` output, you can dress it up with `gt` functions.
+
+.small[
+
+```r
+mtcars %&gt;% 
+  select(1:9) %&gt;%
+  tbl_summary(by = "am") %&gt;%
+  as_gt() %&gt;%
+  tab_spanner(
+    label = "Transmission", 
+    columns = starts_with("stat_")
+  ) %&gt;%
+  tab_header(
+    title = "Motor Trend Cars", 
+    subtitle = "Descriptive Statistics"
+  )
+```
+]
+
+`starts\_with("stat\_")` here selects the statistic columns created by `tbl_summary()`.
+]
+
+.pull-right[
+.smaller[
+![](csss_508_Week10_model_results_files/figure-html/unnamed-chunk-62-1.png)&lt;!-- --&gt;
+]
+]
+
+---
+# Bonus: `corrplot`
+
+The `corrplot` package has functions for displaying correlograms.
+
+These make interpreting the correlations between variables in a data set easier than conventional correlation tables.
+
+The first argument is a call to `cor()`, the base R function for generating a correlation matrix.
+
+[See the vignette for customization options.](https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html)
+
+
+```r
+library(corrplot)
+corrplot(
+  cor(mtcars),
+  addCoef.col = "white",
+  addCoefasPercent=T,
+  type="upper", 
+  order="AOE")
+```
+
+---
+## Correlogram
+
+![](csss_508_Week10_model_results_files/figure-html/unnamed-chunk-64-1.svg)&lt;!-- --&gt;
+
+---
+class: inverse
+
+# Reproducible Research
+
+---
+# Why Reproducibility?
+
+Reproducibility is not *replication*.
+
+* **Replication** is running a new study to show if and how results of a prior study hold.
+* **Reproducibility** is about rerunning *the same study* and getting the *same results*.
+
+--
+
+Reproducible studies can still be *wrong*... and in fact reproducibility makes proving a study wrong *much easier*.
+
+--
+
+Reproducibility means:
+
+* Transparent research practices.
+* Minimal barriers to verifying your results.
+
+--
+
+*Any study that isn't reproducible can be trusted only on faith.*
+
+---
+# Reproducibility Definitions
+
+Reproducibility comes in three forms (Stodden 2014):
+
+--
+
+1. **Empirical:** Repeatability in data collection.
+
+--
+
+2. **Statistical:** Verification with alternate methods of inference.
+
+--
+
+3. **Computational:** Reproducibility in cleaning, organizing, and presenting data and results.
+
+--
+
+R is particularly well suited to enabling **computational reproducibility**.&lt;sup&gt;1&lt;/sup&gt;
+
+.footnote[[1] Python is equally well suited.]
+
+--
+
+They will not fix flawed research design, nor offer a remedy for improper application of statistical methods.
+
+Those are the difficult, non-automatable things you want skills in.
+
+---
+
+## Computational Reproducibility
+
+Elements of computational reproducibility:
+
+--
+
+* Shared data
+
+   + Researchers need your original data to verify and replicate your work.
+
+--
+
+* Shared code
+   + Your code must be shared to make decisions transparent.
+
+--
+
+* Documentation
+   + The operation of code should be either self-documenting or have written descriptions to make its use clear.
+
+--
+
+* **Version Control**
+   + Documents the research process.
+   + Prevents losing work and facilitates sharing.
+
+---
+
+## Levels of Reproducibility
+
+For academic papers, degrees of reproducibility vary:
+
+0. "Read the article"
+
+--
+
+1. Shared data with documentation
+
+--
+
+2. Shared data and all code
+
+--
+
+3. **Interactive document**
+
+--
+
+4. **Research compendium**
+
+--
+
+5. Docker compendium: Self-contained ecosystem
+
+---
+## Interactive Documents
+
+**Interactive documents**—like R Markdown docs—combine code and text together into a self-contained document.
+   * Load and process data
+   * Run models
+   * Generate tables and plots in-line with text
+   * In-text values automatically filled in
+
+--
+
+Interactive documents allow a reader to examine your computational methods within the document itself; in effect, they are self-documenting.
+
+--
+
+By re-running the code, they reproduce your results on demand.
+
+--
+
+Common Platforms:
+
+ * **R:** R Markdown ([an example from Chuck](https://clanfear.github.io/birthtiming/inst/paper/paper.html))
+ * **Python:** Jupyter Notebooks
+
+---
+## Research Compendia
+
+A **research compendium** is a portable, reproducible distribution of an article or other project.
+
+--
+
+Research compendia feature:
+
+* An interactive document as the foundation
+
+* Files organized in a recognizable structure (e.g. an R package)
+
+* Clear separation of data, method, and output. *Data are read only*.
+
+* A well-documented or even *preserved* computational environment (e.g. Docker)
+
+--
+
+`rrtools` by UW's [Ben Markwick](https://github.com/benmarwick) provides a simplified workflow to accomplish this in R.
+
+[Another example by Chuck.](https://github.com/clanfear/birthtiming)
+
+---
+## Bookdown
+
+[`bookdown`](https://bookdown.org/yihui/bookdown/)—which is integrated into `rrtools`—can generate documents in the proper format for articles, theses, books, or dissertations.
+
+--
+
+`bookdown` provides an accessible alternative to writing `\(\LaTeX\)` for typesetting and reference management.
+
+--
+
+You can integrate citations and automate reference page generation using bibtex files (such as produced by Zotero).
+
+--
+
+`bookdown` supports `.html` output for ease and speed and also renders `.pdf` files through `\(\LaTeX\)` for publication-ready documents.
+
+--
+
+For University of Washington theses and dissertations, consider Ben Marwick's [`huskydown` package](https://github.com/benmarwick/huskydown) which uses Markdown but renders via a UW approved `\(\LaTeX\)` template.
+
+---
+class: inverse
+# Best Practices
+
+## Organization and Portability
+
+---
+# Organization Systems
+
+Organizing research projects is something you either do accidentally—and badly—or purposefully with some upfront labor.
+
+--
+
+Uniform organization makes switching between or revisiting projects easier.
+
+--
+
+I suggest something like the following:
+
+.pull-left[
+```
+project/
+   readme.md
+   data/
+     derived/
+       processed_data.RData
+     raw/
+       core_data.csv
+   docs/
+     paper.Rmd
+   syntax/
+     functions.R
+     models.R
+```
+]
+.pull-right[
+1. There is a clear hierarchy
+   * Written content is in `docs`
+   * Code is in `syntax`
+   * Data is in `data`
+2. Naming is uniform
+   * All lower case
+   * Words separated by underscores
+3. Names are self-descriptive
+
+]
+
+---
+# Workflow versus Project
+
+To summarize Jenny Bryan, [one should separate workflow from projects.](https://www.tidyverse.org/articles/2017/12/workflow-vs-script/)
+
+--
+
+.pull-left[
+### Workflow
+
+* The software you use to write your code (e.g. RStudio)
+
+* The location you store a project
+
+* The specific computer you use
+
+* The code you ran earlier or typed into your console
+]
+
+--
+
+.pull-right[
+### Project
+
+* The raw data
+
+* The code that operates on your raw data
+
+* The packages you use
+
+* The output files or documents
+]
+
+--
+
+Projects *should not modify anything outside of the project* nor need to be modified by someone else (or future you) to run.
+
+**Projects *should be independent of your workflow*.**
+
+---
+# Portability
+
+For research to be reproducible, it must also be *portable*. Portable software operates *independently of workflow* such as fixed file locations.
+
+--
+
+**Do Not:**
+
+* Use `setwd()` in scripts or .Rmd files.
+* Use *absolute paths* except for *fixed, immovable sources* (secure data).
+  + `read_csv("C:/my_project/data/my_data.csv")`
+* Use `install.packages()` in script or .Rmd files.
+* Use `rm(list=ls())` anywhere but your console.
+
+--
+
+**Do:**
+
+* Use RStudio projects (or the [`here` package](https://github.com/jennybc/here_here)) to set directories.
+* Use *relative paths* to load and save files:
+  + `read_csv("./data/my_data.csv")`
+* Load all required packages using `library()`.
+* Clear your workspace when closing RStudio.
+  + Set *Tools &gt; Global Options... &gt; Save workspace...* to **Never**
+
+---
+# Divide and Conquer
+
+Often you do not want to include all code for a project in one `.Rmd` file:
+
+   * The code takes too long to knit.
+   * The file is so long it is difficult to read.
+
+--
+
+There are two ways to deal with this:
+
+1. Use separate `.R` scripts or `.Rmd` files which save results from complicated parts of a project, then load these results in the main `.Rmd` file.
+
+   + This is good for loading and cleaning large data.
+   + Also for running slow models.
+
+--
+
+2. Use `source()` to run external `.R` scripts when the `.Rmd` knits.
+
+   + This can be used to run large files that aren't impractically slow.
+   + Also good for loading project-specific functions.
+
+
+---
+# The Way of Many Files
+
+I find it beneficial to break projects into *many* files:
+   * Scripts with specialized functions.
+   * Scripts to load and clean each set of variables.
+   * Scripts to run each set of models and make tables and plots.
+   * A main .Rmd that runs some or all of these to reproduce the entire project.
+
+--
+
+Splitting up a project carries benefits:
+   * Once a portion of the project is done and in its own file, *it is out of your way.*
+   * If you need to make changes, you don't need to search through huge files.
+   * Entire sections of the project can be added or removed quickly (e.g. converted to an appendix of an article)
+   * **It is the only way to build a proper *pipeline* for a project. **
+
+---
+# Pipelines
+
+Professional researchers and teams design projects as a **pipeline**.
+
+--
+
+A **pipeline** is a series of consecutive processing elements (scripts and functions in R).
+
+--
+
+Each stage of a pipeline...
+
+1. Has clearly defined inputs and outputs
+2. Does not modify its inputs.
+3. Produces the exact same output every time it is re-run.
+
+--
+
+This means...
+
+1. When you modify one stage, you only need to rerun *subsequent stages*.
+2. Different people can work on each stage.
+3. Problems are isolated within stages.
+4. You can depict your project as a *directed graph* of **dependencies**.
+
+---
+
+# Example Pipeline
+
+Every stage (oval) has an unambiguous input and output. Everything that precedes a given stage is a **dependency**—something required to run it.
+
+![](img/pipeline.svg)
+
+.footnote[Note: [`targets` is a terrific package for managing R research pipelines.](https://books.ropensci.org/targets/index.html)]
+
+---
+class: inverse
+# Tools
+
+### *Some opinionated advice*
+
+---
+# On Formats
+
+Avoid "closed" or commercial software and file formats except where absolutely necessary.
+
+--
+
+Use open source software and file formats.
+
+--
+
+* It is always better for *science*:
+
+   + People should be able to explore your research without buying commercial software.
+   + You do not want your research to be inaccessible when software is updated.
+
+--
+
+* It is often just *better*.
+
+   + It is usually updated more quickly
+   + It tends to be more secure
+   + It is rarely abandoned
+
+--
+
+**The ideal:** Use software that reads and writes *raw text*.
+
+---
+# Text
+
+Writing and formatting documents are two completely separate jobs.
+   * Write first
+   * Format later
+   * [Markdown](https://en.wikipedia.org/wiki/Markdown) was made for this
+
+--
+
+Word processors—like Microsoft Word—try to do both at the same time, usually badly.
+
+They waste time by leading you to format instead of writing.
+
+--
+
+Find a good modular text editor and learn to use it:
+   * [Atom](https://atom.io/)
+   * [Sublime](https://www.sublimetext.com/) (Commercial)
+   * Emacs
+   * Vim
+
+---
+class: inverse
+# Version Control
+
+---
+# Version Control
+
+Version control originates in collaborative software development.
+
+**The Idea:** All changes ever made to a piece of software are documented, saved automatically, and revertible.
+
+--
+
+Version control allows all decisions ever made in a research project to be documented automatically.
+
+--
+
+Version control can:
+
+1. Protect your work from destructive changes
+2. Simplify collaboration by merging changes
+3. Document design decisions
+4. Make your research process transparent
+
+---
+# Git and GitHub
+
+[`git`](https://en.wikipedia.org/wiki/Git) is the dominant platform for version control, and [GitHub](https://github.com/) is a free (and now Microsoft owned) platform for hosting **repositories**.
+
+--
+
+**Repositories** are folders on your computer where all changes are tracked by Git.
+
+--
+
+Once satisfied with changes, you "commit" them then "push" them to a remote repository that stores your project.
+
+--
+
+Others can copy your project ("pull"), and if you permit, make suggestions for changes.
+
+--
+
+Constantly committing and pulling changes automatically generates a running "history" that documents the evolution of a project.
+
+--
+
+`git` is integrated into RStudio under the *Tools* menu. [It requires some setup.](http://happygitwithr.com/)&lt;sup&gt;1&lt;/sup&gt;
+
+.footnote[[1] You can also use the [GitHub desktop application](https://desktop.github.com/).]
+
+
+---
+# GitHub as a CV
+
+Beyond archiving projects and allowing sharing, GitHub also serves as a sort of curriculum vitae for the programmer.
+
+--
+
+By allowing others to view your projects, you can display competence in programming and research.
+
+--
+
+If you are planning on working in the private sector, an active GitHub profile will give you a leg up on the competition.
+
+--
+
+If you are aiming for academia, a GitHub account signals technical competence and an interest in research transparency.
+
+
+---
+class: inverse
+# Wrapping up the Course
+
+---
+# What You've Learned
+
+A lot!
+
+* How to get data into R from a variety of formats
+* How to do "data custodian" work to manipulate and clean data
+* How to make pretty visualizations
+* How to automate with loops and functions
+* How to combine text, calculations, plots, and tables into dynamic R Markdown reports 
+* How to acquire and work with spatial data
+
+---
+# What Comes Next?
+
+* Statistical inference (e.g. more CSSS courses)
+    + Functions for hypothesis testing, hierarchical/mixed effect models, machine learning, survey design, etc. are straightforward to use... once data are clean
+    + Access output by working with list structures (like from regression models) or using `broom` and `ggeffects`
+* Practice, practice, practice!
+    + Replicate analyses you've done in Excel, SPSS, or Stata
+    + Think about data using `dplyr` verbs, tidy data principles
+    + R Markdown for reproducibility
+* More advanced projects
+    + Using version control (git) in RStudio
+    + Interactive Shiny web apps
+    + Write your own functions and put them in a package
+
+---
+# Neat Things I Didn't Talk About
+
+* [The native pipe operator in R 4.0 `|&gt;`.](https://michaelbarrowman.co.uk/post/the-new-base-pipe/)
+* [The Source Editor](https://www.rstudio.com/blog/rstudio-v1-4-preview-visual-markdown-editing/) 
+* [Keyboard Shortcuts](https://keycombiner.com/collections/rstudio/)
+* [The Big Book of R](https://www.bigbookofr.com/)
+
+
+---
+# Course Plugs
+
+If you...
+
+* have no stats background yet - **SOC504: Applied Social Statistics**
+* have (only) finished SOC506 - **CSSS510: Maximum Likelihood**
+* want to master visualization - **CSSS569: Visualizing Data**
+* study events or durations - **CSSS544: Event History Analysis** &lt;sup&gt;1&lt;/sup&gt;
+* want to use network data - **CSSS567: Social Network Analysis**
+* want to work with spatial data - **CSSS554: Spatial Statistics**
+* want to work with time series - **CSSS512: Time Series and Panel Data**
+
+.footnote[
+[1] Also a great maximum likelihood introduction.
+]
+
+
+
+
+
+
+---
+class: inverse
+# Thank you!
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "tomorrow-night-bright",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

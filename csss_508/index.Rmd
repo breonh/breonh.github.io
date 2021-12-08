@@ -387,10 +387,10 @@ author: "Breon Haskett - University of Washington"
 
  **Lecture for Week 10:**
 
-   * Slides for Lecture 10: Reproducibility and Model Results
-       + Companion R Script for Lecture 10 slides
-       + PDF of Lecture 10 slides
-       + Rmd for Lecture 10 slides
+   * [Slides for Lecture 10: Reproducibility and Model Results](https://breonh.github.io/csss_508/lecture/week10/csss_508_Week10_model_results.html)
+       + [Companion R Script for Lecture 10 slides](https://breonh.github.io/csss_508/lecture/week10/csss_508_Week10_rscript_companion.R)
+       + [PDF of Lecture 10 slides](https://breonh.github.io/csss_508/lecture/week10/csss_508_Week10_model_results.pdf)
+       + [Rmd for Lecture 10 slides](https://breonh.github.io/csss_508/lecture/week10/csss_508_Week10_model_results.Rmd)
 
 
  **Related Reading: **
