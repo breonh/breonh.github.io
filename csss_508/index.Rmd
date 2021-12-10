@@ -365,10 +365,12 @@ author: "Breon Haskett - University of Washington"
        
    * **[Optional Homework 7 Template](https://breonh.github.io/csss_508/homework/homework_7.Rmd)**
    * **Homework 7 KEY**
+     + [RMD](https://breonh.github.io/csss_508/homework/homework_7/homework_7_key.Rmd)
+     + [HTML](https://breonh.github.io/csss_508/homework/homework_7/homework_7_key.html)
 
   **Lecture Recording: **
   
-  [Youtube Link to Week 8 Recording](https://youtu.be/ZVvbiHOCRPs)
+  [Youtube Link to Week 9 Recording](https://youtu.be/ZVvbiHOCRPs)
 
  **Related Reading: **
 
@@ -392,6 +394,10 @@ author: "Breon Haskett - University of Washington"
        + [PDF of Lecture 10 slides](https://breonh.github.io/csss_508/lecture/week10/csss_508_Week10_model_results.pdf)
        + [Rmd for Lecture 10 slides](https://breonh.github.io/csss_508/lecture/week10/csss_508_Week10_model_results.Rmd)
 
+
+  **Lecture Recording: **
+  
+  [Youtube Link to Week 10 Recording](https://youtu.be/b9Fe6-V2vQc)
 
  **Related Reading: **
 
