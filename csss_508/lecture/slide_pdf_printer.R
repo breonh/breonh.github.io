@@ -1,7 +1,7 @@
 # Rendering The Slides as PDFs
 
 
-pagedown::chrome_print("https://breonh.github.io/csss_508/lecture/week10/csss_508_Week10_model_results.html#1", format="pdf")
+pagedown::chrome_print("C:/Users/breha/OneDrive/Documents/breonh.github.io/pols_249/Week 1 - Jan 7/pols249_quiz_week1.html", format="pdf")
 
 
 
