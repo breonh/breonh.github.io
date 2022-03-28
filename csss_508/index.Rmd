@@ -1,6 +1,8 @@
 ---
 title: "CS&SS 508 - Introduction to R for Social Scientists"
-author: "Breon Haskett - University of Washington"
+author: | 
+  | [Breon Haskett](https://github.com/breonh) 
+  | [University of Washington](https://soc.washington.edu/people/breon-haskett)
 ---
 
 
@@ -462,3 +464,5 @@ author: "Breon Haskett - University of Washington"
 
 
 This project is maintained by [Breon Haskett](https://github.com/breonh) and includes materials from [Chuck Lanfear](https://github.com/clanfear) with permission.
+
+Cherry blossom photo credit: [Mark Stone](https://www.washington.edu/marketing/people/mark-stone/)

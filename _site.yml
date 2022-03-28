@@ -10,8 +10,7 @@ navbar:
         href: csss_508/index.html
       - text: "Syllabus"
         href: csss_508/syllabus.html
-output:
-  html_document:
-    theme: cosmo
-    highlight: breezedark
+output: 
+  rmdformats::readthedown:
+    toc_depth: 4
     css: styles.css

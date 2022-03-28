@@ -1,16 +1,6 @@
 name: "my-website"
 output_dir: "."
-navbar:
-  title: "breonh.github.io"
-  left:
-    - text: "CSSS 508"
-      menu:
-      - text: "Course Website"
-        href: index.html
-      - text: "Syllabus"
-        href: syllabus.html
 output:
-  html_document:
-    theme: cosmo
-    highlight: breezedark
+  rmdformats::readthedown:
+    toc_depth: 4
     css: styles.css

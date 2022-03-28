@@ -1,7 +1,77 @@
 code {
-  background-color: #CCCBCB;
+  background-color: #E0E0E0;
 }
 
-h1, h2, h3, h4{
+body {
+  background-image: url("csss_508/img/uw_cherry_blossoms.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+h1, h2, h3, h4 {
   font-weight: bold;
 }
+
+#main .nav-pills > li.active > a {
+    background-color: #4b2e83;
+}
+
+#main .nav-pills > li.hover > a {
+    background-color: #e8e3d3;
+}
+
+
+#main a:visited {
+    color: #d64a70;
+}
+
+
+
+
+h1, h2, h3, h4, h5, h6, legend {
+    color: #85754d;
+}
+
+#nav-top span.glyphicon {
+    background-color: white;
+}
+
+
+#table-of-contents h2 {
+    background-color: #4b2e83;
+}
+
+#table-of-contents header{
+color: blue;
+}
+
+#sidebar a {
+    background-color: #4b2e83;
+}
+
+#sidebar h2 {
+    background-color: #4b2e83;
+}
+
+#sidebar h2 {
+    color: #4b2e83;
+}
+
+#postamble {
+    border-top-color: #E0E0E0;
+}
+
+
+#sidebar a:hover {
+    background-color: white;
+}
+
+#sidebar a:hover {
+    color: black;
+}
+
+#sidebar {
+    background-color: #4b2e83;
+}
+
