@@ -9,7 +9,7 @@ author: |
 
 ## Important links
 
-* [Canvas Page (enrolled students only AU  2021)](https://canvas.uw.edu/courses/1477325)
+* [Canvas Page (enrolled students only SP  2022)](https://canvas.uw.edu/courses/1551596)
 * [Syllabus](https://breonh.github.io/csss_508/syllabus.html)
 * [Homework Instructions](https://breonh.github.io/csss_508/homework.html) and grading rubric.
 * [Peer Review Instructions](https://breonh.github.io/csss_508/peer_review.html) and suggestions for reading code.
@@ -56,9 +56,9 @@ author: |
    
    **Homework 1 KEY / Example:**
    
-   * [Rmd Example](https://breonh.github.io/csss_508/homework/homework_1/hw_1_rmarkdown_example.Rmd)
+   * [Rmd Example]()
    
-   * [Html Example](https://breonh.github.io/csss_508/homework/homework_1/hw_1_rmarkdown_example.html)
+   * [Html Example]()
 
    **Related Reading: **
 
@@ -99,9 +99,9 @@ author: |
    
    **Homework 2 KEY / Example:**
 
-   * [Rmd Example](https://breonh.github.io/csss_508/homework/homework_2/homework_2_ggplot_example.Rmd)
+   * [Rmd Example]()
    
-   * [Html Example](https://breonh.github.io/csss_508/homework/homework_2/homework_2_ggplot_example.html)
+   * [Html Example]()
 
 
 
@@ -172,10 +172,10 @@ author: |
 **Homework 4 (Two Options, complete one):**
        
    * **[Homework 4 Template](https://breonh.github.io/csss_508/homework/homework_4.Rmd) (Download this, fill it in, and submit on Canvas)**
-   * **Homework 4 [RMD,](https://breonh.github.io/csss_508/homework/homework_4/homework_4_key.Rmd) [HTML](https://breonh.github.io/csss_508/homework/homework_4/homework_4_key.html)**
+   * **Homework 4 [RMD,]() [HTML]()**
    
    * **[Homework 4 Template (More Advanced)](https://breonh.github.io/csss_508/homework/homework_4_alternate.Rmd) (Download this, fill it in, and submit on Canvas)**
-   * **Homework 4 (More Advanced) [RMD,](https://breonh.github.io/csss_508/homework/homework_4/homework_4_regression_key.Rmd) [HTML](https://breonh.github.io/csss_508/homework/homework_4/homework_4_regression_key.html)**
+   * **Homework 4 (More Advanced) [RMD,]() [HTML]()**
    
   **Lecture Recording: **
    
@@ -214,8 +214,8 @@ author: |
    
    **Homework 5 KEY pt. 1:**
 
-   * [Homework 5 part 1 RMD](https://breonh.github.io/csss_508/homework/homework_5/homework_5_pt1_key.Rmd)
-   * [Homework 5 part 1 HTML](https://breonh.github.io/csss_508/homework/homework_5/homework_5_pt1_key.html)
+   * [Homework 5 part 1 RMD]()
+   * [Homework 5 part 1 HTML]()
 
    **Data From Class: **
    
@@ -268,9 +268,9 @@ author: |
    * **[Homework 5, part 2 Template](https://breonh.github.io/csss_508/homework/homework_5.Rmd)**
    * **Homework 5 KEY:**
    
-      + [RMD](https://breonh.github.io/csss_508/homework/homework_5/homework_5_pt2_key.Rmd)
+      + [RMD]()
       
-      + [HTML](https://breonh.github.io/csss_508/homework/homework_5/homework_5_pt2_key.html)
+      + [HTML]()
 
  **Lecture Recording: **
    
@@ -327,12 +327,12 @@ author: |
 
  **Homework 6, part 2:**
        
-   * **[Homework 6 Template](https://raw.githubusercontent.com/breonh/breonh.github.io/main/csss_508/homework/homework_6/homework_6_p1_key.Rmd)**
+   * **[Homework 6 Template]()**
   
  **Homework 6, part 2 KEY:**
    
-   * [HTML](https://breonh.github.io/csss_508/homework/homework_6/homework_6_p2_key.html)
-   * [RMD](https://breonh.github.io/csss_508/homework/homework_6/homework_6_p2_key.Rmd)
+   * [HTML]()
+   * [RMD]()
 
    **Data From Class: **
    
@@ -367,8 +367,8 @@ author: |
        
    * **[Optional Homework 7 Template](https://breonh.github.io/csss_508/homework/homework_7.Rmd)**
    * **Homework 7 KEY**
-     + [RMD](https://breonh.github.io/csss_508/homework/homework_7/homework_7_key.Rmd)
-     + [HTML](https://breonh.github.io/csss_508/homework/homework_7/homework_7_key.html)
+     + [RMD]()
+     + [HTML]()
 
   **Lecture Recording: **
   
