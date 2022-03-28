@@ -3,4 +3,4 @@ output_dir: "."
 output:
   rmdformats::readthedown:
     toc_depth: 4
-    css: styles.css
+    css: styles_508.css
