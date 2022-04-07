@@ -2,7 +2,7 @@
 title: "CSSS508, Week 2"
 subtitle: "Plotting with `ggplot2`"
 author: "Breon Haskett"
-date: "October 6, 2021<br>Updated: `r gsub(' 0', ' ', format(Sys.Date(), format='%b %d, %Y'))`"
+date: "April 7, 2022<br>Updated: `r gsub(' 0', ' ', format(Sys.Date(), format='%b %d, %Y'))`"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -108,7 +108,7 @@ assignment) its own folder. I use the following system:
 --
 
 For example, this presentation is located and named this:
-`breonh.github.io/CSSS508/Lectures/Week2/csss_508_week2_ggplot2.Rmd`
+`breonh.github.io/csss_508/lecture/week2/csss_508_week2_ggplot2.Rmd`
 
 --
 
@@ -120,9 +120,9 @@ You don't want to lose work by losing or overwriting files!
 For large projects containing many files, I recommend using RStudio's built in project management system found in the top right of the RStudio window.
 
 --
-
-For journal articles I recommend Ben Marwick's [`rrtools`](https://github.com/benmarwick/rrtools) and [`huskydown`](https://github.com/benmarwick/huskydown) for UW dissertations and theses. [I made an `rrtools` demo presentation here](https://clanfear.github.io/birthtiming/inst/presentation/presentation.html#/).
-
+.smaller[
+For journal articles I recommend Ben Marwick's [`rrtools`](https://github.com/benmarwick/rrtools) and [`huskydown`](https://github.com/benmarwick/huskydown) for UW dissertations and theses. [Chuck made an `rrtools` demo presentation here](https://clanfear.github.io/birthtiming/inst/presentation/presentation.html#/).
+]
 ---
 
 # File Types
@@ -165,7 +165,7 @@ An excerpt of these data can be accessed through an R package called `gapminder`
 In the console: `install.packages("gapminder")`
 
 Load the package and data:
-```{r}
+```{r, warning=FALSE}
 library(gapminder)
 ```
 
@@ -447,7 +447,7 @@ plot(lifeExp ~ year, data = China, xlab = "Year", ylab = "Life expectancy",
 
 An alternative way of plotting many prefer (myself included)<sup>1</sup> uses the `ggplot2` package in R, which is part of the `tidyverse`.
 
-.footnote[[1] [Though this is not without debate](http://simplystatistics.org/2016/02/11/why-i-dont-use-ggplot2/)]
+.footnote[[1] [Though this is not without debate](https://simplystatistics.org/posts/2016-02-11-why-i-dont-use-ggplot2/)]
 
 ```{r}
 library(ggplot2)
@@ -1168,13 +1168,13 @@ We can modify the axes in a variety of ways, such as:
 
 # Axis Changes
 
-```{r, fig.height=3.5, dev='svg'}
+```{r, fig.height=3.2, dev='svg'}
 ggplot(data = China, aes(x = year, y = gdpPercap)) +
     geom_line() +
     scale_y_log10(breaks = c(1000, 2000, 3000, 4000, 5000), #<<
                   labels = scales::dollar) + #<<
     xlim(1940, 2010) + 
-  ggtitle("Chinese GDP per capita")
+  ggtitle("GDP per capita in China")
 ```
 
 ---
@@ -1184,7 +1184,7 @@ ggplot(data = China, aes(x = year, y = gdpPercap)) +
 ```{r, fig.height=3.5, dev='svg'}
 ggplot(data = China, aes(x = year, y = lifeExp)) +
     geom_line() +
-    ggtitle("Chinese life expectancy") +
+    ggtitle("Life Expectancy in China") +
     theme_gray(base_size = 20) #<<
 ```
 

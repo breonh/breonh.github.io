@@ -14,7 +14,7 @@ class: center, top, title-slide
 # CSSS508, Week 2
 ## Plotting with <code>ggplot2</code>
 ### Breon Haskett
-### October 6, 2021<br>Updated: Oct 7, 2021
+### April 7, 2022<br>Updated: Apr 7, 2022
 
 ---
 
@@ -119,7 +119,7 @@ assignment) its own folder. I use the following system:
 --
 
 For example, this presentation is located and named this:
-`breonh.github.io/CSSS508/Lectures/Week2/csss_508_week2_ggplot2.Rmd`
+`breonh.github.io/csss_508/lecture/week2/csss_508_week2_ggplot2.Rmd`
 
 --
 
@@ -131,9 +131,9 @@ You don't want to lose work by losing or overwriting files!
 For large projects containing many files, I recommend using RStudio's built in project management system found in the top right of the RStudio window.
 
 --
-
-For journal articles I recommend Ben Marwick's [`rrtools`](https://github.com/benmarwick/rrtools) and [`huskydown`](https://github.com/benmarwick/huskydown) for UW dissertations and theses. [I made an `rrtools` demo presentation here](https://clanfear.github.io/birthtiming/inst/presentation/presentation.html#/).
-
+.smaller[
+For journal articles I recommend Ben Marwick's [`rrtools`](https://github.com/benmarwick/rrtools) and [`huskydown`](https://github.com/benmarwick/huskydown) for UW dissertations and theses. [Chuck made an `rrtools` demo presentation here](https://clanfear.github.io/birthtiming/inst/presentation/presentation.html#/).
+]
 ---
 
 # File Types
@@ -179,10 +179,6 @@ Load the package and data:
 
 ```r
 library(gapminder)
-```
-
-```
-## Warning: package 'gapminder' was built under R version 4.0.5
 ```
 
 ---
@@ -260,10 +256,6 @@ This will install a *large* number of R packages we will use throughout the term
 
 ```r
 library(dplyr)
-```
-
-```
-## Warning: package 'dplyr' was built under R version 4.0.5
 ```
 
 ```
@@ -558,7 +550,7 @@ plot(lifeExp ~ year,
 
 An alternative way of plotting many prefer (myself included)&lt;sup&gt;1&lt;/sup&gt; uses the `ggplot2` package in R, which is part of the `tidyverse`.
 
-.footnote[[1] [Though this is not without debate](http://simplystatistics.org/2016/02/11/why-i-dont-use-ggplot2/)]
+.footnote[[1] [Though this is not without debate](https://simplystatistics.org/posts/2016-02-11-why-i-dont-use-ggplot2/)]
 
 
 ```r
@@ -1174,7 +1166,7 @@ ggplot(data = China, aes(x = year, y = gdpPercap)) +
 *   scale_y_log10(breaks = c(1000, 2000, 3000, 4000, 5000),
 *                 labels = scales::dollar) +
     xlim(1940, 2010) + 
-  ggtitle("Chinese GDP per capita")
+  ggtitle("GDP per capita in China")
 ```
 
 ![](csss_508_Week2_ggplot2_files/figure-html/unnamed-chunk-59-1.svg)&lt;!-- --&gt;
@@ -1187,7 +1179,7 @@ ggplot(data = China, aes(x = year, y = gdpPercap)) +
 ```r
 ggplot(data = China, aes(x = year, y = lifeExp)) +
     geom_line() +
-    ggtitle("Chinese life expectancy") +
+    ggtitle("Life Expectancy in China") +
 *   theme_gray(base_size = 20)
 ```
 

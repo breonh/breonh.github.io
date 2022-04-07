@@ -9,7 +9,7 @@ output:
 
 # R and R Markdown
 
-Write up a .Rmd file showing some exploratory analyses of the Swiss fertility data. Upload both the `.Rmd` file and the `.html` file to [Canvas](https://canvas.uw.edu/courses/1477325). You must upload *both* for credit.
+Write up a .Rmd file showing some exploratory analyses of the Swiss fertility data. Upload both the `.Rmd` file and the `.html` file to [Canvas](https://canvas.uw.edu/courses/1551596). You must upload *both* for credit.
 
 Mix in-line R calculations, tables, R output, and plots with text describing the relationships you see. Include *at least* one plot and one table. You are encouraged to include more! You must use in-line R calculations/references at least once (e.g. functions like `nrow()`, `mean()`, `sd()`, `cor()`, `median()`, `min()`) and *may not hard-code any numbers referenced in your text*.
 
