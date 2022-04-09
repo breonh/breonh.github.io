@@ -1,0 +1,63 @@
+---
+title: "HOMEWORK 1"
+author: "STUDENT NAME"
+date: "October 21, 2021"
+output: 
+  html_document:
+      theme: readable
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+##Loading libraries and data
+library(pander)
+data(swiss)
+
+##Counting variables and observations
+var_num <- ncol(swiss)
+obs_num <- nrow(swiss)
+var_names <- names(swiss)
+```
+
+## Explanatory Analyses
+
+
+In this *swiss* dataset, we have `r obs_num` observations of `r var_num` variables. The variable names are: `r var_names`. In the interest of time, space, and mental exhaustion, let's just pick one to explore!
+
+Let's see, maybe R can randomly pick something for us...
+
+```{r random number, echo=FALSE}
+random_num <- floor(runif(1, min=1, max=6))
+```
+
+A random number generator gives us: `r random_num`. That corresponds to `r var_names[random_num]`, cool! Now while it would be fun to do the rest of this assignment with a random variable, we can't really make comments on plots and such without knowing it in advance. So it looks like we're stuck with a regular ol' summary table of all our variables here:
+
+### Summary of *swiss* variables
+```{r summary table, echo=FALSE}
+pander(summary(swiss), style = "rmarkdown", split.tables = 120)
+```
+
+Perhaps a closer look at Education would be interesting? Here's a visual impression of its distribution:
+```{r plots, echo=FALSE}
+hist(swiss$Education, xlab="Education Index Value", ylab="Number of Municipalities", main="Histogram of Education Indices", col="cornflowerblue")
+```
+
+```{r values, echo=FALSE}
+ed_mean <- round(mean(swiss$Education), 2)
+ed_sd <- round(sd(swiss$Education), 2)
+ed_med <- round(median(swiss$Education), 2)
+```
+Hmm. A couple of those municipalities are way up there in this right-skewed distribution, specifically. As it stands currently, this variables has a mean of `r ed_mean` and a standard deviation of `r ed_sd`. But since it's so skewed, the median (`r ed_med`) is the better indicator of its center. It would be worth doing a log transformation to get a more normally distributed variable as we see below. We would definitely want to work with this transformed variable in any modeling.
+
+```{r transformation, echo=FALSE}
+swiss$trans_ed <- log10(swiss$Education)
+hist(swiss$trans_ed, xlab="Log of Education Index", ylab="Number of Municipalities", main="Histogram of log-transformed Education Indices", col="darkseagreen2")
+```
+
+And finally, a pairwise scatterplot to give us an idea of correlative relationships to explore in the future. It'll have to be tabled (heh) for now.
+
+### Pairwise comparisons of *swiss* variables
+```{r pairwise plot, echo=FALSE}
+pairs(swiss, pch = 8, col = "cornflowerblue")
+```

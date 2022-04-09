@@ -56,9 +56,9 @@ author: |
    
    **Homework 1 KEY / Example:**
    
-   * [Rmd Example]()
+   * [Rmd Example](https://breonh.github.io/csss_508/homework/homework_1/homework_1_rmarkdown_KEY.Rmd)
    
-   * [Html Example]()
+   * [Html Example](https://breonh.github.io/csss_508/homework/homework_1/homework_1_rmarkdown_KEY.html)
 
    **Related Reading: **
 
