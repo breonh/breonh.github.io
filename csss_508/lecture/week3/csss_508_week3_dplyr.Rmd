@@ -2,7 +2,7 @@
 title: "CSSS508, Week 3"
 subtitle: "Manipulating and Summarizing Data"
 author: "Breon Haskett"
-date: "October 13, 2021<br>Updated: `r gsub(' 0', ' ', format(Sys.Date(), format='%b %d, %Y'))`"
+date: "April 14, 2021<br>Updated: `r gsub(' 0', ' ', format(Sys.Date(), format='%b %d, %Y'))`"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -276,7 +276,7 @@ yugoslavia %>%
 ---
 ## Column Name with Space Example
 
-```{r}
+```{r, warning=FALSE}
 library(pander)
 yugoslavia %>% filter(country == "Serbia") %>%
     select(year, lifeExp) %>%
@@ -537,7 +537,7 @@ yugoslavia %>%
     summarize(num_countries     = n_distinct(country),
               total_pop         = sum(pop),
               total_gdp_per_cap = sum(pop*gdpPercap)/total_pop) %>%
-    head(5)
+    head(4)
 ```
 
 Because we did `group_by()` with `year` then used `summarize()`, we get *one row per value of `year`*!
