@@ -14,7 +14,7 @@ class: center, top, title-slide
 # CSSS508, Week 3
 ## Manipulating and Summarizing Data
 ### Breon Haskett
-### April 14, 2021<br>Updated: Apr 13, 2022
+### April 14, 2022<br>Updated: Apr 14, 2022
 
 ---
 
@@ -230,14 +230,14 @@ gapminder %&gt;% distinct(continent, year, .keep_all=TRUE)
 ```
 
 ---
-# Sampling Rows: `sample_n()`
+## Sampling Rows: `slice_sample`
 
-We can also filter *at random* to work with a smaller dataset using `sample_n()` or `sample_frac()`.
+We can also filter *at random* to work with a smaller dataset using `slice_sample()`.
 
 
 ```r
 *set.seed(789) # makes random numbers repeatable
-yugoslavia %&gt;% sample_n(size = 6, replace = FALSE)
+yugoslavia %&gt;% slice_sample(n = 6, replace = FALSE)
 ```
 
 ```
