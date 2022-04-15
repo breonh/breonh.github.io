@@ -135,7 +135,7 @@ author: |
        
   **Lecture Recording: **
    
-  [Youtube Link to Week 3 Lecture](https://youtu.be/dG9Jrn2M7oE)
+  [Youtube Link to Week 3 Lecture](https://youtu.be/cKlmHaVlvuw)
 
        
 
@@ -179,14 +179,14 @@ author: |
    
   **Lecture Recording: **
    
-  [Youtube Link to Week 4 Lecture](https://youtu.be/UGCq9TnE3bg)
+  [Youtube Link to Week 4 Lecture]()
 
        
    
    
   **Lab Recording: **
    
-  [Youtube Link to Week 4 Lab](https://youtu.be/zF9fr7X37RE)
+  [Youtube Link to Week 4 Lab]()
 
        
 
@@ -225,11 +225,11 @@ author: |
 
  **Lecture Recording: **
    
-  [Youtube Link to Week 5 Lecture](https://youtu.be/1ffcMMlQ99w)
+  [Youtube Link to Week 5 Lecture]()
 
  **Lab Recording: **
  
-  [Youtube Link to Week 5 Lab](https://youtu.be/MlTnrEjXoYo)
+  [Youtube Link to Week 5 Lab]()
 
 
    **Related Reading: **
@@ -274,11 +274,11 @@ author: |
 
  **Lecture Recording: **
    
-  [Youtube Link to Week 6 Lecture](https://youtu.be/_HfZhgP4xu8)
+  [Youtube Link to Week 6 Lecture]()
 
  **Lab Recording **
  
-  [Youtube Link to Week 6 Lab](https://youtu.be/SsXH03_uU_U)
+  [Youtube Link to Week 6 Lab]()
 
 ### 7. Writing Functions
 
@@ -299,11 +299,11 @@ author: |
 
  **Lecture Recording:**
  
- [Youtube Link to Week 7 Lecture](https://youtu.be/xRMYFiJzQPg)
+ [Youtube Link to Week 7 Lecture]()
  
  **Lab Recording:**
  
- [Youtube Link to Week 7 Lab](https://youtu.be/_RZ9OPznDf4)
+ [Youtube Link to Week 7 Lab]()
 
 
  **Related Reading: **
@@ -340,11 +340,11 @@ author: |
 
    **Lecture Recording: **
 
-   [Youtube Link to Week 8 Lecture](https://youtu.be/vdJhtKOs3kA)
+   [Youtube Link to Week 8 Lecture]()
    
    **Lab Recording: **
    
-   [Youtube Link to Week 8 Lab](https://youtu.be/jcLLtvupfU8)
+   [Youtube Link to Week 8 Lab]()
 
  **Related Reading: **
 
@@ -372,7 +372,7 @@ author: |
 
   **Lecture Recording: **
   
-  [Youtube Link to Week 9 Recording](https://youtu.be/ZVvbiHOCRPs)
+  [Youtube Link to Week 9 Recording]()
 
  **Related Reading: **
 
@@ -399,7 +399,7 @@ author: |
 
   **Lecture Recording: **
   
-  [Youtube Link to Week 10 Recording](https://youtu.be/b9Fe6-V2vQc)
+  [Youtube Link to Week 10 Recording]()
 
  **Related Reading: **
 
