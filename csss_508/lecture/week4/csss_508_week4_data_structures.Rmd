@@ -2,7 +2,7 @@
 title: "CSSS508, Week 4"
 subtitle: "R Data Structures"
 author: "Breon Haskett"
-date: "October 20, 2021<br>Updated: `r gsub(' 0', ' ', format(Sys.Date(), format='%b %d, %Y'))`"
+date: "April 21, 2022<br>Updated: `r gsub(' 0', ' ', format(Sys.Date(), format='%b %d, %Y'))`"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -22,7 +22,7 @@ library(dplyr)
 
 # R Data Types
 
-So far we've been manipulating data frames, making visuals, and summarizing. This got you pretty far!
+So far we've been using dataframes to make visuals, manipulate and summarizing data. This has taken us pretty far!
 
 Now we get more in the weeds of programming.
 
@@ -183,7 +183,7 @@ Integer vectors are a special case of numeric vectors where all the values are w
 
 --
 
-We can produce them using the `:` shortcut:
+We can produce them using the `:` regular sequence operator:
 
 ```{r}
 n <- 12
@@ -202,7 +202,7 @@ class(9L)
 ---
 # Character Vectors
 
-Character vectors store data as text and typically come up when dealing names, addresses, and IDs:
+Character vectors store data as text and typically come up when dealing names, addresses, and ID Numbers:
 
 ```{r}
 first_names <- c("Andre", "Beth", "Carly", "Dan")
@@ -211,10 +211,19 @@ class(first_names)
 
 Note you can store numbers as character data as well, but you cannot perform math on them unless you convert them to numeric.
 
+```{r, eval = FALSE}
+student_number <- "499564"
+
+student_number + 10
+```
+
+```
+Error in student_number + 10 : non-numeric argument to binary operator
+```
 ---
 # Factor Vectors
 
-Factors are categorical data that encode a (modest) number of **levels**, like for sex, experimental group, or geographic region: 
+Factors are categorical data that encode a (modest) number of **levels**, like for sex, treatment group, or geographic region: 
 
 ```{r}
 sex <- factor(c("M", "F", "F", "M"))
