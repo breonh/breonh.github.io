@@ -360,13 +360,10 @@ df_cha <- data.frame(df_1, vec_cha)
 lapply(df_cha, class)
 ```
 
-Do you see anything unusual about `df_cha$vec_cha`, say if we get `class(vec_cha)`? Get help on data frames with
-`?data.frame` and explain in a sentence what you could do to modify this behavior.
-
-2) Use `names()`, `colnames()`, and `rownames()` on df_1. How does this compare to the behavior
+1) Use `names()`, `colnames()`, and `rownames()` on df_1. How does this compare to the behavior
 of these functions on lists and matrices?
 
-3) Similarly, how do the results of `length()` and `dim()` differ between data frames,
+2) Similarly, how do the results of `length()` and `dim()` differ between data frames,
 lists, matrices, and vectors?
 
 3) Using the console, use `==` to test to see if `cbind()` and `data.frame()` in questions 5 and 6 produce the same result. Optional: If you want to make this cleaner, integrate either `all()` or `any()` functions, which could allow you to show this result in-line in your answer.
@@ -376,3 +373,4 @@ describe the differences and similarities between (this is mainly to help you th
     + Vectors and lists.
     + Data frames and matrices
     + Lists and data frames.
+

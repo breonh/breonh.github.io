@@ -99,9 +99,9 @@ author: |
    
    **Homework 2 KEY / Example:**
 
-   * [Rmd Example]()
+   * [Rmd Example](https://breonh.github.io/csss_508/homework/homework_2/homework_2_ggplot_example.Rmd)
    
-   * [Html Example]()
+   * [Html Example](https://breonh.github.io/csss_508/homework/homework_2/homework_2_ggplot_example.html)
 
 
 
