@@ -378,7 +378,7 @@ First things to check after loading new data:
 --
 
 .smallish[
-* Did the last rows/columns from the original file make it in?
+* Did the [last rows/columns](http://unionstats.com/wage_diff_All_Wage_and_Salary.xlsx) from the original file make it in?
 
     + May need to use different package or manually specify range
 ]
@@ -386,14 +386,14 @@ First things to check after loading new data:
 --
 
 .smallish[
-* Are the column names in good shape?
+* Are the [column names]() in good shape?
 
     + Modify a `col_names=` argument or fix with `rename()`
 ]
 --
 .smallish[
 
-* Are there "decorative" blank rows or columns to remove?
+* Are there ["decorative"](https://www150.statcan.gc.ca/t1/tbl1/#?pid=13100114&file=1310011401-eng.csv) blank rows or columns to remove?
 
     + `filter()` or `select()` out those rows/columns
 ]

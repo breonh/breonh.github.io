@@ -1,0 +1,127 @@
+---
+title: "**Homework 3: `nycflight13` Data Analysis**"
+author: "STUDENT NAME \n  CS&SS 508"
+date: "DUE DATE"
+output:
+  html_document:
+  theme: united
+---
+
+
+```{r Packages set-up, include=TRUE, message=FALSE, cache=TRUE}
+#Loading all packages used in this rmd file:knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(ggplot2)
+library(pander)
+library(nycflights13)
+data("flights")
+data("airlines")
+data("airports")
+data("planes")
+data("weather")
+
+```
+
+# **About `nycflight13` Data**
+
+The `nycflight13` dataset is a collection of data pertaining to different airlines flying from different airports (e.g., EWR, JFK, and LGA) in NYC. The data tables included are the followings, 
+
+* `flights`: All flights that departed from NYC in 2013
+* `weather`: Hourly meterological data for each airport
+* `planes`: Construction information about each plane
+* `airports`: Airport names and locations
+* `airlines`: Translation between two letter carrier codes and names
+
+
+## **The dataset will be used to explore and display the following questions** 
+
+
+### **1) Which airline had the most number of flights from NYC to LAX?**  
+```{r nyc to lax, echo=TRUE, cache = TRUE, fig.align = 'center', fig.width=10}
+nyc_lax <- flights %>% filter(dest == "LAX") %>% # filter destination for LAX
+  select(carrier) %>% #selecting only the carrier information
+  left_join(airlines, by = "carrier") %>% #join the "flight" data with "airlines data" 
+  group_by(name) %>% #compute data for each airline name 
+  tally() %>%  #count the number of flights for each airline
+  arrange(desc(n)) #arrange in descending order 
+
+
+ggplot(nyc_lax, aes(x = reorder (name, -n),y=n, fill = name)) + #Creating a bar chart to display the results 
+  geom_bar(stat = "identity") +
+  geom_col (width = 0.5, position = "dodge") +
+  xlab("Airlines") +
+  ylab("Number of flights") +
+  ggtitle ("Total number of flights from NYC to LAX in 2013 by airlines") +
+  scale_fill_hue(c = 40, name = "Airlines") +
+  theme_bw(base_size = 10)
+```
+
+**Figure 1.** Total number of flights from NYC to LAX in 2013 by airlines, in descending order. 
+
+
+United airline had the highest number of flights from New York city (NYC)to Los Angeles (LAX) in 2013, followed by American airline, Virgin America, Delta airline, and JetBlue Airways
+
+
+### **2) What is the mean delay in departure and arrival for flights from NYC to LAX by airline in 2013?** 
+```{r mean delay, echo=TRUE, message=FALSE, cache = TRUE, fig.align = 'center'}
+nyclax_arrival_delay <- 
+  flights %>% filter(dest == "LAX") %>% # filter destination for LAX
+  select(carrier, year, month, dep_delay, arr_delay) %>% #Select needed columns
+  mutate(Time_gained = arr_delay + dep_delay) %>% #Create a new column that accounts for delay or early departure and arrival
+  left_join(airlines, by = "carrier") %>% #join with airlines data to get the names of each airline
+  group_by(year, name) %>% 
+  summarize( Mean_Departure_Delay = mean(dep_delay, na.rm = TRUE),
+             Mean_Arrival_Delay = mean(arr_delay, na.rm = TRUE),
+             Mean_gain = mean(Time_gained, na.rm = TRUE)) %>% #Summarize the departure and arrival delays 
+  rename(Year = year,Airlines = name, Departure = Mean_Departure_Delay, Arrival = Mean_Arrival_Delay, Total_Delay = Mean_gain) %>% 
+  arrange(Total_Delay)
+
+  pander(nyclax_arrival_delay, style = "rmarkdown", caption = "**Table 1. Mean Delay in Departure & Arrival Time (minutes) in 2013**")
+```
+
+
+*Negative values indicate early departure and arrival.* 
+
+
+In 2013, Delta airline had the shortest mean departure delay of 5 minutes and arrived almost 4 minutes earlier than scheduled arrival time, which mean the average total delay was slightly under 2 minutes. United airline had the longest mean delays, 13.66, which is over 7 times longer than Delta airlines. 
+
+
+
+### **3) What is the trend of total delay (departure + arrival) for flights from NYC to LAX by airlines in each month of 2013?**
+
+```{r mean total delay, echo=TRUE, message=FALSE, cache = TRUE, fig.align = 'center'}
+delay_month <- 
+  flights %>% filter(dest == "LAX") %>% # filter destination for LAX
+  select(carrier, year, month, dep_delay, arr_delay) %>% #Select needed columns
+  mutate(Total_delay = arr_delay + dep_delay) %>% #Create a new column that accounts for delay or early departure and arrival
+  left_join(airlines, by = "carrier") %>% #join with airlines data to get the names of each airline
+  group_by(year, month, name) %>% 
+  summarise (Mean_total_delay = mean(Total_delay, na.rm = TRUE)) 
+
+ggplot(data = delay_month, 
+       aes(x = month, y = Mean_total_delay, color = name)) +
+  geom_line(size = 1) +
+  xlab("Months") +
+  ylab("Mean Total Delay (minutes)") +
+  scale_x_continuous(breaks = 1:12) +
+  scale_color_manual(name = "Airline Names",
+                     values = c("American Airlines Inc." = "Red", 
+                                "Delta Air Lines Inc." = "Blue", 
+                                "JetBlue Airways" = "Orange",
+                                "United Airlines Inc" = "Black", 
+                                "Virgin America" = "Pink")) +
+  ggtitle("Mean total delay of flights from NYC to LAX in 2013") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme_bw() 
+```
+
+**Figure 2.** Trend of the mean delays for flights from NYC to LAX by airlines on a monthly basis. 
+
+
+*Negative values indicate early departure and arrival.* 
+
+
+From the figure, Virgin America airline is associated with the most variability in the total delays throughout the year. American airline is the most stable throughout the year. From the month of May to August is when all of the airlines experience increased delays, likely due to the fact that the number of flights increase during that time period. 
+
+
+

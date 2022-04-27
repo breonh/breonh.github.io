@@ -345,9 +345,9 @@ df_3 <- rbind(df_2, df_2)
     # "x" that has 20 numbers between 0 and 10 generated using "runif()" (get help with ?runif)
     # "color" that consists of 20 values sampled from "col_vec "below using "sample()".
 col_vec <- colors() # DO NOT EDIT THIS LINE; add code below it.
-df_4 <- data.frame(y=seq(31,125,length.out=20),
-                   x=runif(20,0,10),
-                   color=sample(col_vec, 20))
+df_4 <- data.frame("y" = seq(31, 125, length.out =20),
+                   "x" = runif(n=20, min=0, max=10),
+                   "color" = sample(col_vec, size= 20))
 
     # This code here should produce a plot of those values with those colors!
 if(is.null(df_4)==FALSE) df_4 %>% ggplot(aes(x, y, color=color)) + geom_point() + theme(legend.position="none")

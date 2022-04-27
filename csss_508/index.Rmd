@@ -141,8 +141,12 @@ author: |
 
 **Homework 3:**
        
-   * **[Homework 3 Instructions](https://breonh.github.io/csss_508/homework/homework_3.html)**
-   * **Homework 3 KEY / Example**
+   **[Homework 3 Instructions](https://breonh.github.io/csss_508/homework/homework_3.html)**
+   
+   **Homework 3 KEY / Example**
+   
+   * [RMD](https://breonh.github.io/csss_508/homework/homework_3/homework_3_dplyr_example.Rmd)
+   * [HTML](https://breonh.github.io/csss_508/homework/homework_3/homework_3_dplyr_example.html)
 
    **Related Reading: **
 
@@ -185,7 +189,7 @@ author: |
    
   **Lab Recording: **
    
-  [Youtube Link to Week 4 Lab]()
+  [Youtube Link to Week 4 Lab](https://youtu.be/YTwZfNYtK3M)
 
        
 
