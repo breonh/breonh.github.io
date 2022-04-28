@@ -14,7 +14,7 @@ class: center, top, title-slide
 # CSSS508, Week 5
 ## Importing, Exporting, and Cleaning Data
 ### Breon Haskett
-### October 27, 2021<br>Updated: Oct 27, 2021
+### April 28, 2022<br>Updated: Apr 28, 2022
 
 ---
 
@@ -179,12 +179,12 @@ If you are working with a popular data source, try Googling to see if it has a d
 Besides a package, the easiest way to work with external data is for it to be stored in a *delimited* text file, e.g. comma-separated values (**.csv**) or tab-separated values (**.tsv**). Here is **.csv** data:
 
 ```
-Date,Visitor/Neutral,PTS,Home/Neutral,PTS,,Notes
-10-08-2021,"Pheonix Mercury",87,"Las Vegas Aces",84,Box Score,
-10-10-2021,"Chicago Sky",91,"Pheonix Mercury",77,Box Score,
-10-13-2021,"Chicago Sky",86,"Pheonix Mercury",91,Box Score,
-10-15-2021,"Pheonix Mercury",50,"Chicago Sky",86,Box Score,
-10-17-2021,"Pheonix Mercury",74,"Chicago Sky",80,Box Score,
+Date,Visitor/Neutral,PTS,Home/Neutral,PTS,Notes
+10-08-2021,"Pheonix Mercury",87,"Las Vegas Aces",84,Box Score
+10-10-2021,"Chicago Sky",91,"Pheonix Mercury",77,Box Score
+10-13-2021,"Chicago Sky",86,"Pheonix Mercury",91,Box Score
+10-15-2021,"Pheonix Mercury",50,"Chicago Sky",86,Box Score
+10-17-2021,"Pheonix Mercury",74,"Chicago Sky",80,Box Score
 ```
 
 ---
@@ -195,7 +195,6 @@ R has a variety of built-in functions for importing data stored in text files, l
 `readr` function features:
 
 * Faster!&lt;sup&gt;1&lt;/sup&gt;
-* Better defaults (e.g. doesn't automatically convert character data to factors)
 * A *little* smarter about dates and times
 * Handy function `problems()` you can run if there are errors
 * Loading bars for large files
@@ -219,27 +218,17 @@ billboard_2000_raw &lt;- read_csv(file = "https://breonh.github.io/csss_508/lect
 ```
 
 ```
-## 
+## Rows: 317 Columns: 81
 ## -- Column specification ----------------------------------------------
-## cols(
-##   .default = col_double(),
-##   artist = col_character(),
-##   track = col_character(),
-##   time = col_time(format = ""),
-##   date.entered = col_date(format = ""),
-##   wk66 = col_logical(),
-##   wk67 = col_logical(),
-##   wk68 = col_logical(),
-##   wk69 = col_logical(),
-##   wk70 = col_logical(),
-##   wk71 = col_logical(),
-##   wk72 = col_logical(),
-##   wk73 = col_logical(),
-##   wk74 = col_logical(),
-##   wk75 = col_logical(),
-##   wk76 = col_logical()
-## )
-## i Use `spec()` for the full column specifications.
+## Delimiter: ","
+## chr   (2): artist, track
+## dbl  (66): year, wk1, wk2, wk3, wk4, wk5, wk6, wk7, wk8, wk9, wk10...
+## lgl  (11): wk66, wk67, wk68, wk69, wk70, wk71, wk72, wk73, wk74, w...
+## date  (1): date.entered
+## time  (1): time
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 ]
 
@@ -442,7 +431,7 @@ First things to check after loading new data:
 --
 
 .smallish[
-* Did the last rows/columns from the original file make it in?
+* Did the [last rows/columns](http://unionstats.com/wage_diff_All_Wage_and_Salary.xlsx) from the original file make it in?
 
     + May need to use different package or manually specify range
 ]
@@ -450,14 +439,14 @@ First things to check after loading new data:
 --
 
 .smallish[
-* Are the column names in good shape?
+* Are the [column names]() in good shape?
 
     + Modify a `col_names=` argument or fix with `rename()`
 ]
 --
 .smallish[
 
-* Are there "decorative" blank rows or columns to remove?
+* Are there ["decorative"](https://www150.statcan.gc.ca/t1/tbl1/#?pid=13100114&amp;file=1310011401-eng.csv) blank rows or columns to remove?
 
     + `filter()` or `select()` out those rows/columns
 ]
@@ -521,12 +510,6 @@ Ready to throw into `ggplot()`!
 # Billboard is Just Ugly-Messy
 
 .small[
-
-```
-## Warning: package 'pander' was built under R version 4.0.5
-```
-
-
 
 | year |       artist        |          track          | time | date.entered | wk1 | wk2 | wk3 | wk4 | wk5 |
 |:----:|:-------------------:|:-----------------------:|:----:|:------------:|:---:|:---:|:---:|:---:|:---:|
@@ -612,7 +595,7 @@ The `tidyr` package provides functions to tidy up data, similar to `reshape` in 
 --
 
 * **`separate()`**: pulls apart one column into multiple columns (common after `pivot_longer()` where values are embedded in column names)
-    * `extract_numeric()` does a simple version of this for the common case when you just want grab the number part
+    * `extract_numeric()` does a simple version of this for the common case when you just want grab the number part. It is deprecated, however.
 
 --
 
@@ -1006,29 +989,14 @@ spd_raw &lt;- read_csv("https://breonh.github.io/csss_508/lecture/week5/data/Sea
 ```
 
 ```
-## 
+## Rows: 706 Columns: 19
 ## -- Column specification ----------------------------------------------
-## cols(
-##   `CAD CDW ID` = col_double(),
-##   `CAD Event Number` = col_double(),
-##   `General Offense Number` = col_double(),
-##   `Event Clearance Code` = col_character(),
-##   `Event Clearance Description` = col_character(),
-##   `Event Clearance SubGroup` = col_character(),
-##   `Event Clearance Group` = col_character(),
-##   `Event Clearance Date` = col_character(),
-##   `Hundred Block Location` = col_character(),
-##   `District/Sector` = col_character(),
-##   `Zone/Beat` = col_character(),
-##   `Census Tract` = col_double(),
-##   Longitude = col_double(),
-##   Latitude = col_double(),
-##   `Incident Location` = col_character(),
-##   `Initial Type Description` = col_character(),
-##   `Initial Type Subgroup` = col_character(),
-##   `Initial Type Group` = col_character(),
-##   `At Scene Time` = col_character()
-## )
+## Delimiter: ","
+## chr (13): Event Clearance Code, Event Clearance Description, Event...
+## dbl  (6): CAD CDW ID, CAD Event Number, General Offense Number, Ce...
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 ]
 
@@ -1375,6 +1343,17 @@ This homework is two parts to be completed in each of the next two weeks. It can
 
 ## PART 1 DUE: Next Week
 ## PART 2 DUE: In Two Weeks
+
+---
+
+class: inverse
+# Week of May 1
+
+I will be out of town and sparsely available for email and slack. 
+
+The recordings for lab that would have taken place on May 3rd will be posted on May 3rd. 
+
+The recording for lecture that would have taken place on May 5th will be posted on May 5th.  
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

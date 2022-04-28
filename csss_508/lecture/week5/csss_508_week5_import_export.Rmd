@@ -2,7 +2,7 @@
 title: "CSSS508, Week 5"
 subtitle: "Importing, Exporting, and Cleaning Data"
 author: "Breon Haskett"
-date: "October 27, 2021<br>Updated: `r gsub(' 0', ' ', format(Sys.Date(), format='%b %d, %Y'))`"
+date: "April 28, 2022<br>Updated: `r gsub(' 0', ' ', format(Sys.Date(), format='%b %d, %Y'))`"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -531,7 +531,7 @@ The `tidyr` package provides functions to tidy up data, similar to `reshape` in 
 --
 
 * **`separate()`**: pulls apart one column into multiple columns (common after `pivot_longer()` where values are embedded in column names)
-    * `extract_numeric()` does a simple version of this for the common case when you just want grab the number part
+    * `extract_numeric()` does a simple version of this for the common case when you just want grab the number part. It is deprecated, however.
 
 --
 
@@ -1067,3 +1067,16 @@ This homework is two parts to be completed in each of the next two weeks. It can
 
 ## PART 1 DUE: Next Week
 ## PART 2 DUE: In Two Weeks
+
+---
+
+class: inverse
+# Week of May 1
+
+I will be out of town and sparsely available for email and slack. 
+
+The recordings for lab that would have taken place on May 3rd will be posted on May 3rd. 
+
+There will be no office hours on May 4th. 
+
+The recording for lecture that would have taken place on May 5th will be posted on May 5th.  
