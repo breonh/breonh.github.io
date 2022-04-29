@@ -228,7 +228,7 @@ author: |
 
  **Lecture Recording: **
    
-  [Youtube Link to Week 5 Lecture]()
+  [Youtube Link to Week 5 Lecture](https://youtu.be/5g_lOYYHyXQ)
 
  **Lab Recording: **
  
