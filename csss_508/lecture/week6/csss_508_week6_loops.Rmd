@@ -2,7 +2,7 @@
 title: "CSSS508, Week 6"
 subtitle: "Loops"
 author: "Breon Haskett"
-date: "November 3, 2021<br>Updated: `r gsub(' 0', ' ', format(Sys.Date(), format='%b %d, %Y'))`"
+date: "May 5, 2022<br>Updated: `r gsub(' 0', ' ', format(Sys.Date(), format='%b %d, %Y'))`"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -822,4 +822,4 @@ This replaced our entire data loading loop with one line!
 class: inverse
 # Homework
 
-Reminder: HW 5 Part II assigned last week is due midnight Tuesday.
+Reminder: HW 5 Part II assigned last week is due midnight Wednesday.

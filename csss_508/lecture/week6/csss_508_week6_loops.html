@@ -14,7 +14,7 @@ class: center, top, title-slide
 # CSSS508, Week 6
 ## Loops
 ### Breon Haskett
-### November 3, 2021<br>Updated: Nov 3, 2021
+### May 5, 2022<br>Updated: Apr 29, 2022
 
 ---
 
@@ -920,7 +920,7 @@ num_flips # follows negative binomial distribution
 ```
 
 ```
-## [1] 5
+## [1] 6
 ```
 
 ---
@@ -951,7 +951,7 @@ for(position in 1:length(my_vector)) {
 
 ```
 ##    user  system elapsed 
-##    5.40    0.20    5.66
+##    5.38    0.30    5.69
 ```
 
 ---
@@ -968,7 +968,7 @@ new_vector &lt;- my_vector + 1
 
 ```
 ##    user  system elapsed 
-##    0.27    0.22    0.49
+##    0.25    0.20    0.46
 ```
 
 ```r
@@ -977,10 +977,10 @@ for_time / vec_time
 
 ```
 ##    user  system elapsed 
-##  20.000   0.909  11.551
+##    21.5     1.5    12.4
 ```
 
-The vectorized method was 20 times as fast! Vector/matrix arithmetic is implemented using fast, optimized functions that a `for()` loop can't compete with.
+The vectorized method was 22 times as fast! Vector/matrix arithmetic is implemented using fast, optimized functions that a `for()` loop can't compete with.
 
 ---
 # Vectorization Examples
@@ -1042,13 +1042,13 @@ complete_data_vroom &lt;- vroom::vroom(list.files("./example_data/", full.names=
 ```
 
 ```
-## Rows: 10,000
-## Columns: 3
+## Rows: 10000 Columns: 3
+## -- Column specification ----------------------------------------------
 ## Delimiter: ","
-## dbl [3]: id, x, z
+## dbl (3): id, x, z
 ## 
-## Use `spec()` to retrieve the guessed column specification
-## Pass a specification to the `col_types` argument to quiet this message
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
 ```
 ]
 
@@ -1073,7 +1073,7 @@ This replaced our entire data loading loop with one line!
 class: inverse
 # Homework
 
-Reminder: HW 5 Part II assigned last week is due midnight Tuesday.
+Reminder: HW 5 Part II assigned last week is due midnight Wednesday.
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

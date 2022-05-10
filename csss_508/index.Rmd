@@ -217,8 +217,8 @@ author: |
    
    **Homework 5 KEY pt. 1:**
 
-   * [Homework 5 part 1 RMD]()
-   * [Homework 5 part 1 HTML]()
+   * [Homework 5 part 1 RMD](https://breonh.github.io/csss_508/homework/homework_5/homework_5_pt1_key.Rmd)
+   * [Homework 5 part 1 HTML](https://breonh.github.io/csss_508/homework/homework_5/homework_5_pt1_key.html)
 
    **Data From Class: **
    
@@ -232,7 +232,7 @@ author: |
 
  **Lab Recording: **
  
-  [Youtube Link to Week 5 Lab]()
+  [Youtube Link to Week 5 Lab](https://youtu.be/Z9IaUeZ5Kck)
 
 
    **Related Reading: **
@@ -277,7 +277,7 @@ author: |
 
  **Lecture Recording: **
    
-  [Youtube Link to Week 6 Lecture]()
+  [Youtube Link to Week 6 Lecture](https://youtu.be/FzgEC3FAN4I)
 
  **Lab Recording **
  
