@@ -281,7 +281,7 @@ author: |
 
  **Lab Recording **
  
-  [Youtube Link to Week 6 Lab]()
+  [Youtube Link to Week 6 Lab](https://youtu.be/J8g2FSunDwY)
 
 ### 7. Writing Functions
 
