@@ -14,7 +14,7 @@ class: center, top, title-slide
 # CSSS508, Week 7
 ## Vectorization and Functions
 ### Breon Haskett
-### November 10, 2021<br>Updated: Nov 10, 2021
+### May 12, 2022<br>Updated: May 12, 2022
 
 ---
 
@@ -105,7 +105,7 @@ class: inverse
 # Writing Functions
 
 ---
-# Examples of Existing Functions
+## Examples of Existing Functions
 
 * `mean()`:
     + Input: a vector
@@ -114,7 +114,7 @@ class: inverse
 --
 
 * `dplyr::filter()`:
-    + Input: a data frame, logical conditions
+    + Input: a data frame, logical condition(s)
     + Output: a data frame with rows removed using those conditions
 
 --
@@ -124,7 +124,7 @@ class: inverse
     + Output: a data frame containing info read in from file
 
 ---
-# Why Write Your Own Functions?
+## Why Write Your Own Functions?
 
 Functions can encapsulate actions you might perform often, such as:
 
@@ -264,7 +264,7 @@ smarter_first_and_last
 ##         return(c("first" = first, "last" = last))        
 ##     }
 ## }
-## &lt;bytecode: 0x00000000149b5b50&gt;
+## &lt;environment: 0x000002589dcf1640&gt;
 ```
 
 You can also put your cursor over a function in your syntax and hit `F2`.
@@ -346,7 +346,11 @@ Like a loop, `apply` functions iterate over elements of objects, except:
 * They don't need preallocation--you can directly assign the output.
 * They *must use a function*
 
-*Nearly anything you can do with an explicit loop can be done more easily with the `apply` family of functions*
+*Nearly anything you can do with an explicit loop can be done more easily with the `apply` family of functions&lt;sup&gt;1&lt;/sup&gt;*
+
+.footnote[
+[1] The `tidyverse` version of `apply` functions is called [`purrr`](https://purrr.tidyverse.org/) and has many more options for methods of iteration than base R. 
+]
 
 ---
 # `lapply()`: List + Functions
@@ -739,7 +743,7 @@ swiss %&gt;%
 ```
 
 ---
-# Anonymous Functions in `dplyr`
+## Anonymous Functions in `dplyr`
 
 You can skip naming your function in `dplyr` if you won't use it again. Code below will return the mean divided by the standard deviation for each variable in `swiss`:
 
@@ -871,7 +875,7 @@ gapminder_lifeplot(cntry = "Turkey")
 
 
 ```r
-gapminder_lifeplot(cntry = "Rwanda")
+gapminder_lifeplot(cntry = "Nigeria")
 ```
 
 ![](csss_508_week7_vectorization_files/figure-html/unnamed-chunk-34-1.svg)&lt;!-- --&gt;
@@ -947,7 +951,7 @@ gapminder_plot(cntry = "Turkey", yvar = "pop")
 
 
 ```r
-gapminder_plot(cntry = "Rwanda", yvar = "gdpPercap")
+gapminder_plot(cntry = "Nigeria", yvar = "gdpPercap")
 ```
 
 ![](csss_508_week7_vectorization_files/figure-html/unnamed-chunk-38-1.svg)&lt;!-- --&gt;
@@ -1083,21 +1087,20 @@ My lectures are rendered with a function!
 
 ```r
 render_and_print_slides &lt;- function(week){
-    week_dir     &lt;- paste0(getwd(), "/Lectures/", "Week", week, "/")
-    current_rmd  &lt;- paste0(week_dir, stringr::str_subset(list.files(week_dir),
-                                                     "^CSSS508_Week.*\\.Rmd$"))
-    rmarkdown::render(current_rmd, encoding = "UTF-8")
-    current_html &lt;- stringr::str_replace(current_rmd,  "\\.Rmd",  "\\.html")
-    new_pdf_file &lt;- stringr::str_replace(current_html, "\\.html", "\\.pdf")
-    new_r_script &lt;- stringr::str_replace(current_html, "\\.html", "\\.R")
-    message("Slides rendered, waiting 5 seconds.")
-    Sys.sleep(5)
-    message("Purling slides.")
-    knitr::purl(input = current_rmd, output = new_r_script, documentation = 0)
-    message("Printing from Chrome.")
-    pagedown::chrome_print(current_html, format="pdf")
-    message(paste0("Printing complete at ", week_dir))
-}
+  week_dir     &lt;- paste0(getwd(), "/lecture/", "week", week, "/")
+  current_rmd  &lt;- paste0(week_dir, stringr::str_subset(list.files(week_dir),
+                                                       "^csss_508_week.*\\.Rmd$"))
+  rmarkdown::render(current_rmd, encoding = "UTF-8")
+  current_html &lt;- stringr::str_replace(current_rmd,  "\\.Rmd",  "\\.html")
+  new_pdf_file &lt;- stringr::str_replace(current_html, "\\.html", "\\.pdf")
+  new_r_script &lt;- stringr::str_replace(current_html, "\\.html", "_companion\\.R")
+  message("Slides rendered, waiting 5 seconds.")
+  Sys.sleep(5)
+  message("Purling slides.")
+  knitr::purl(input = current_rmd, output = new_r_script, documentation = 0)
+  message("Printing from Chrome.")
+  pagedown::chrome_print(current_html, format="pdf")
+  message(paste0("Printing complete at ", week_dir)) }
 ```
 ]
 

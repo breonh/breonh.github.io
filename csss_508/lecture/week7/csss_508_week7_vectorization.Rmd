@@ -2,7 +2,7 @@
 title: "CSSS508, Week 7"
 subtitle: "Vectorization and Functions"
 author: "Breon Haskett"
-date: "November 10, 2021<br>Updated: `r gsub(' 0', ' ', format(Sys.Date(), format='%b %d, %Y'))`"
+date: "May 12, 2022<br>Updated: `r gsub(' 0', ' ', format(Sys.Date(), format='%b %d, %Y'))`"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -97,7 +97,7 @@ class: inverse
 # Writing Functions
 
 ---
-# Examples of Existing Functions
+## Examples of Existing Functions
 
 * `mean()`:
     + Input: a vector
@@ -106,7 +106,7 @@ class: inverse
 --
 
 * `dplyr::filter()`:
-    + Input: a data frame, logical conditions
+    + Input: a data frame, logical condition(s)
     + Output: a data frame with rows removed using those conditions
 
 --
@@ -116,7 +116,7 @@ class: inverse
     + Output: a data frame containing info read in from file
 
 ---
-# Why Write Your Own Functions?
+## Why Write Your Own Functions?
 
 Functions can encapsulate actions you might perform often, such as:
 
@@ -282,7 +282,11 @@ Like a loop, `apply` functions iterate over elements of objects, except:
 * They don't need preallocation--you can directly assign the output.
 * They *must use a function*
 
-*Nearly anything you can do with an explicit loop can be done more easily with the `apply` family of functions*
+*Nearly anything you can do with an explicit loop can be done more easily with the `apply` family of functions<sup>1</sup>*
+
+.footnote[
+[1] The `tidyverse` version of `apply` functions is called [`purrr`](https://purrr.tidyverse.org/) and has many more options for methods of iteration than base R. 
+]
 
 ---
 # `lapply()`: List + Functions
@@ -523,7 +527,7 @@ swiss %>%
 ```
 
 ---
-# Anonymous Functions in `dplyr`
+## Anonymous Functions in `dplyr`
 
 You can skip naming your function in `dplyr` if you won't use it again. Code below will return the mean divided by the standard deviation for each variable in `swiss`:
 
@@ -642,7 +646,7 @@ gapminder_lifeplot(cntry = "Turkey")
 # Testing Plot Function
 
 ```{r, warning=FALSE, message=FALSE, echo=TRUE, fig.height = 4, dev="svg"}
-gapminder_lifeplot(cntry = "Rwanda")
+gapminder_lifeplot(cntry = "Nigeria")
 ```
 
 ---
@@ -698,7 +702,7 @@ gapminder_plot(cntry = "Turkey", yvar = "pop")
 # Testing `gapminder_plot()`
 
 ```{r, warning=FALSE, message=FALSE, echo=TRUE, fig.height = 4, dev="svg"}
-gapminder_plot(cntry = "Rwanda", yvar = "gdpPercap")
+gapminder_plot(cntry = "Nigeria", yvar = "gdpPercap")
 
 ```
 
@@ -802,21 +806,20 @@ My lectures are rendered with a function!
 .smallish[
 ```{r, eval=FALSE}
 render_and_print_slides <- function(week){
-    week_dir     <- paste0(getwd(), "/Lectures/", "Week", week, "/")
-    current_rmd  <- paste0(week_dir, stringr::str_subset(list.files(week_dir),
-                                                     "^CSSS508_Week.*\\.Rmd$"))
-    rmarkdown::render(current_rmd, encoding = "UTF-8")
-    current_html <- stringr::str_replace(current_rmd,  "\\.Rmd",  "\\.html")
-    new_pdf_file <- stringr::str_replace(current_html, "\\.html", "\\.pdf")
-    new_r_script <- stringr::str_replace(current_html, "\\.html", "\\.R")
-    message("Slides rendered, waiting 5 seconds.")
-    Sys.sleep(5)
-    message("Purling slides.")
-    knitr::purl(input = current_rmd, output = new_r_script, documentation = 0)
-    message("Printing from Chrome.")
-    pagedown::chrome_print(current_html, format="pdf")
-    message(paste0("Printing complete at ", week_dir))
-}
+  week_dir     <- paste0(getwd(), "/lecture/", "week", week, "/")
+  current_rmd  <- paste0(week_dir, stringr::str_subset(list.files(week_dir),
+                                                       "^csss_508_week.*\\.Rmd$"))
+  rmarkdown::render(current_rmd, encoding = "UTF-8")
+  current_html <- stringr::str_replace(current_rmd,  "\\.Rmd",  "\\.html")
+  new_pdf_file <- stringr::str_replace(current_html, "\\.html", "\\.pdf")
+  new_r_script <- stringr::str_replace(current_html, "\\.html", "_companion\\.R")
+  message("Slides rendered, waiting 5 seconds.")
+  Sys.sleep(5)
+  message("Purling slides.")
+  knitr::purl(input = current_rmd, output = new_r_script, documentation = 0)
+  message("Printing from Chrome.")
+  pagedown::chrome_print(current_html, format="pdf")
+  message(paste0("Printing complete at ", week_dir)) }
 ```
 ]
 

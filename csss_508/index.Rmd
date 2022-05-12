@@ -41,7 +41,7 @@ author: |
    * [Install R and R Markdown!](https://breonh.github.io/csss_508/installation.html)
    
    * [Slides for Lecture 1: Course logistics, R/RStudio, and R Markdown](https://breonh.github.io/csss_508/lecture/week1/csss_508_week1_Rstudio_and_Rmarkdown.html)
-       + [Companion R Script for Lecture 1 slides](https://raw.githubusercontent.com/breonh/breonh.github.io/main/csss_508/lecture/week1/within_week1_slides_rcode.R)
+       + [Companion R Script for Lecture 1 slides](https://raw.githubusercontent.com/breonh/breonh.github.io/main/csss_508/lecture/week1/csss_508_week1_Rstudio_and_Rmarkdown_companion.R)
        + [PDF of Lecture 1 slides](https://breonh.github.io/csss_508/lecture/week1/csss_508_week1_Rstudio_and_Rmarkdown.pdf)
        + [Rmd for Lecture 1 slides](https://raw.githubusercontent.com/breonh/breonh.github.io/main/csss_508/lecture/week1/csss_508_week1_Rstudio_and_Rmarkdown.Rmd)
        
@@ -83,7 +83,7 @@ author: |
    **Lecture for Week 2:**
 
    * [Slides for Lecture 2: Plotting with `ggplot2`](https://breonh.github.io/csss_508/lecture/week2/csss_508_Week2_ggplot2.html)
-       + [Companion R Script for Lecture 2 slides](https://breonh.github.io/csss_508/lecture/week2/csss_508_week2_rscript_companion.R)
+       + [Companion R Script for Lecture 2 slides](https://breonh.github.io/csss_508/lecture/week2/csss_508_week2_ggplot2_companion.R)
        + [PDF of Lecture 2 slides](https://breonh.github.io/csss_508/lecture/week2/csss_508_Week2_ggplot2.pdf)
        + [Rmd for Lecture 2 slides](https://breonh.github.io/csss_508/lecture/week2/csss_508_Week2_ggplot2.Rmd)
        
@@ -288,7 +288,7 @@ author: |
  **Lecture for Week 7:**
 
    * [Slides for Lecture 7: Loops](https://breonh.github.io/csss_508/lecture/week7/csss_508_week7_vectorization.html)
-       + [Companion R Script for Lecture 7 slides](https://raw.githubusercontent.com/breonh/breonh.github.io/main/csss_508/lecture/week7/csss_508_week7_rscript_companion.R)
+       + [Companion R Script for Lecture 7 slides](https://raw.githubusercontent.com/breonh/breonh.github.io/main/csss_508/lecture/week7/csss_508_week7_vectorization_companion.R)
        + [PDF of Lecture 7 slides](https://breonh.github.io/csss_508/lecture/week7/csss_508_week7_vectorization.pdf)
        + [Rmd for Lecture 7 slides](https://breonh.github.io/csss_508/lecture/week7/csss_508_week7_vectorization.Rmd)
 
