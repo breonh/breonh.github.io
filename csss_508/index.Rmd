@@ -287,7 +287,7 @@ author: |
 
  **Lecture for Week 7:**
 
-   * [Slides for Lecture 7: Loops](https://breonh.github.io/csss_508/lecture/week7/csss_508_week7_vectorization.html)
+   * [Slides for Lecture 7: Vectorization and Functions](https://breonh.github.io/csss_508/lecture/week7/csss_508_week7_vectorization.html)
        + [Companion R Script for Lecture 7 slides](https://raw.githubusercontent.com/breonh/breonh.github.io/main/csss_508/lecture/week7/csss_508_week7_vectorization_companion.R)
        + [PDF of Lecture 7 slides](https://breonh.github.io/csss_508/lecture/week7/csss_508_week7_vectorization.pdf)
        + [Rmd for Lecture 7 slides](https://breonh.github.io/csss_508/lecture/week7/csss_508_week7_vectorization.Rmd)
