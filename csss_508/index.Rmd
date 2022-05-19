@@ -271,9 +271,9 @@ author: |
    * **[Homework 5, part 2 Template](https://breonh.github.io/csss_508/homework/homework_5/homework_5_pt1_key.Rmd)**
    * **Homework 5 KEY:**
    
-      + [RMD]()
+      + [RMD](https://breonh.github.io/csss_508/homework/homework_5/homework_5_pt2_key.Rmd)
       
-      + [HTML]()
+      + [HTML](https://breonh.github.io/csss_508/homework/homework_5/homework_5_pt2_key.html)
 
  **Lecture Recording: **
    
@@ -297,6 +297,10 @@ author: |
    * **[Homework 6, part 1 Template](https://raw.githubusercontent.com/breonh/breonh.github.io/main/csss_508/homework/homework_6/homework_6.Rmd)**
    
    * **Homework 6, part 1 KEY**
+   
+       + [RMD](https://breonh.github.io/csss_508/homework/homework_6/homework_6_p1_key.Rmd)
+      
+       + [HTML](https://breonh.github.io/csss_508/homework/homework_6/homework_6_p1_key.html)
    
    * **[Homework 6 Data File](https://s3.amazonaws.com/pronto-data/open_data_year_one.zip) ** 
 
@@ -324,7 +328,7 @@ author: |
  **Lecture for Week 8:**
 
    * [Slides for Lecture 8: Working with Strings and Character Data](https://breonh.github.io/csss_508/lecture/week8/csss_508_week8_strings.html)
-       + [Companion R Script for Lecture 8 slides](https://breonh.github.io/csss_508/lecture/week8/csss_508_week8_rscript_companion.R)
+       + [Companion R Script for Lecture 8 slides](https://breonh.github.io/csss_508/lecture/week8/csss_508_week8_strings_companion.R)
        + [PDF of Lecture 8 slides](https://breonh.github.io/csss_508/lecture/week8/csss_508_week8_strings.pdf)
        + [Rmd for Lecture 8 slides](https://breonh.github.io/csss_508/lecture/week8/csss_508_week8_strings.Rmd)
 

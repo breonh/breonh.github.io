@@ -14,7 +14,7 @@ class: center, top, title-slide
 # CSSS508, Week 8
 ## Strings
 ### Breon Haskett
-### Nov 17, 2021<br>Updated: Nov 17, 2021
+### May 19, 2022<br>Updated: May 19, 2022
 
 ---
 
@@ -152,6 +152,7 @@ We can combine parts of strings together using the `paste()` function, e.g. to m
 restaurants &lt;- restaurants %&gt;%
     mutate(mailing_address = 
            paste(Address, ", ", City, ", WA ", ZIP_5, sep = ""))
+
 restaurants %&gt;% distinct(mailing_address) %&gt;% head()
 ```
 
@@ -200,7 +201,7 @@ paste0(1:5, letters[1:5])
 ---
 # `paste()` Practice
 
-`sep=` controls what happens when doing entry-wise squishing of vectors you give to `paste()`, while `collapse=` controls if/how they go from a vector to a single string.
+`sep=` controls what happens when doing entry-wise squeezing of vectors you give to `paste()`, while `collapse=` controls if/how they go from a vector to a single string.
 
 Here are some examples; make sure you understand how each set of arguments produces its results:
 
@@ -320,6 +321,37 @@ head(unique(restaurants$City))
 ```
 
 ---
+# Changing Cases
+
+`str_to_sentence` converts cases for a first character capital letter, which may be a good idea for modular reports, but beware the coercion.
+
+
+```r
+elegy &lt;- restaurants %&gt;%
+    filter(Address == "1401 NE 42ND ST") %&gt;% 
+  slice(1) %&gt;% 
+  pull(Program_Identifier) %&gt;% 
+  str_to_title() %&gt;% 
+  paste0("i miss you, ", ., ".")
+
+elegy
+```
+
+```
+## [1] "i miss you, Madeleine Bakery."
+```
+
+
+```r
+str_to_sentence(elegy)
+```
+
+```
+## [1] "I miss you, madeleine bakery."
+```
+
+
+---
 # `str_trim()` Whitespace
 
 Extra leading or trailing whitespace is common in text data:
@@ -357,7 +389,7 @@ class: inverse
 # Regular Expressions and Pattern Matching
 
 ---
-# What are Regular Expressions?
+### What are Regular Expressions?
 
 **Regular expressions** or **regex**es are how we describe patterns we are looking for
 in text in a way that a computer can understand. We write an **expression**, apply it
@@ -372,6 +404,7 @@ to a string input, and then compute with **matches** we find.
 * **Metacharacters** let us be flexible in describing patterns:
     + backslash `\`, caret `^`, dollar sign `$`, period `.`, pipe `|`, question mark `?`, asterisk `*`, plus sign `+`, parentheses `(` and `)`, square brackets `[` and `]`, curly braces `{` and `}`
     + To treat a metacharacter as a literal character, you must **escape** it with two preceding backslashs `\\`, e.g. to match `(206)` including the parentheses, you'd use `\\(206\\)` in your regex
+
 
 ---
 # `str_detect()`

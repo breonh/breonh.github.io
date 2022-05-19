@@ -61,9 +61,9 @@ for(i in seq_along(files_in_year_one)){
   data_list[[i]] <- read_csv(paste0("open_data_year_one/", files_in_year_one[i]))
 }
 
-# files_for_map <- paste0("open_data_year_one/", files_in_year_one)
+# files_for_apply <- paste0("open_data_year_one/", files_in_year_one)
 # 
-# lapply_data_list <- lapply(files_for_map, read_csv)
+# lapply_data_list <- lapply(files_for_apply, read_csv)
 
 
 ```
