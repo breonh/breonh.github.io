@@ -334,7 +334,7 @@ author: |
 
  **Homework 6, part 2:**
        
-   * **[Homework 6 Template]()**
+   * **[Homework 6 Template](https://breonh.github.io/csss_508/homework/homework_6/homework_6_p1_key.Rmd)**
   
  **Homework 6, part 2 KEY:**
    
@@ -351,7 +351,7 @@ author: |
    
    **Lab Recording: **
    
-   [Youtube Link to Week 8 Lab]()
+   [Youtube Link to Week 8 Lab](https://youtu.be/bPj2ig8qN60)
 
  **Related Reading: **
 
