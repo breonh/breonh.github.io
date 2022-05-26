@@ -16,3 +16,4 @@ render_and_print_slides <- function(week){
   pagedown::chrome_print(current_html, format="pdf")
   message(paste0("Printing complete at ", week_dir)) }
 
+
