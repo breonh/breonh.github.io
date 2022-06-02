@@ -2,7 +2,7 @@
 title: "CSSS508, Week 10"
 subtitle: "Model Results and Reproducibility"
 author: "Breon Haskett"
-date: "Dec 8, 2021<br>Updated: `r gsub(' 0', ' ', format(Sys.Date(), format='%b %d, %Y'))`"
+date: "June 2, 2022<br>Updated: `r gsub(' 0', ' ', format(Sys.Date(), format='%b %d, %Y'))`"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -1068,7 +1068,7 @@ Like `pander()`, `msummary()` takes a model as an object to make a table.
 .small[
 ```{r, eval=FALSE, echo=TRUE}
 mod_1 <- lm(mpg ~ wt, data = mtcars)
-msummary(mod_1)
+modelsummary(mod_1)
 ```
 ]
 
@@ -1078,7 +1078,7 @@ Note default `modelsummary` look like `pander` tables because they use Markdown.
 .small[
 ```{r, eval=TRUE, echo=FALSE}
 mod_1 <- lm(mpg ~ wt, data = mtcars)
-msummary(mod_1)
+modelsummary(mod_1)
 ```
 ]
 ]
@@ -1086,9 +1086,9 @@ msummary(mod_1)
 
 ---
 .pull-left[
-## `msummary`
+## `modelsummary`
 
-You can present multiple models in `msummary` using named lists:
+You can present multiple models in `modelsummary` using named lists:
 
 .small[
 ```{r, eval=FALSE, echo=TRUE}
@@ -1099,7 +1099,7 @@ mod_3 <- lm(mpg ~ hp + wt + factor(am),
 model_list <- list("Model 1" = mod_1, 
                    "Model 2" = mod_2, 
                    "Model 3" = mod_3)
-msummary(model_list)
+modelsummary(model_list)
 ```
 ]
 
@@ -1116,7 +1116,7 @@ mod_3 <- lm(mpg ~ hp + wt + factor(am),
 model_list <- list("Model 1" = mod_1, 
                    "Model 2" = mod_2, 
                    "Model 3" = mod_3)
-msummary(model_list, output = "gt")
+modelsummary(model_list, output = "gt")
 ```
 ]
 ]
@@ -1126,26 +1126,29 @@ msummary(model_list, output = "gt")
 
 `output = "latex"` produces `kableExtra` based output well-suited to PDFs.<sup>1</sup>
 
-```{r, eval=FALSE}
-msummary(model_list, output = "latex")
+```{r, warning=FALSE, eval = FALSE}
+modelsummary(model_list, output = "latex")
 ```
-
 
 .image-shorter[
 ![](img/ex_table_latex.PNG)
 ]
 
-For customization, I recommend referring to [`modelsummary`'s documentation](https://vincentarelbundock.github.io/modelsummary/articles/customization.html).
+
+For customization, I recommend referring to [`modelsummary`'s documentation](https://vincentarelbundock.github.io/modelsummary/articles/modelsummary.html).
 
 ---
 # Saving a `modelsummary`
 
 .image-short[
-```{r}
-msummary(model_list, output = "ex_table.png")
+```{r, eval = FALSE}
+modelsummary(model_list, output = "ex_table.png")
 ```
 ]
 
+.image-shorter[
+![](img/ex_table.PNG)
+]
 ---
 # `modelsummary` and `gt`
 
