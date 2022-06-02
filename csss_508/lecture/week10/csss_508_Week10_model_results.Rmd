@@ -1688,7 +1688,7 @@ This means...
 
 Every stage (oval) has an unambiguous input and output. Everything that precedes a given stage is a **dependency**—something required to run it.
 
-![](img/pipeline.svg)
+![](img/pipeline.jpg)
 
 .footnote[Note: [`targets` is a terrific package for managing R research pipelines.](https://books.ropensci.org/targets/index.html)]
 

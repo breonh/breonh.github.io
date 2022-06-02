@@ -82,20 +82,20 @@ summary(lm_1)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -9.7243 -1.9070 -0.0364  1.7951  8.0828 
+## -7.0262 -2.0370  0.0152  2.0299  6.2030 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   0.6537     0.4058   1.611  0.10882    
-## num1          0.3351     0.1145   2.926  0.00384 ** 
-## fac1B         1.7196     0.5220   3.294  0.00117 ** 
-## fac1C         2.9438     0.5385   5.467 1.39e-07 ***
+## (Intercept)   1.5242     0.4089   3.727 0.000253 ***
+## num1          0.4262     0.1052   4.052 7.32e-05 ***
+## fac1B         1.3293     0.5351   2.484 0.013827 *  
+## fac1C         1.5514     0.5127   3.026 0.002810 ** 
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 3.018 on 196 degrees of freedom
-## Multiple R-squared:  0.1606,	Adjusted R-squared:  0.1478 
-## F-statistic:  12.5 on 3 and 196 DF,  p-value: 1.625e-07
+## Residual standard error: 2.934 on 196 degrees of freedom
+## Multiple R-squared:  0.1212,	Adjusted R-squared:  0.1078 
+## F-statistic: 9.013 on 3 and 196 DF,  p-value: 1.278e-05
 ....
 ```
 ]
@@ -120,15 +120,15 @@ summary(glm_1)
 ##     data = ex_dat)
 ## 
 ## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -1.6629  -1.0128  -0.6204   1.0575   1.8693  
+##      Min        1Q    Median        3Q       Max  
+## -1.63329  -1.08639  -0.04385   1.08856   1.67903  
 ## 
 ## Coefficients:
 ##             Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept) -1.41851    0.32746  -4.332 1.48e-05 ***
-## num1         0.16902    0.08301   2.036  0.04175 *  
-## fac1B        1.05598    0.38738   2.726  0.00641 ** 
-## fac1C        2.02997    0.41258   4.920 8.65e-07 ***
+## (Intercept)  -0.8592     0.3009  -2.855 0.004300 ** 
+## num1          0.1628     0.0768   2.120 0.034025 *  
+## fac1B         0.5666     0.3799   1.491 0.135835    
+## fac1C         1.2275     0.3710   3.309 0.000936 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -150,12 +150,12 @@ lm_1 %&gt;% tidy()
 
 ```
 ## # A tibble: 4 x 5
-##   term        estimate std.error statistic     p.value
-##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
-## 1 (Intercept)    0.654     0.406      1.61 0.109      
-## 2 num1           0.335     0.115      2.93 0.00384    
-## 3 fac1B          1.72      0.522      3.29 0.00117    
-## 4 fac1C          2.94      0.539      5.47 0.000000139
+##   term        estimate std.error statistic   p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept)    1.52      0.409      3.73 0.000253 
+## 2 num1           0.426     0.105      4.05 0.0000732
+## 3 fac1B          1.33      0.535      2.48 0.0138   
+## 4 fac1C          1.55      0.513      3.03 0.00281
 ```
 
 Each type of model (e.g. `glm`, `lmer`) has a different *method* with its own additional arguments. See `?tidy.lm` for an example.
@@ -176,12 +176,12 @@ glm_1 %&gt;% tidy()
 
 ```
 ## # A tibble: 4 x 5
-##   term        estimate std.error statistic     p.value
-##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
-## 1 (Intercept)   -1.42     0.327      -4.33 0.0000148  
-## 2 num1           0.169    0.0830      2.04 0.0417     
-## 3 fac1B          1.06     0.387       2.73 0.00641    
-## 4 fac1C          2.03     0.413       4.92 0.000000865
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)   -0.859    0.301      -2.86 0.00430 
+## 2 num1           0.163    0.0768      2.12 0.0340  
+## 3 fac1B          0.567    0.380       1.49 0.136   
+## 4 fac1C          1.23     0.371       3.31 0.000936
 ```
 
 ---
@@ -203,7 +203,7 @@ glance(lm_1)
 ## # A tibble: 1 x 12
 ##   r.squared adj.r.squared sigma statistic   p.value    df logLik   AIC
 ##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-## 1     0.161         0.148  3.02      12.5   1.63e-7     3  -503. 1015.
+## 1     0.121         0.108  2.93      9.01 0.0000128     3  -497. 1004.
 ## # ... with 4 more variables: BIC &lt;dbl&gt;, deviance &lt;dbl&gt;,
 ## #   df.residual &lt;int&gt;, nobs &lt;int&gt;
 ```
@@ -223,14 +223,14 @@ augment(lm_1) %&gt;% head()
 
 ```
 ## # A tibble: 6 x 9
-##      yn  num1 fac1  .fitted .resid   .hat .sigma   .cooksd .std.resid
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
-## 1  1.39 2.85  C       4.55  -3.16  0.0210   3.02 0.00601       -1.06 
-## 2  5.84 4.20  C       5.01   0.838 0.0313   3.03 0.000643       0.282
-## 3  1.80 1.99  B       3.04  -1.24  0.0145   3.02 0.000630      -0.414
-## 4  7.11 0.656 A       0.874  6.24  0.0167   2.99 0.0184         2.08 
-## 5  1.55 1.49  A       1.15   0.400 0.0166   3.03 0.0000754      0.134
-## 6  5.72 1.37  B       2.83   2.89  0.0136   3.02 0.00320        0.965
+##      yn    num1 fac1  .fitted  .resid   .hat .sigma .cooksd .std.resid
+##   &lt;dbl&gt;   &lt;dbl&gt; &lt;fct&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
+## 1  1.30 -0.671  A        1.24  0.0650 0.0219   2.94 2.81e-6     0.0224
+## 2  3.39  4.90   B        4.94 -1.55   0.0328   2.94 2.44e-3    -0.537 
+## 3  2.14  1.41   C        3.68 -1.53   0.0127   2.94 8.91e-4    -0.526 
+## 4  1.43  1.53   B        3.51 -2.08   0.0155   2.94 2.01e-3    -0.715 
+## 5  2.11  3.32   C        4.49 -2.38   0.0185   2.94 3.15e-3    -0.818 
+## 6 -1.58  0.0775 A        1.56 -3.13   0.0192   2.93 5.69e-3    -1.08
 ```
 ]
 
@@ -252,17 +252,17 @@ ex_dat %&gt;%
 
 ```
 ## # A tibble: 9 x 6
-##   fac1  term        estimate std.error statistic   p.value
-##   &lt;fct&gt; &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-## 1 A     (Intercept)   0.515      0.446     1.15  0.253    
-## 2 A     num1          0.392      0.168     2.33  0.0231   
-## 3 A     fac2No        0.197      0.619     0.318 0.752    
-## 4 B     (Intercept)   2.75       0.609     4.52  0.0000244
-## 5 B     num1          0.0979     0.216     0.454 0.651    
-## 6 B     fac2No       -0.186      0.747    -0.248 0.804    
-## 7 C     (Intercept)   2.49       0.637     3.90  0.000238 
-## 8 C     num1          0.512      0.199     2.57  0.0126   
-## 9 C     fac2No        1.77       0.827     2.14  0.0360
+##   fac1  term        estimate std.error statistic      p.value
+##   &lt;fct&gt; &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
+## 1 A     (Intercept)   1.14       0.561    2.03   0.0469      
+## 2 A     num1          0.678      0.211    3.22   0.00218     
+## 3 A     fac2No        0.210      0.760    0.277  0.783       
+## 4 B     (Intercept)   2.61       0.663    3.94   0.000213    
+## 5 B     num1          0.646      0.214    3.01   0.00374     
+## 6 B     fac2No       -0.0419     0.806   -0.0520 0.959       
+## 7 C     (Intercept)   2.62       0.443    5.92   0.0000000861
+## 8 C     num1          0.181      0.137    1.32   0.191       
+## 9 C     fac2No        1.58       0.594    2.67   0.00929
 ```
 ]
 
@@ -443,13 +443,14 @@ lm_1_est
 ## 
 ## num1 | Predicted |        95% CI
 ## --------------------------------
-##   -4 |     -0.46 | [-1.71, 0.79]
-##   -2 |      0.48 | [-0.43, 1.39]
-##    0 |      1.41 | [ 0.72, 2.11]
-##    2 |      2.35 | [ 1.64, 3.06]
-##    4 |      3.29 | [ 2.33, 4.24]
-##    6 |      4.22 | [ 2.92, 5.52]
-##    8 |      5.16 | [ 3.47, 6.84]
+##   -6 |     -1.41 | [-2.92, 0.09]
+##   -4 |     -0.25 | [-1.42, 0.92]
+##   -2 |      0.91 | [ 0.04, 1.79]
+##    0 |      2.08 | [ 1.40, 2.75]
+##    2 |      3.24 | [ 2.59, 3.89]
+##    4 |      4.40 | [ 3.57, 5.24]
+##    6 |      5.57 | [ 4.45, 6.68]
+##   10 |      7.89 | [ 6.09, 9.69]
 ## 
 ## Adjusted for:
 ## * fac1 = A
@@ -1164,12 +1165,12 @@ This allows you to produce the common (and often bad) journal format where one s
 ]
 .pull-right[
 .small[
-<div id="tjrkuypbvk" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="xjupijyyfu" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#tjrkuypbvk .gt_table {
+#xjupijyyfu .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1194,7 +1195,7 @@ This allows you to produce the common (and often bad) journal format where one s
   border-left-color: #D3D3D3;
 }
 
-#tjrkuypbvk .gt_heading {
+#xjupijyyfu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1206,7 +1207,7 @@ This allows you to produce the common (and often bad) journal format where one s
   border-right-color: #D3D3D3;
 }
 
-#tjrkuypbvk .gt_title {
+#xjupijyyfu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1218,7 +1219,7 @@ This allows you to produce the common (and often bad) journal format where one s
   border-bottom-width: 0;
 }
 
-#tjrkuypbvk .gt_subtitle {
+#xjupijyyfu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1230,13 +1231,13 @@ This allows you to produce the common (and often bad) journal format where one s
   border-top-width: 0;
 }
 
-#tjrkuypbvk .gt_bottom_border {
+#xjupijyyfu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tjrkuypbvk .gt_col_headings {
+#xjupijyyfu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1251,7 +1252,7 @@ This allows you to produce the common (and often bad) journal format where one s
   border-right-color: #D3D3D3;
 }
 
-#tjrkuypbvk .gt_col_heading {
+#xjupijyyfu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1271,7 +1272,7 @@ This allows you to produce the common (and often bad) journal format where one s
   overflow-x: hidden;
 }
 
-#tjrkuypbvk .gt_column_spanner_outer {
+#xjupijyyfu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1283,15 +1284,15 @@ This allows you to produce the common (and often bad) journal format where one s
   padding-right: 4px;
 }
 
-#tjrkuypbvk .gt_column_spanner_outer:first-child {
+#xjupijyyfu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tjrkuypbvk .gt_column_spanner_outer:last-child {
+#xjupijyyfu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tjrkuypbvk .gt_column_spanner {
+#xjupijyyfu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1303,7 +1304,7 @@ This allows you to produce the common (and often bad) journal format where one s
   width: 100%;
 }
 
-#tjrkuypbvk .gt_group_heading {
+#xjupijyyfu .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1328,7 +1329,7 @@ This allows you to produce the common (and often bad) journal format where one s
   vertical-align: middle;
 }
 
-#tjrkuypbvk .gt_empty_group_heading {
+#xjupijyyfu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1343,15 +1344,15 @@ This allows you to produce the common (and often bad) journal format where one s
   vertical-align: middle;
 }
 
-#tjrkuypbvk .gt_from_md > :first-child {
+#xjupijyyfu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tjrkuypbvk .gt_from_md > :last-child {
+#xjupijyyfu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tjrkuypbvk .gt_row {
+#xjupijyyfu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1370,7 +1371,7 @@ This allows you to produce the common (and often bad) journal format where one s
   overflow-x: hidden;
 }
 
-#tjrkuypbvk .gt_stub {
+#xjupijyyfu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1383,7 +1384,7 @@ This allows you to produce the common (and often bad) journal format where one s
   padding-right: 5px;
 }
 
-#tjrkuypbvk .gt_stub_row_group {
+#xjupijyyfu .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1397,11 +1398,11 @@ This allows you to produce the common (and often bad) journal format where one s
   vertical-align: top;
 }
 
-#tjrkuypbvk .gt_row_group_first td {
+#xjupijyyfu .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#tjrkuypbvk .gt_summary_row {
+#xjupijyyfu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1411,16 +1412,16 @@ This allows you to produce the common (and often bad) journal format where one s
   padding-right: 5px;
 }
 
-#tjrkuypbvk .gt_first_summary_row {
+#xjupijyyfu .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#tjrkuypbvk .gt_first_summary_row.thick {
+#xjupijyyfu .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#tjrkuypbvk .gt_last_summary_row {
+#xjupijyyfu .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1430,7 +1431,7 @@ This allows you to produce the common (and often bad) journal format where one s
   border-bottom-color: #D3D3D3;
 }
 
-#tjrkuypbvk .gt_grand_summary_row {
+#xjupijyyfu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1440,7 +1441,7 @@ This allows you to produce the common (and often bad) journal format where one s
   padding-right: 5px;
 }
 
-#tjrkuypbvk .gt_first_grand_summary_row {
+#xjupijyyfu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1450,11 +1451,11 @@ This allows you to produce the common (and often bad) journal format where one s
   border-top-color: #D3D3D3;
 }
 
-#tjrkuypbvk .gt_striped {
+#xjupijyyfu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tjrkuypbvk .gt_table_body {
+#xjupijyyfu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1463,7 +1464,7 @@ This allows you to produce the common (and often bad) journal format where one s
   border-bottom-color: #D3D3D3;
 }
 
-#tjrkuypbvk .gt_footnotes {
+#xjupijyyfu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1477,7 +1478,7 @@ This allows you to produce the common (and often bad) journal format where one s
   border-right-color: #D3D3D3;
 }
 
-#tjrkuypbvk .gt_footnote {
+#xjupijyyfu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -1486,7 +1487,7 @@ This allows you to produce the common (and often bad) journal format where one s
   padding-right: 5px;
 }
 
-#tjrkuypbvk .gt_sourcenotes {
+#xjupijyyfu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1500,7 +1501,7 @@ This allows you to produce the common (and often bad) journal format where one s
   border-right-color: #D3D3D3;
 }
 
-#tjrkuypbvk .gt_sourcenote {
+#xjupijyyfu .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1508,60 +1509,60 @@ This allows you to produce the common (and often bad) journal format where one s
   padding-right: 5px;
 }
 
-#tjrkuypbvk .gt_left {
+#xjupijyyfu .gt_left {
   text-align: left;
 }
 
-#tjrkuypbvk .gt_center {
+#xjupijyyfu .gt_center {
   text-align: center;
 }
 
-#tjrkuypbvk .gt_right {
+#xjupijyyfu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tjrkuypbvk .gt_font_normal {
+#xjupijyyfu .gt_font_normal {
   font-weight: normal;
 }
 
-#tjrkuypbvk .gt_font_bold {
+#xjupijyyfu .gt_font_bold {
   font-weight: bold;
 }
 
-#tjrkuypbvk .gt_font_italic {
+#xjupijyyfu .gt_font_italic {
   font-style: italic;
 }
 
-#tjrkuypbvk .gt_super {
+#xjupijyyfu .gt_super {
   font-size: 65%;
 }
 
-#tjrkuypbvk .gt_footnote_marks {
+#xjupijyyfu .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#tjrkuypbvk .gt_asterisk {
+#xjupijyyfu .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#tjrkuypbvk .gt_slash_mark {
+#xjupijyyfu .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#tjrkuypbvk .gt_fraction_numerator {
+#xjupijyyfu .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#tjrkuypbvk .gt_fraction_denominator {
+#xjupijyyfu .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -1744,12 +1745,12 @@ mtcars %&gt;%
 
 .pull-right[
 .smaller[
-<div id="cbbinjsnnt" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="jdmcxqibai" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#cbbinjsnnt .gt_table {
+#jdmcxqibai .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1774,7 +1775,7 @@ mtcars %&gt;%
   border-left-color: #D3D3D3;
 }
 
-#cbbinjsnnt .gt_heading {
+#jdmcxqibai .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1786,7 +1787,7 @@ mtcars %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#cbbinjsnnt .gt_title {
+#jdmcxqibai .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1798,7 +1799,7 @@ mtcars %&gt;%
   border-bottom-width: 0;
 }
 
-#cbbinjsnnt .gt_subtitle {
+#jdmcxqibai .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1810,13 +1811,13 @@ mtcars %&gt;%
   border-top-width: 0;
 }
 
-#cbbinjsnnt .gt_bottom_border {
+#jdmcxqibai .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#cbbinjsnnt .gt_col_headings {
+#jdmcxqibai .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1831,7 +1832,7 @@ mtcars %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#cbbinjsnnt .gt_col_heading {
+#jdmcxqibai .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1851,7 +1852,7 @@ mtcars %&gt;%
   overflow-x: hidden;
 }
 
-#cbbinjsnnt .gt_column_spanner_outer {
+#jdmcxqibai .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1863,15 +1864,15 @@ mtcars %&gt;%
   padding-right: 4px;
 }
 
-#cbbinjsnnt .gt_column_spanner_outer:first-child {
+#jdmcxqibai .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#cbbinjsnnt .gt_column_spanner_outer:last-child {
+#jdmcxqibai .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#cbbinjsnnt .gt_column_spanner {
+#jdmcxqibai .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1883,7 +1884,7 @@ mtcars %&gt;%
   width: 100%;
 }
 
-#cbbinjsnnt .gt_group_heading {
+#jdmcxqibai .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1908,7 +1909,7 @@ mtcars %&gt;%
   vertical-align: middle;
 }
 
-#cbbinjsnnt .gt_empty_group_heading {
+#jdmcxqibai .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1923,15 +1924,15 @@ mtcars %&gt;%
   vertical-align: middle;
 }
 
-#cbbinjsnnt .gt_from_md > :first-child {
+#jdmcxqibai .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#cbbinjsnnt .gt_from_md > :last-child {
+#jdmcxqibai .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#cbbinjsnnt .gt_row {
+#jdmcxqibai .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1950,7 +1951,7 @@ mtcars %&gt;%
   overflow-x: hidden;
 }
 
-#cbbinjsnnt .gt_stub {
+#jdmcxqibai .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1963,7 +1964,7 @@ mtcars %&gt;%
   padding-right: 5px;
 }
 
-#cbbinjsnnt .gt_stub_row_group {
+#jdmcxqibai .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1977,11 +1978,11 @@ mtcars %&gt;%
   vertical-align: top;
 }
 
-#cbbinjsnnt .gt_row_group_first td {
+#jdmcxqibai .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#cbbinjsnnt .gt_summary_row {
+#jdmcxqibai .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1991,16 +1992,16 @@ mtcars %&gt;%
   padding-right: 5px;
 }
 
-#cbbinjsnnt .gt_first_summary_row {
+#jdmcxqibai .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#cbbinjsnnt .gt_first_summary_row.thick {
+#jdmcxqibai .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#cbbinjsnnt .gt_last_summary_row {
+#jdmcxqibai .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2010,7 +2011,7 @@ mtcars %&gt;%
   border-bottom-color: #D3D3D3;
 }
 
-#cbbinjsnnt .gt_grand_summary_row {
+#jdmcxqibai .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2020,7 +2021,7 @@ mtcars %&gt;%
   padding-right: 5px;
 }
 
-#cbbinjsnnt .gt_first_grand_summary_row {
+#jdmcxqibai .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2030,11 +2031,11 @@ mtcars %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#cbbinjsnnt .gt_striped {
+#jdmcxqibai .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#cbbinjsnnt .gt_table_body {
+#jdmcxqibai .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2043,7 +2044,7 @@ mtcars %&gt;%
   border-bottom-color: #D3D3D3;
 }
 
-#cbbinjsnnt .gt_footnotes {
+#jdmcxqibai .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2057,7 +2058,7 @@ mtcars %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#cbbinjsnnt .gt_footnote {
+#jdmcxqibai .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -2066,7 +2067,7 @@ mtcars %&gt;%
   padding-right: 5px;
 }
 
-#cbbinjsnnt .gt_sourcenotes {
+#jdmcxqibai .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2080,7 +2081,7 @@ mtcars %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#cbbinjsnnt .gt_sourcenote {
+#jdmcxqibai .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2088,60 +2089,60 @@ mtcars %&gt;%
   padding-right: 5px;
 }
 
-#cbbinjsnnt .gt_left {
+#jdmcxqibai .gt_left {
   text-align: left;
 }
 
-#cbbinjsnnt .gt_center {
+#jdmcxqibai .gt_center {
   text-align: center;
 }
 
-#cbbinjsnnt .gt_right {
+#jdmcxqibai .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#cbbinjsnnt .gt_font_normal {
+#jdmcxqibai .gt_font_normal {
   font-weight: normal;
 }
 
-#cbbinjsnnt .gt_font_bold {
+#jdmcxqibai .gt_font_bold {
   font-weight: bold;
 }
 
-#cbbinjsnnt .gt_font_italic {
+#jdmcxqibai .gt_font_italic {
   font-style: italic;
 }
 
-#cbbinjsnnt .gt_super {
+#jdmcxqibai .gt_super {
   font-size: 65%;
 }
 
-#cbbinjsnnt .gt_footnote_marks {
+#jdmcxqibai .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#cbbinjsnnt .gt_asterisk {
+#jdmcxqibai .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#cbbinjsnnt .gt_slash_mark {
+#jdmcxqibai .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#cbbinjsnnt .gt_fraction_numerator {
+#jdmcxqibai .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#cbbinjsnnt .gt_fraction_denominator {
+#jdmcxqibai .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -2209,12 +2210,12 @@ mtcars %&gt;%
 
 .pull-right[
 .smaller[
-<div id="mokwmzvoea" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="vxsinxentp" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#mokwmzvoea .gt_table {
+#vxsinxentp .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2239,7 +2240,7 @@ mtcars %&gt;%
   border-left-color: #D3D3D3;
 }
 
-#mokwmzvoea .gt_heading {
+#vxsinxentp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2251,7 +2252,7 @@ mtcars %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#mokwmzvoea .gt_title {
+#vxsinxentp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2263,7 +2264,7 @@ mtcars %&gt;%
   border-bottom-width: 0;
 }
 
-#mokwmzvoea .gt_subtitle {
+#vxsinxentp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2275,13 +2276,13 @@ mtcars %&gt;%
   border-top-width: 0;
 }
 
-#mokwmzvoea .gt_bottom_border {
+#vxsinxentp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mokwmzvoea .gt_col_headings {
+#vxsinxentp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2296,7 +2297,7 @@ mtcars %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#mokwmzvoea .gt_col_heading {
+#vxsinxentp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2316,7 +2317,7 @@ mtcars %&gt;%
   overflow-x: hidden;
 }
 
-#mokwmzvoea .gt_column_spanner_outer {
+#vxsinxentp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2328,15 +2329,15 @@ mtcars %&gt;%
   padding-right: 4px;
 }
 
-#mokwmzvoea .gt_column_spanner_outer:first-child {
+#vxsinxentp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mokwmzvoea .gt_column_spanner_outer:last-child {
+#vxsinxentp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mokwmzvoea .gt_column_spanner {
+#vxsinxentp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2348,7 +2349,7 @@ mtcars %&gt;%
   width: 100%;
 }
 
-#mokwmzvoea .gt_group_heading {
+#vxsinxentp .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2373,7 +2374,7 @@ mtcars %&gt;%
   vertical-align: middle;
 }
 
-#mokwmzvoea .gt_empty_group_heading {
+#vxsinxentp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2388,15 +2389,15 @@ mtcars %&gt;%
   vertical-align: middle;
 }
 
-#mokwmzvoea .gt_from_md > :first-child {
+#vxsinxentp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mokwmzvoea .gt_from_md > :last-child {
+#vxsinxentp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mokwmzvoea .gt_row {
+#vxsinxentp .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2415,7 +2416,7 @@ mtcars %&gt;%
   overflow-x: hidden;
 }
 
-#mokwmzvoea .gt_stub {
+#vxsinxentp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2428,7 +2429,7 @@ mtcars %&gt;%
   padding-right: 5px;
 }
 
-#mokwmzvoea .gt_stub_row_group {
+#vxsinxentp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2442,11 +2443,11 @@ mtcars %&gt;%
   vertical-align: top;
 }
 
-#mokwmzvoea .gt_row_group_first td {
+#vxsinxentp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#mokwmzvoea .gt_summary_row {
+#vxsinxentp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2456,16 +2457,16 @@ mtcars %&gt;%
   padding-right: 5px;
 }
 
-#mokwmzvoea .gt_first_summary_row {
+#vxsinxentp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#mokwmzvoea .gt_first_summary_row.thick {
+#vxsinxentp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#mokwmzvoea .gt_last_summary_row {
+#vxsinxentp .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2475,7 +2476,7 @@ mtcars %&gt;%
   border-bottom-color: #D3D3D3;
 }
 
-#mokwmzvoea .gt_grand_summary_row {
+#vxsinxentp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2485,7 +2486,7 @@ mtcars %&gt;%
   padding-right: 5px;
 }
 
-#mokwmzvoea .gt_first_grand_summary_row {
+#vxsinxentp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2495,11 +2496,11 @@ mtcars %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#mokwmzvoea .gt_striped {
+#vxsinxentp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mokwmzvoea .gt_table_body {
+#vxsinxentp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2508,7 +2509,7 @@ mtcars %&gt;%
   border-bottom-color: #D3D3D3;
 }
 
-#mokwmzvoea .gt_footnotes {
+#vxsinxentp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2522,7 +2523,7 @@ mtcars %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#mokwmzvoea .gt_footnote {
+#vxsinxentp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -2531,7 +2532,7 @@ mtcars %&gt;%
   padding-right: 5px;
 }
 
-#mokwmzvoea .gt_sourcenotes {
+#vxsinxentp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2545,7 +2546,7 @@ mtcars %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#mokwmzvoea .gt_sourcenote {
+#vxsinxentp .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2553,60 +2554,60 @@ mtcars %&gt;%
   padding-right: 5px;
 }
 
-#mokwmzvoea .gt_left {
+#vxsinxentp .gt_left {
   text-align: left;
 }
 
-#mokwmzvoea .gt_center {
+#vxsinxentp .gt_center {
   text-align: center;
 }
 
-#mokwmzvoea .gt_right {
+#vxsinxentp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mokwmzvoea .gt_font_normal {
+#vxsinxentp .gt_font_normal {
   font-weight: normal;
 }
 
-#mokwmzvoea .gt_font_bold {
+#vxsinxentp .gt_font_bold {
   font-weight: bold;
 }
 
-#mokwmzvoea .gt_font_italic {
+#vxsinxentp .gt_font_italic {
   font-style: italic;
 }
 
-#mokwmzvoea .gt_super {
+#vxsinxentp .gt_super {
   font-size: 65%;
 }
 
-#mokwmzvoea .gt_footnote_marks {
+#vxsinxentp .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#mokwmzvoea .gt_asterisk {
+#vxsinxentp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#mokwmzvoea .gt_slash_mark {
+#vxsinxentp .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#mokwmzvoea .gt_fraction_numerator {
+#vxsinxentp .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#mokwmzvoea .gt_fraction_denominator {
+#vxsinxentp .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -3095,7 +3096,7 @@ This means...
 
 Every stage (oval) has an unambiguous input and output. Everything that precedes a given stage is a **dependency**—something required to run it.
 
-![](img/pipeline.svg)
+![](img/pipeline.jpg)
 
 .footnote[Note: [`targets` is a terrific package for managing R research pipelines.](https://books.ropensci.org/targets/index.html)]
 
