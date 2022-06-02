@@ -82,20 +82,20 @@ summary(lm_1)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -7.0262 -2.0370  0.0152  2.0299  6.2030 
+## -8.7126 -1.8282 -0.0605  1.7395  7.3122 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   1.5242     0.4089   3.727 0.000253 ***
-## num1          0.4262     0.1052   4.052 7.32e-05 ***
-## fac1B         1.3293     0.5351   2.484 0.013827 *  
-## fac1C         1.5514     0.5127   3.026 0.002810 ** 
+## (Intercept)  1.14854    0.36194   3.173  0.00175 ** 
+## num1         0.60485    0.09846   6.143 4.43e-09 ***
+## fac1B        1.41071    0.49035   2.877  0.00446 ** 
+## fac1C        2.62104    0.50599   5.180 5.49e-07 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 2.934 on 196 degrees of freedom
-## Multiple R-squared:  0.1212,	Adjusted R-squared:  0.1078 
-## F-statistic: 9.013 on 3 and 196 DF,  p-value: 1.278e-05
+## Residual standard error: 2.896 on 196 degrees of freedom
+## Multiple R-squared:  0.2342,	Adjusted R-squared:  0.2225 
+## F-statistic: 19.98 on 3 and 196 DF,  p-value: 2.43e-11
 ....
 ```
 ]
@@ -120,15 +120,15 @@ summary(glm_1)
 ##     data = ex_dat)
 ## 
 ## Deviance Residuals: 
-##      Min        1Q    Median        3Q       Max  
-## -1.63329  -1.08639  -0.04385   1.08856   1.67903  
+##     Min       1Q   Median       3Q      Max  
+## -1.9890  -0.9179   0.4394   0.9831   2.1520  
 ## 
 ## Coefficients:
 ##             Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept)  -0.8592     0.3009  -2.855 0.004300 ** 
-## num1          0.1628     0.0768   2.120 0.034025 *  
-## fac1B         0.5666     0.3799   1.491 0.135835    
-## fac1C         1.2275     0.3710   3.309 0.000936 ***
+## (Intercept) -1.27278    0.29970  -4.247 2.17e-05 ***
+## num1         0.40477    0.08367   4.838 1.31e-06 ***
+## fac1B        0.79416    0.37198   2.135   0.0328 *  
+## fac1C        1.69175    0.40926   4.134 3.57e-05 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -150,12 +150,12 @@ lm_1 %&gt;% tidy()
 
 ```
 ## # A tibble: 4 x 5
-##   term        estimate std.error statistic   p.value
-##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-## 1 (Intercept)    1.52      0.409      3.73 0.000253 
-## 2 num1           0.426     0.105      4.05 0.0000732
-## 3 fac1B          1.33      0.535      2.48 0.0138   
-## 4 fac1C          1.55      0.513      3.03 0.00281
+##   term        estimate std.error statistic       p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;
+## 1 (Intercept)    1.15     0.362       3.17 0.00175      
+## 2 num1           0.605    0.0985      6.14 0.00000000443
+## 3 fac1B          1.41     0.490       2.88 0.00446      
+## 4 fac1C          2.62     0.506       5.18 0.000000549
 ```
 
 Each type of model (e.g. `glm`, `lmer`) has a different *method* with its own additional arguments. See `?tidy.lm` for an example.
@@ -176,12 +176,12 @@ glm_1 %&gt;% tidy()
 
 ```
 ## # A tibble: 4 x 5
-##   term        estimate std.error statistic  p.value
-##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-## 1 (Intercept)   -0.859    0.301      -2.86 0.00430 
-## 2 num1           0.163    0.0768      2.12 0.0340  
-## 3 fac1B          0.567    0.380       1.49 0.136   
-## 4 fac1C          1.23     0.371       3.31 0.000936
+##   term        estimate std.error statistic    p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+## 1 (Intercept)   -1.27     0.300      -4.25 0.0000217 
+## 2 num1           0.405    0.0837      4.84 0.00000131
+## 3 fac1B          0.794    0.372       2.13 0.0328    
+## 4 fac1C          1.69     0.409       4.13 0.0000357
 ```
 
 ---
@@ -201,9 +201,9 @@ glance(lm_1)
 
 ```
 ## # A tibble: 1 x 12
-##   r.squared adj.r.squared sigma statistic   p.value    df logLik   AIC
-##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
-## 1     0.121         0.108  2.93      9.01 0.0000128     3  -497. 1004.
+##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC
+##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1     0.234         0.222  2.90      20.0 2.43e-11     3  -494.  999.
 ## # ... with 4 more variables: BIC &lt;dbl&gt;, deviance &lt;dbl&gt;,
 ## #   df.residual &lt;int&gt;, nobs &lt;int&gt;
 ```
@@ -223,14 +223,14 @@ augment(lm_1) %&gt;% head()
 
 ```
 ## # A tibble: 6 x 9
-##      yn    num1 fac1  .fitted  .resid   .hat .sigma .cooksd .std.resid
-##   &lt;dbl&gt;   &lt;dbl&gt; &lt;fct&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
-## 1  1.30 -0.671  A        1.24  0.0650 0.0219   2.94 2.81e-6     0.0224
-## 2  3.39  4.90   B        4.94 -1.55   0.0328   2.94 2.44e-3    -0.537 
-## 3  2.14  1.41   C        3.68 -1.53   0.0127   2.94 8.91e-4    -0.526 
-## 4  1.43  1.53   B        3.51 -2.08   0.0155   2.94 2.01e-3    -0.715 
-## 5  2.11  3.32   C        4.49 -2.38   0.0185   2.94 3.15e-3    -0.818 
-## 6 -1.58  0.0775 A        1.56 -3.13   0.0192   2.93 5.69e-3    -1.08
+##       yn    num1 fac1  .fitted .resid   .hat .sigma .cooksd .std.resid
+##    &lt;dbl&gt;   &lt;dbl&gt; &lt;fct&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
+## 1  5.85   0.0272 C       3.79   2.06  0.0177   2.90 2.32e-3      0.717
+## 2  5.13  -2.32   A      -0.254  5.38  0.0297   2.88 2.72e-2      1.89 
+## 3  7.50   4.88   C       6.72   0.782 0.0357   2.90 7.01e-4      0.275
+## 4 -0.332  1.81   B       3.66  -3.99  0.0154   2.89 7.53e-3     -1.39 
+## 5 -0.356  0.647  A       1.54  -1.90  0.0139   2.90 1.53e-3     -0.659
+## 6  2.71  -1.21   B       1.83   0.884 0.0259   2.90 6.35e-4      0.309
 ```
 ]
 
@@ -252,17 +252,17 @@ ex_dat %&gt;%
 
 ```
 ## # A tibble: 9 x 6
-##   fac1  term        estimate std.error statistic      p.value
-##   &lt;fct&gt; &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
-## 1 A     (Intercept)   1.14       0.561    2.03   0.0469      
-## 2 A     num1          0.678      0.211    3.22   0.00218     
-## 3 A     fac2No        0.210      0.760    0.277  0.783       
-## 4 B     (Intercept)   2.61       0.663    3.94   0.000213    
-## 5 B     num1          0.646      0.214    3.01   0.00374     
-## 6 B     fac2No       -0.0419     0.806   -0.0520 0.959       
-## 7 C     (Intercept)   2.62       0.443    5.92   0.0000000861
-## 8 C     num1          0.181      0.137    1.32   0.191       
-## 9 C     fac2No        1.58       0.594    2.67   0.00929
+##   fac1  term        estimate std.error statistic     p.value
+##   &lt;fct&gt; &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+## 1 A     (Intercept)    0.679     0.510     1.33  0.187      
+## 2 A     num1           0.619     0.156     3.96  0.000171   
+## 3 A     fac2No         0.921     0.649     1.42  0.160      
+## 4 B     (Intercept)    1.90      0.582     3.27  0.00178    
+## 5 B     num1           0.510     0.172     2.96  0.00439    
+## 6 B     fac2No         1.64      0.706     2.32  0.0238     
+## 7 C     (Intercept)    3.43      0.570     6.03  0.000000138
+## 8 C     num1           0.667     0.182     3.66  0.000551   
+## 9 C     fac2No         0.558     0.773     0.721 0.474
 ```
 ]
 
@@ -305,7 +305,7 @@ ggplot(data = gapminder,
   geom_smooth()
 ```
 
-![](csss_508_week10_model_results_files/figure-html/unnamed-chunk-10-1.svg)&lt;!-- --&gt;
+![](csss_508_week10_models_files/figure-html/unnamed-chunk-10-1.svg)&lt;!-- --&gt;
 
 By default, `geom_smooth()` chooses either a loess smoother (N &lt; 1000) or a GAM depending on the number of observations.
 
@@ -321,7 +321,7 @@ ggplot(data = gapminder,
 * geom_smooth(method = "glm", formula = y ~ x)
 ```
 
-![](csss_508_week10_model_results_files/figure-html/unnamed-chunk-11-1.svg)&lt;!-- --&gt;
+![](csss_508_week10_models_files/figure-html/unnamed-chunk-11-1.svg)&lt;!-- --&gt;
 
 We could also fit a standard linear model using either `method = "glm"` or `method = "lm"` and a formula like `y ~ x`.
 ---
@@ -334,7 +334,7 @@ ggplot(data = gapminder,
 * geom_smooth(method = "glm", formula = y ~ poly(x, 2))
 ```
 
-![](csss_508_week10_model_results_files/figure-html/unnamed-chunk-12-1.svg)&lt;!-- --&gt;
+![](csss_508_week10_models_files/figure-html/unnamed-chunk-12-1.svg)&lt;!-- --&gt;
 
 `poly(x, 2)` produces a quadratic model which contains a linear term (`x`) and a quadratic term (`x^2`).
 
@@ -441,16 +441,16 @@ lm_1_est
 ```
 ## # Predicted values of yn
 ## 
-## num1 | Predicted |        95% CI
-## --------------------------------
-##   -6 |     -1.41 | [-2.92, 0.09]
-##   -4 |     -0.25 | [-1.42, 0.92]
-##   -2 |      0.91 | [ 0.04, 1.79]
-##    0 |      2.08 | [ 1.40, 2.75]
-##    2 |      3.24 | [ 2.59, 3.89]
-##    4 |      4.40 | [ 3.57, 5.24]
-##    6 |      5.57 | [ 4.45, 6.68]
-##   10 |      7.89 | [ 6.09, 9.69]
+## num1 | Predicted |         95% CI
+## ---------------------------------
+##   -6 |     -1.90 | [-3.46, -0.33]
+##   -4 |     -0.80 | [-2.04,  0.43]
+##   -2 |      0.29 | [-0.65,  1.23]
+##    0 |      1.38 | [ 0.63,  2.13]
+##    2 |      2.47 | [ 1.74,  3.21]
+##    4 |      3.57 | [ 2.66,  4.48]
+##    6 |      4.66 | [ 3.47,  5.85]
+##    8 |      5.75 | [ 4.23,  7.27]
 ## 
 ## Adjusted for:
 ## * fac1 = A
@@ -469,7 +469,7 @@ a ggplot when you give `plot()` output from `ggpredict()`.
 plot(lm_1_est)
 ```
 
-![](csss_508_week10_model_results_files/figure-html/unnamed-chunk-17-1.svg)&lt;!-- --&gt;
+![](csss_508_week10_models_files/figure-html/unnamed-chunk-17-1.svg)&lt;!-- --&gt;
 ]
 
 ---
@@ -485,7 +485,7 @@ glm(yb ~ num1 + fac1 + num2 + fac2, data = ex_dat, family=binomial(link = "logit
   ggpredict(terms = c("num1", "fac1")) %&gt;% plot()
 ```
 
-![](csss_508_week10_model_results_files/figure-html/unnamed-chunk-18-1.svg)&lt;!-- --&gt;
+![](csss_508_week10_models_files/figure-html/unnamed-chunk-18-1.svg)&lt;!-- --&gt;
 ]
 
 ---
@@ -500,7 +500,7 @@ glm(yb ~ num1 + fac1 + num2 + fac2, data = ex_dat, family = binomial(link = "log
   ggpredict(terms = c("num1", "fac1")) %&gt;% plot(facet=TRUE)
 ```
 
-![](csss_508_week10_model_results_files/figure-html/unnamed-chunk-19-1.svg)&lt;!-- --&gt;
+![](csss_508_week10_models_files/figure-html/unnamed-chunk-19-1.svg)&lt;!-- --&gt;
 ]
 
 ---
@@ -515,7 +515,7 @@ glm(yb ~ num1 + fac1 + num2 + fac2, data=ex_dat, family=binomial(link="logit")) 
   ggpredict(terms = c("num1 [-1,0,1]", "fac1 [A,B]")) %&gt;% plot(facet=TRUE)
 ```
 
-![](csss_508_week10_model_results_files/figure-html/unnamed-chunk-20-1.svg)&lt;!-- --&gt;
+![](csss_508_week10_models_files/figure-html/unnamed-chunk-20-1.svg)&lt;!-- --&gt;
 ]
 
 ---
@@ -530,7 +530,7 @@ glm(yb ~ num1 + fac1 + num2 + fac2, data = ex_dat, family = binomial(link = "log
   ggpredict(terms = c("num1 [meansd]", "num2 [minmax]")) %&gt;% plot(facet=TRUE)
 ```
 
-![](csss_508_week10_model_results_files/figure-html/unnamed-chunk-21-1.svg)&lt;!-- --&gt;
+![](csss_508_week10_models_files/figure-html/unnamed-chunk-21-1.svg)&lt;!-- --&gt;
 ]
 
 ---
@@ -545,7 +545,7 @@ lm(yn ~ fac1 + fac2, data = ex_dat) %&gt;%
   ggpredict(terms=c("fac1", "fac2")) %&gt;% plot()
 ```
 
-![](csss_508_week10_model_results_files/figure-html/unnamed-chunk-22-1.svg)&lt;!-- --&gt;
+![](csss_508_week10_models_files/figure-html/unnamed-chunk-22-1.svg)&lt;!-- --&gt;
 ]
 
 ---
@@ -692,7 +692,7 @@ tes_chars %&gt;%
 .smallest[
 .pull-right[
 .image-full[
-![](csss_508_week10_model_results_files/figure-html/unnamed-chunk-28-1.png)&lt;!-- --&gt;
+![](csss_508_week10_models_files/figure-html/unnamed-chunk-28-1.png)&lt;!-- --&gt;
 ]
 ]
 ]
@@ -718,7 +718,7 @@ If we `group_by()` first, the levels of the grouping variable become grouping ro
 .smallest[
 .pull-right[
 .image-tall[
-![](csss_508_week10_model_results_files/figure-html/unnamed-chunk-30-1.png)&lt;!-- --&gt;
+![](csss_508_week10_models_files/figure-html/unnamed-chunk-30-1.png)&lt;!-- --&gt;
 ]
 ]
 ]
@@ -745,7 +745,7 @@ Designating a `rowname_col` removes that column's name and divides the values fr
 .smallest[
 .pull-right[
 .image-tall[
-![](csss_508_week10_model_results_files/figure-html/unnamed-chunk-32-1.png)&lt;!-- --&gt;
+![](csss_508_week10_models_files/figure-html/unnamed-chunk-32-1.png)&lt;!-- --&gt;
 
 ]
 ]
@@ -777,7 +777,7 @@ tes_chars %&gt;%
 .smallest[
 .pull-right[
 .image-tall[
-![](csss_508_week10_model_results_files/figure-html/unnamed-chunk-34-1.png)&lt;!-- --&gt;
+![](csss_508_week10_models_files/figure-html/unnamed-chunk-34-1.png)&lt;!-- --&gt;
 
 ]
 ]
@@ -813,7 +813,7 @@ A `tab_spanner()` lets us group columns together.
 .smallest[
 .pull-right[
 .image-tall[
-![](csss_508_week10_model_results_files/figure-html/unnamed-chunk-36-1.png)&lt;!-- --&gt;
+![](csss_508_week10_models_files/figure-html/unnamed-chunk-36-1.png)&lt;!-- --&gt;
 
 ]
 ]
@@ -854,7 +854,7 @@ We can directly change column names with `cols_label()`
 .smallest[
 .pull-right[
 .image-tall[
-![](csss_508_week10_model_results_files/figure-html/unnamed-chunk-38-1.png)&lt;!-- --&gt;
+![](csss_508_week10_models_files/figure-html/unnamed-chunk-38-1.png)&lt;!-- --&gt;
 
 ]
 ]
@@ -898,7 +898,7 @@ We can adjust cell formats too.
 .smallest[
 .pull-right[
 .image-tall[
-![](csss_508_week10_model_results_files/figure-html/unnamed-chunk-40-1.png)&lt;!-- --&gt;
+![](csss_508_week10_models_files/figure-html/unnamed-chunk-40-1.png)&lt;!-- --&gt;
 
 ]
 ]
@@ -944,7 +944,7 @@ tes_chars %&gt;%
 .smallest[
 .pull-right[
 .image-tall[
-![](csss_508_week10_model_results_files/figure-html/unnamed-chunk-42-1.png)&lt;!-- --&gt;
+![](csss_508_week10_models_files/figure-html/unnamed-chunk-42-1.png)&lt;!-- --&gt;
 
 ]
 ]
@@ -994,7 +994,7 @@ tes_chars %&gt;%
 .smallest[
 .pull-right[
 .image-tall[
-![](csss_508_week10_model_results_files/figure-html/unnamed-chunk-44-1.png)&lt;!-- --&gt;
+![](csss_508_week10_models_files/figure-html/unnamed-chunk-44-1.png)&lt;!-- --&gt;
 
 ]
 ]
@@ -1008,13 +1008,13 @@ count: false
 ### Big Improvement!
 
 .image-full[
-![](csss_508_week10_model_results_files/figure-html/unnamed-chunk-45-1.png)&lt;!-- --&gt;
+![](csss_508_week10_models_files/figure-html/unnamed-chunk-45-1.png)&lt;!-- --&gt;
 ]
 ]
 .smallest[
 .pull-right[
 .image-tall[
-![](csss_508_week10_model_results_files/figure-html/unnamed-chunk-46-1.png)&lt;!-- --&gt;
+![](csss_508_week10_models_files/figure-html/unnamed-chunk-46-1.png)&lt;!-- --&gt;
 
 ]
 ]
@@ -1165,12 +1165,12 @@ This allows you to produce the common (and often bad) journal format where one s
 ]
 .pull-right[
 .small[
-<div id="xjupijyyfu" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="jwroidtwrr" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#xjupijyyfu .gt_table {
+#jwroidtwrr .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1195,7 +1195,7 @@ This allows you to produce the common (and often bad) journal format where one s
   border-left-color: #D3D3D3;
 }
 
-#xjupijyyfu .gt_heading {
+#jwroidtwrr .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1207,7 +1207,7 @@ This allows you to produce the common (and often bad) journal format where one s
   border-right-color: #D3D3D3;
 }
 
-#xjupijyyfu .gt_title {
+#jwroidtwrr .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1219,7 +1219,7 @@ This allows you to produce the common (and often bad) journal format where one s
   border-bottom-width: 0;
 }
 
-#xjupijyyfu .gt_subtitle {
+#jwroidtwrr .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1231,13 +1231,13 @@ This allows you to produce the common (and often bad) journal format where one s
   border-top-width: 0;
 }
 
-#xjupijyyfu .gt_bottom_border {
+#jwroidtwrr .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xjupijyyfu .gt_col_headings {
+#jwroidtwrr .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1252,7 +1252,7 @@ This allows you to produce the common (and often bad) journal format where one s
   border-right-color: #D3D3D3;
 }
 
-#xjupijyyfu .gt_col_heading {
+#jwroidtwrr .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1272,7 +1272,7 @@ This allows you to produce the common (and often bad) journal format where one s
   overflow-x: hidden;
 }
 
-#xjupijyyfu .gt_column_spanner_outer {
+#jwroidtwrr .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1284,15 +1284,15 @@ This allows you to produce the common (and often bad) journal format where one s
   padding-right: 4px;
 }
 
-#xjupijyyfu .gt_column_spanner_outer:first-child {
+#jwroidtwrr .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xjupijyyfu .gt_column_spanner_outer:last-child {
+#jwroidtwrr .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xjupijyyfu .gt_column_spanner {
+#jwroidtwrr .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1304,7 +1304,7 @@ This allows you to produce the common (and often bad) journal format where one s
   width: 100%;
 }
 
-#xjupijyyfu .gt_group_heading {
+#jwroidtwrr .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1329,7 +1329,7 @@ This allows you to produce the common (and often bad) journal format where one s
   vertical-align: middle;
 }
 
-#xjupijyyfu .gt_empty_group_heading {
+#jwroidtwrr .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1344,15 +1344,15 @@ This allows you to produce the common (and often bad) journal format where one s
   vertical-align: middle;
 }
 
-#xjupijyyfu .gt_from_md > :first-child {
+#jwroidtwrr .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xjupijyyfu .gt_from_md > :last-child {
+#jwroidtwrr .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xjupijyyfu .gt_row {
+#jwroidtwrr .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1371,7 +1371,7 @@ This allows you to produce the common (and often bad) journal format where one s
   overflow-x: hidden;
 }
 
-#xjupijyyfu .gt_stub {
+#jwroidtwrr .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1384,7 +1384,7 @@ This allows you to produce the common (and often bad) journal format where one s
   padding-right: 5px;
 }
 
-#xjupijyyfu .gt_stub_row_group {
+#jwroidtwrr .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1398,11 +1398,11 @@ This allows you to produce the common (and often bad) journal format where one s
   vertical-align: top;
 }
 
-#xjupijyyfu .gt_row_group_first td {
+#jwroidtwrr .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#xjupijyyfu .gt_summary_row {
+#jwroidtwrr .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1412,16 +1412,16 @@ This allows you to produce the common (and often bad) journal format where one s
   padding-right: 5px;
 }
 
-#xjupijyyfu .gt_first_summary_row {
+#jwroidtwrr .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#xjupijyyfu .gt_first_summary_row.thick {
+#jwroidtwrr .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#xjupijyyfu .gt_last_summary_row {
+#jwroidtwrr .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1431,7 +1431,7 @@ This allows you to produce the common (and often bad) journal format where one s
   border-bottom-color: #D3D3D3;
 }
 
-#xjupijyyfu .gt_grand_summary_row {
+#jwroidtwrr .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1441,7 +1441,7 @@ This allows you to produce the common (and often bad) journal format where one s
   padding-right: 5px;
 }
 
-#xjupijyyfu .gt_first_grand_summary_row {
+#jwroidtwrr .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1451,11 +1451,11 @@ This allows you to produce the common (and often bad) journal format where one s
   border-top-color: #D3D3D3;
 }
 
-#xjupijyyfu .gt_striped {
+#jwroidtwrr .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xjupijyyfu .gt_table_body {
+#jwroidtwrr .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1464,7 +1464,7 @@ This allows you to produce the common (and often bad) journal format where one s
   border-bottom-color: #D3D3D3;
 }
 
-#xjupijyyfu .gt_footnotes {
+#jwroidtwrr .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1478,7 +1478,7 @@ This allows you to produce the common (and often bad) journal format where one s
   border-right-color: #D3D3D3;
 }
 
-#xjupijyyfu .gt_footnote {
+#jwroidtwrr .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -1487,7 +1487,7 @@ This allows you to produce the common (and often bad) journal format where one s
   padding-right: 5px;
 }
 
-#xjupijyyfu .gt_sourcenotes {
+#jwroidtwrr .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1501,7 +1501,7 @@ This allows you to produce the common (and often bad) journal format where one s
   border-right-color: #D3D3D3;
 }
 
-#xjupijyyfu .gt_sourcenote {
+#jwroidtwrr .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1509,60 +1509,60 @@ This allows you to produce the common (and often bad) journal format where one s
   padding-right: 5px;
 }
 
-#xjupijyyfu .gt_left {
+#jwroidtwrr .gt_left {
   text-align: left;
 }
 
-#xjupijyyfu .gt_center {
+#jwroidtwrr .gt_center {
   text-align: center;
 }
 
-#xjupijyyfu .gt_right {
+#jwroidtwrr .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xjupijyyfu .gt_font_normal {
+#jwroidtwrr .gt_font_normal {
   font-weight: normal;
 }
 
-#xjupijyyfu .gt_font_bold {
+#jwroidtwrr .gt_font_bold {
   font-weight: bold;
 }
 
-#xjupijyyfu .gt_font_italic {
+#jwroidtwrr .gt_font_italic {
   font-style: italic;
 }
 
-#xjupijyyfu .gt_super {
+#jwroidtwrr .gt_super {
   font-size: 65%;
 }
 
-#xjupijyyfu .gt_footnote_marks {
+#jwroidtwrr .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#xjupijyyfu .gt_asterisk {
+#jwroidtwrr .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#xjupijyyfu .gt_slash_mark {
+#jwroidtwrr .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#xjupijyyfu .gt_fraction_numerator {
+#jwroidtwrr .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#xjupijyyfu .gt_fraction_denominator {
+#jwroidtwrr .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -1706,7 +1706,7 @@ Note that `gt`'s `\(LaTeX\)` support for PDFs is immature--this format is better
 ]
 .pull-right[
 .image-full[
-![](csss_508_week10_model_results_files/figure-html/unnamed-chunk-55-1.png)&lt;!-- --&gt;
+![](csss_508_week10_models_files/figure-html/unnamed-chunk-55-1.png)&lt;!-- --&gt;
 ]
 ]
 
@@ -1745,12 +1745,12 @@ mtcars %&gt;%
 
 .pull-right[
 .smaller[
-<div id="jdmcxqibai" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="nfrwzdizum" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#jdmcxqibai .gt_table {
+#nfrwzdizum .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1775,7 +1775,7 @@ mtcars %&gt;%
   border-left-color: #D3D3D3;
 }
 
-#jdmcxqibai .gt_heading {
+#nfrwzdizum .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1787,7 +1787,7 @@ mtcars %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#jdmcxqibai .gt_title {
+#nfrwzdizum .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1799,7 +1799,7 @@ mtcars %&gt;%
   border-bottom-width: 0;
 }
 
-#jdmcxqibai .gt_subtitle {
+#nfrwzdizum .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1811,13 +1811,13 @@ mtcars %&gt;%
   border-top-width: 0;
 }
 
-#jdmcxqibai .gt_bottom_border {
+#nfrwzdizum .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#jdmcxqibai .gt_col_headings {
+#nfrwzdizum .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1832,7 +1832,7 @@ mtcars %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#jdmcxqibai .gt_col_heading {
+#nfrwzdizum .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1852,7 +1852,7 @@ mtcars %&gt;%
   overflow-x: hidden;
 }
 
-#jdmcxqibai .gt_column_spanner_outer {
+#nfrwzdizum .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1864,15 +1864,15 @@ mtcars %&gt;%
   padding-right: 4px;
 }
 
-#jdmcxqibai .gt_column_spanner_outer:first-child {
+#nfrwzdizum .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#jdmcxqibai .gt_column_spanner_outer:last-child {
+#nfrwzdizum .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#jdmcxqibai .gt_column_spanner {
+#nfrwzdizum .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1884,7 +1884,7 @@ mtcars %&gt;%
   width: 100%;
 }
 
-#jdmcxqibai .gt_group_heading {
+#nfrwzdizum .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1909,7 +1909,7 @@ mtcars %&gt;%
   vertical-align: middle;
 }
 
-#jdmcxqibai .gt_empty_group_heading {
+#nfrwzdizum .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1924,15 +1924,15 @@ mtcars %&gt;%
   vertical-align: middle;
 }
 
-#jdmcxqibai .gt_from_md > :first-child {
+#nfrwzdizum .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#jdmcxqibai .gt_from_md > :last-child {
+#nfrwzdizum .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#jdmcxqibai .gt_row {
+#nfrwzdizum .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1951,7 +1951,7 @@ mtcars %&gt;%
   overflow-x: hidden;
 }
 
-#jdmcxqibai .gt_stub {
+#nfrwzdizum .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1964,7 +1964,7 @@ mtcars %&gt;%
   padding-right: 5px;
 }
 
-#jdmcxqibai .gt_stub_row_group {
+#nfrwzdizum .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1978,11 +1978,11 @@ mtcars %&gt;%
   vertical-align: top;
 }
 
-#jdmcxqibai .gt_row_group_first td {
+#nfrwzdizum .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#jdmcxqibai .gt_summary_row {
+#nfrwzdizum .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1992,16 +1992,16 @@ mtcars %&gt;%
   padding-right: 5px;
 }
 
-#jdmcxqibai .gt_first_summary_row {
+#nfrwzdizum .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#jdmcxqibai .gt_first_summary_row.thick {
+#nfrwzdizum .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#jdmcxqibai .gt_last_summary_row {
+#nfrwzdizum .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2011,7 +2011,7 @@ mtcars %&gt;%
   border-bottom-color: #D3D3D3;
 }
 
-#jdmcxqibai .gt_grand_summary_row {
+#nfrwzdizum .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2021,7 +2021,7 @@ mtcars %&gt;%
   padding-right: 5px;
 }
 
-#jdmcxqibai .gt_first_grand_summary_row {
+#nfrwzdizum .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2031,11 +2031,11 @@ mtcars %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#jdmcxqibai .gt_striped {
+#nfrwzdizum .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#jdmcxqibai .gt_table_body {
+#nfrwzdizum .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2044,7 +2044,7 @@ mtcars %&gt;%
   border-bottom-color: #D3D3D3;
 }
 
-#jdmcxqibai .gt_footnotes {
+#nfrwzdizum .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2058,7 +2058,7 @@ mtcars %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#jdmcxqibai .gt_footnote {
+#nfrwzdizum .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -2067,7 +2067,7 @@ mtcars %&gt;%
   padding-right: 5px;
 }
 
-#jdmcxqibai .gt_sourcenotes {
+#nfrwzdizum .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2081,7 +2081,7 @@ mtcars %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#jdmcxqibai .gt_sourcenote {
+#nfrwzdizum .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2089,60 +2089,60 @@ mtcars %&gt;%
   padding-right: 5px;
 }
 
-#jdmcxqibai .gt_left {
+#nfrwzdizum .gt_left {
   text-align: left;
 }
 
-#jdmcxqibai .gt_center {
+#nfrwzdizum .gt_center {
   text-align: center;
 }
 
-#jdmcxqibai .gt_right {
+#nfrwzdizum .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#jdmcxqibai .gt_font_normal {
+#nfrwzdizum .gt_font_normal {
   font-weight: normal;
 }
 
-#jdmcxqibai .gt_font_bold {
+#nfrwzdizum .gt_font_bold {
   font-weight: bold;
 }
 
-#jdmcxqibai .gt_font_italic {
+#nfrwzdizum .gt_font_italic {
   font-style: italic;
 }
 
-#jdmcxqibai .gt_super {
+#nfrwzdizum .gt_super {
   font-size: 65%;
 }
 
-#jdmcxqibai .gt_footnote_marks {
+#nfrwzdizum .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#jdmcxqibai .gt_asterisk {
+#nfrwzdizum .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#jdmcxqibai .gt_slash_mark {
+#nfrwzdizum .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#jdmcxqibai .gt_fraction_numerator {
+#nfrwzdizum .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#jdmcxqibai .gt_fraction_denominator {
+#nfrwzdizum .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -2210,12 +2210,12 @@ mtcars %&gt;%
 
 .pull-right[
 .smaller[
-<div id="vxsinxentp" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="oreqpaijnd" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#vxsinxentp .gt_table {
+#oreqpaijnd .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2240,7 +2240,7 @@ mtcars %&gt;%
   border-left-color: #D3D3D3;
 }
 
-#vxsinxentp .gt_heading {
+#oreqpaijnd .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2252,7 +2252,7 @@ mtcars %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#vxsinxentp .gt_title {
+#oreqpaijnd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2264,7 +2264,7 @@ mtcars %&gt;%
   border-bottom-width: 0;
 }
 
-#vxsinxentp .gt_subtitle {
+#oreqpaijnd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2276,13 +2276,13 @@ mtcars %&gt;%
   border-top-width: 0;
 }
 
-#vxsinxentp .gt_bottom_border {
+#oreqpaijnd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vxsinxentp .gt_col_headings {
+#oreqpaijnd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2297,7 +2297,7 @@ mtcars %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#vxsinxentp .gt_col_heading {
+#oreqpaijnd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2317,7 +2317,7 @@ mtcars %&gt;%
   overflow-x: hidden;
 }
 
-#vxsinxentp .gt_column_spanner_outer {
+#oreqpaijnd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2329,15 +2329,15 @@ mtcars %&gt;%
   padding-right: 4px;
 }
 
-#vxsinxentp .gt_column_spanner_outer:first-child {
+#oreqpaijnd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vxsinxentp .gt_column_spanner_outer:last-child {
+#oreqpaijnd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vxsinxentp .gt_column_spanner {
+#oreqpaijnd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2349,7 +2349,7 @@ mtcars %&gt;%
   width: 100%;
 }
 
-#vxsinxentp .gt_group_heading {
+#oreqpaijnd .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2374,7 +2374,7 @@ mtcars %&gt;%
   vertical-align: middle;
 }
 
-#vxsinxentp .gt_empty_group_heading {
+#oreqpaijnd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2389,15 +2389,15 @@ mtcars %&gt;%
   vertical-align: middle;
 }
 
-#vxsinxentp .gt_from_md > :first-child {
+#oreqpaijnd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vxsinxentp .gt_from_md > :last-child {
+#oreqpaijnd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vxsinxentp .gt_row {
+#oreqpaijnd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2416,7 +2416,7 @@ mtcars %&gt;%
   overflow-x: hidden;
 }
 
-#vxsinxentp .gt_stub {
+#oreqpaijnd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2429,7 +2429,7 @@ mtcars %&gt;%
   padding-right: 5px;
 }
 
-#vxsinxentp .gt_stub_row_group {
+#oreqpaijnd .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2443,11 +2443,11 @@ mtcars %&gt;%
   vertical-align: top;
 }
 
-#vxsinxentp .gt_row_group_first td {
+#oreqpaijnd .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vxsinxentp .gt_summary_row {
+#oreqpaijnd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2457,16 +2457,16 @@ mtcars %&gt;%
   padding-right: 5px;
 }
 
-#vxsinxentp .gt_first_summary_row {
+#oreqpaijnd .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vxsinxentp .gt_first_summary_row.thick {
+#oreqpaijnd .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vxsinxentp .gt_last_summary_row {
+#oreqpaijnd .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2476,7 +2476,7 @@ mtcars %&gt;%
   border-bottom-color: #D3D3D3;
 }
 
-#vxsinxentp .gt_grand_summary_row {
+#oreqpaijnd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2486,7 +2486,7 @@ mtcars %&gt;%
   padding-right: 5px;
 }
 
-#vxsinxentp .gt_first_grand_summary_row {
+#oreqpaijnd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2496,11 +2496,11 @@ mtcars %&gt;%
   border-top-color: #D3D3D3;
 }
 
-#vxsinxentp .gt_striped {
+#oreqpaijnd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vxsinxentp .gt_table_body {
+#oreqpaijnd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2509,7 +2509,7 @@ mtcars %&gt;%
   border-bottom-color: #D3D3D3;
 }
 
-#vxsinxentp .gt_footnotes {
+#oreqpaijnd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2523,7 +2523,7 @@ mtcars %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#vxsinxentp .gt_footnote {
+#oreqpaijnd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -2532,7 +2532,7 @@ mtcars %&gt;%
   padding-right: 5px;
 }
 
-#vxsinxentp .gt_sourcenotes {
+#oreqpaijnd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2546,7 +2546,7 @@ mtcars %&gt;%
   border-right-color: #D3D3D3;
 }
 
-#vxsinxentp .gt_sourcenote {
+#oreqpaijnd .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2554,60 +2554,60 @@ mtcars %&gt;%
   padding-right: 5px;
 }
 
-#vxsinxentp .gt_left {
+#oreqpaijnd .gt_left {
   text-align: left;
 }
 
-#vxsinxentp .gt_center {
+#oreqpaijnd .gt_center {
   text-align: center;
 }
 
-#vxsinxentp .gt_right {
+#oreqpaijnd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vxsinxentp .gt_font_normal {
+#oreqpaijnd .gt_font_normal {
   font-weight: normal;
 }
 
-#vxsinxentp .gt_font_bold {
+#oreqpaijnd .gt_font_bold {
   font-weight: bold;
 }
 
-#vxsinxentp .gt_font_italic {
+#oreqpaijnd .gt_font_italic {
   font-style: italic;
 }
 
-#vxsinxentp .gt_super {
+#oreqpaijnd .gt_super {
   font-size: 65%;
 }
 
-#vxsinxentp .gt_footnote_marks {
+#oreqpaijnd .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#vxsinxentp .gt_asterisk {
+#oreqpaijnd .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vxsinxentp .gt_slash_mark {
+#oreqpaijnd .gt_slash_mark {
   font-size: 0.7em;
   line-height: 0.7em;
   vertical-align: 0.15em;
 }
 
-#vxsinxentp .gt_fraction_numerator {
+#oreqpaijnd .gt_fraction_numerator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: 0.45em;
 }
 
-#vxsinxentp .gt_fraction_denominator {
+#oreqpaijnd .gt_fraction_denominator {
   font-size: 0.6em;
   line-height: 0.6em;
   vertical-align: -0.05em;
@@ -2698,7 +2698,7 @@ mtcars %&gt;%
 
 .pull-right[
 .smaller[
-![](csss_508_week10_model_results_files/figure-html/unnamed-chunk-62-1.png)&lt;!-- --&gt;
+![](csss_508_week10_models_files/figure-html/unnamed-chunk-62-1.png)&lt;!-- --&gt;
 ]
 ]
 
@@ -2727,7 +2727,7 @@ corrplot(
 ---
 ## Correlogram
 
-![](csss_508_week10_model_results_files/figure-html/unnamed-chunk-64-1.svg)&lt;!-- --&gt;
+![](csss_508_week10_models_files/figure-html/unnamed-chunk-64-1.svg)&lt;!-- --&gt;
 
 ---
 class: inverse

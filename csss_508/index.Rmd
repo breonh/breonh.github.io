@@ -398,10 +398,10 @@ author: |
 
  **Lecture for Week 10:**
 
-   * [Slides for Lecture 10: Reproducibility and Model Results](https://breonh.github.io/csss_508/lecture/week10/csss_508_week10_model_results.html)
-       + [Companion R Script for Lecture 10 slides](https://breonh.github.io/csss_508/lecture/week10/csss_508_week10_model_results_companion.R)
-       + [PDF of Lecture 10 slides](https://breonh.github.io/csss_508/lecture/week10/csss_508_week10_model_results.pdf)
-       + [Rmd for Lecture 10 slides](https://breonh.github.io/csss_508/lecture/week10/csss_508_week10_model_results.Rmd)
+   * [Slides for Lecture 10: Reproducibility and Model Results](https://breonh.github.io/csss_508/lecture/week10/csss_508_week10_models.html)
+       + [Companion R Script for Lecture 10 slides](https://breonh.github.io/csss_508/lecture/week10/csss_508_week10_models_companion.R)
+       + [PDF of Lecture 10 slides](https://breonh.github.io/csss_508/lecture/week10/csss_508_week10_models.pdf)
+       + [Rmd for Lecture 10 slides](https://breonh.github.io/csss_508/lecture/week10/csss_508_week10_models.Rmd)
 
 
   **Lecture Recording: **
