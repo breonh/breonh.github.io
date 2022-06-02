@@ -36,7 +36,7 @@ author: |
 ## Weekly lecture notes and links:
 
 ### 1. RStudio and R Markdown
- **Lecture for Week 1:**
+ **Lecture for Week 1: **
  
    * [Install R and R Markdown!](https://breonh.github.io/csss_508/installation.html)
    
