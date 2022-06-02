@@ -418,7 +418,7 @@ author: |
       + [`rrtools`](https://github.com/benmarwick/rrtools)
       * [`broom` vignette](https://cran.r-project.org/web/packages/broom/vignettes/broom.html)
       * [`ggeffects` vignette](https://cran.r-project.org/web/packages/ggeffects/vignettes/marginaleffects.html)
-      * [`sjPlot` home page](http://www.strengejacke.de/sjPlot/)
+
    * [Overleaf online LaTeX editor](http://www.overleaf.com/)
 
 
